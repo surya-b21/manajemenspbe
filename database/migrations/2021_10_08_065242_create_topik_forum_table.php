@@ -14,7 +14,7 @@ class CreateTopikForumTable extends Migration
     public function up()
     {
         Schema::create('topik_forum', function (Blueprint $table) {
-            $table->id('id_topik');
+            $table->id();
             $table->string('judul');
             $table->text('isi');
             $table->string('foto_url')->nullable();

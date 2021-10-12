@@ -15,7 +15,7 @@ class AddIdDevToVersiTable extends Migration
     {
         Schema::table('versi', function (Blueprint $table) {
             $table->unsignedBigInteger('id_dev');
-            $table->foreign('id_dev')->references('id_dev')->on('developer');
+            $table->foreign('id_dev')->references('id')->on('developer');
         });
     }
 

@@ -14,7 +14,7 @@ class CreateDokumenTable extends Migration
     public function up()
     {
         Schema::create('dokumen', function (Blueprint $table) {
-            $table->id('id_dok');
+            $table->id();
             $table->string('judul');
             $table->string('file_url');
             $table->timestamps();

@@ -14,7 +14,7 @@ class CreateDeveloperTable extends Migration
     public function up()
     {
         Schema::create('developer', function (Blueprint $table) {
-            $table->id('id_dev');
+            $table->id();
             $table->string('nama_dev');
             $table->text('alamat_dev');
             $table->string('NPWP_dev');

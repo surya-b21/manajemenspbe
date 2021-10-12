@@ -14,7 +14,7 @@ class CreateOpdTable extends Migration
     public function up()
     {
         Schema::create('opd', function (Blueprint $table) {
-            $table->id('id_opd');
+            $table->id();
             $table->string('nama_opd');
             $table->text('alamat');
             $table->string('telepon');

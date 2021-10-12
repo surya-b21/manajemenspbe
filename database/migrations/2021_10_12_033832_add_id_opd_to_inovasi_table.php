@@ -15,9 +15,9 @@ class AddIdOpdToInovasiTable extends Migration
     {
         Schema::table('inovasi', function (Blueprint $table) {
             $table->unsignedBigInteger('id_opd');
-            $table->foreign('id_opd')->references('id_opd')->on('opd');
+            $table->foreign('id_opd')->references('id')->on('opd');
             $table->unsignedBigInteger('id_ku');
-            $table->foreign('id_ku')->references('id_ku')->on('kategori_umum');
+            $table->foreign('id_ku')->references('id')->on('kategori_umum');
         });
     }
 

@@ -14,7 +14,7 @@ class CreateElemenSmartTable extends Migration
     public function up()
     {
         Schema::create('elemen_smart', function (Blueprint $table) {
-            $table->id('id_esmart');
+            $table->id();
             $table->string('element');
             $table->text('deskripsi');
             $table->timestamps();

@@ -14,7 +14,7 @@ class CreateInovasiTable extends Migration
     public function up()
     {
         Schema::create('inovasi', function (Blueprint $table) {
-            $table->id('id_inovasi');
+            $table->id();
             $table->string('nama');
             $table->text('deskripsi');
             $table->string('layanan_spbe');

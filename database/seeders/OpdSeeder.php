@@ -18,7 +18,7 @@ class OpdSeeder extends Seeder
         $faker = Factory::create('id_ID');
         DB::table('opd')->insert([
             [
-                'id_opd' => 1,
+                'id' => 1,
                 'nama_opd' => "Dinas Kesehatan",
                 'alamat' => $faker->address(),
                 'telepon' => $faker->phoneNumber(),

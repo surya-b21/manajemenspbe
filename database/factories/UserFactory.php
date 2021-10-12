@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'password' => Hash::make('admin123'), // password
             'alamat' => $this->faker->address(),
             'remember_token' => Str::random(10),
-            'id_opd' => 1,
+            'id_opd' => $this->faker->numberBetween(1,3),
         ];
     }
 

@@ -14,7 +14,7 @@ class CreateVersiTable extends Migration
     public function up()
     {
         Schema::create('versi', function (Blueprint $table) {
-            $table->id('id_versi');
+            $table->id();
             $table->string('nama');
             $table->text('deskripsi');
             $table->date('tgl_versi');

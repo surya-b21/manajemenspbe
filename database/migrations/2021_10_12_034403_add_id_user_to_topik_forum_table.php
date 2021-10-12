@@ -15,9 +15,9 @@ class AddIdUserToTopikForumTable extends Migration
     {
         Schema::table('topik_forum', function (Blueprint $table) {
             $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id_user')->on('users');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedBigInteger('id_kf');
-            $table->foreign('id_kf')->references('id_kf')->on('kategori_forum');
+            $table->foreign('id_kf')->references('id')->on('kategori_forum');
         });
     }
 

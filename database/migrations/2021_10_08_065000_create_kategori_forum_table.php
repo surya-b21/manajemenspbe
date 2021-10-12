@@ -14,7 +14,7 @@ class CreateKategoriForumTable extends Migration
     public function up()
     {
         Schema::create('kategori_forum', function (Blueprint $table) {
-            $table->id('id_kf');
+            $table->id();
             $table->integer('parent');
             $table->string('kategori');
             $table->integer('level');

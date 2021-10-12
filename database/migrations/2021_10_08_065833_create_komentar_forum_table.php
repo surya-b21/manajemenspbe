@@ -14,7 +14,7 @@ class CreateKomentarForumTable extends Migration
     public function up()
     {
         Schema::create('komentar_forum', function (Blueprint $table) {
-            $table->id('id_komen');
+            $table->id();
             $table->text('isi');
             $table->timestamps();
         });

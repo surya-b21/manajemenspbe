@@ -15,7 +15,7 @@ class AddIdOpdToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('id_opd')->nullable();
-            $table->foreign('id_opd')->references('id_opd')->on('opd');
+            $table->foreign('id_opd')->references('id')->on('opd');
         });
     }
 
