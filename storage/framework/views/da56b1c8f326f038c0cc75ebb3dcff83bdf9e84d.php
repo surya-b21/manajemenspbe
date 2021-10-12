@@ -1,0 +1,3 @@
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('administrator.account.admin.create')): ?>
+  <a href="<?php echo e(route('administrator.account.admin.create', ['back' => request()->fullUrl()])); ?>" class="btn btn-sm btn-primary">Create User</a>
+<?php endif; ?><?php /**PATH C:\laragon\www\manajemenspbe\resources\views/vendor/ladmin/user/_partials/_topButton.blade.php ENDPATH**/ ?>
