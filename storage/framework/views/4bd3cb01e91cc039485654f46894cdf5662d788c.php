@@ -1,2 +1,0 @@
-<img src="<?php echo e(asset('uploads/logo/logo-surakarta.png')); ?>" alt="logo-surakarta">
-<?php /**PATH C:\laragon\www\manajemenspbe\resources\views/components/application-logo.blade.php ENDPATH**/ ?>
