@@ -14,6 +14,8 @@ class AddIdTopikToKomentarForumTable extends Migration
     public function up()
     {
         Schema::table('komentar_forum', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id_user')->on('users');
             $table->unsignedBigInteger('id_topik');
             $table->foreign('id_topik')->references('id_topik')->on('topik_forum');
         });
