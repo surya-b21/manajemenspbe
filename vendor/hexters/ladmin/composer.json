@@ -1,0 +1,35 @@
+{
+    "name": "hexters/ladmin",
+    "description": "Package for handel admin page in laravel",
+    "keywords": ["Laravel", "Laravel Admin", "Admin Page"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "saifullah",
+            "email": "hexters@gmail.com"
+        }
+    ],
+    "require": {
+        "yajra/laravel-datatables-oracle": "~9.0",
+        "laravel/ui": "^3.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hexters\\Ladmin\\LadminServiceProvider",
+                "Hexters\\Ladmin\\EventServiceProvider"
+            ],
+            "aliases": {
+                "Ladmin": "Hexters\\Ladmin\\Ladmin"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Hexters\\Ladmin\\": "src/"
+        },
+        "files": [
+            "src/Helpers/function.php"
+        ]
+    }
+}

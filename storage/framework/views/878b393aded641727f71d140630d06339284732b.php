@@ -1,0 +1,1 @@
+Copyright &copy; 2020-2021. <a href="https://github.com/hexters/ladmin" target="_blank"><strong>Hexters/Ladmin</strong></a>. All rights reserved.<?php /**PATH C:\laragon\www\manajemenspbe\resources\views/vendor/ladmin/footer.blade.php ENDPATH**/ ?>
