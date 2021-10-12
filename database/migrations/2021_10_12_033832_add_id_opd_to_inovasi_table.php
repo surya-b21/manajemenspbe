@@ -18,8 +18,6 @@ class AddIdOpdToInovasiTable extends Migration
             $table->foreign('id_opd')->references('id_opd')->on('opd');
             $table->unsignedBigInteger('id_ku');
             $table->foreign('id_ku')->references('id_ku')->on('kategori_umum');
-            $table->unsignedBigInteger('id_esmart');
-            $table->foreign('id_esmart')->references('id_esmart')->on('elemen_smart');
         });
     }
 
