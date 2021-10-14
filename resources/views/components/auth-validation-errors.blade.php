@@ -1,4 +1,10 @@
-@props(['errors'])
+@error($name)
+    <div class="text-red-500 mt-2 text-sm">
+        {{$message}}
+    </div>
+@enderror
+
+{{-- @props(['errors'])
 
 @if ($errors->any())
     <div {{ $attributes }}>
@@ -12,4 +18,4 @@
             @endforeach
         </ul>
     </div>
-@endif
+@endif --}}

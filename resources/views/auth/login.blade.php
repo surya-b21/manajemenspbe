@@ -9,15 +9,16 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        {{-- <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <!-- Email Address -->
             <div>
-                <x-input id="username" class="block mt-1 w-full" type="text" name="username" placeholder="Masukan username" :value="old('username')" required autofocus />
+                <x-input id="username" class="block mt-1 w-full" type="text" name="username" placeholder="Masukan username" :value="old('username')" autofocus />
+                <x-auth-validation-errors name="username" />
             </div>
 
             <!-- Password -->
@@ -26,7 +27,8 @@
                                 type="password"
                                 name="password"
                                 placeholder="Masukkan Password"
-                                required autocomplete="current-password" />
+                                autocomplete="current-password" />
+                <x-auth-validation-errors name="password" />
             </div>
 
             <!-- Remember Me -->
