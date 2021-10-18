@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Administrator\ElemenSmartController;
+use App\Http\Controllers\Administrator\InovasiController;
+use App\Http\Controllers\Administrator\KategoriUmumController;
 use Illuminate\Support\Facades\Route;
 use Hexters\Ladmin\Routes\Ladmin;
 
@@ -23,7 +26,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Ladmin::route(function() {
-    Route::resource('/withdrawal', WithdrawalController::class); // Example
+    // Route::resource('/withdrawal', WithdrawalController::class); // Example
+    Route::group(['as' => 'konten.', 'prefix' => 'konten'], function() {
+        Route::resource('/kategori-umum', KategoriUmumController::class);
+        Route::resource('/elemen-smart', ElemenSmartController::class);
+    });
 });
 
 require __DIR__.'/auth.php';

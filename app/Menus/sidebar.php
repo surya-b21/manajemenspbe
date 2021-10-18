@@ -9,7 +9,7 @@ return [
     'isActive' => null,
     /**
      * You can use fontawesome or svg file, the svg file is viewable in the resources/assets/icons directory
-     * Example to Custom SVG file 'icon' => 'somefolder.customsvgfile' --> resources/assets/icons/somefolder/customsvgfile.svg 
+     * Example to Custom SVG file 'icon' => 'somefolder.customsvgfile' --> resources/assets/icons/somefolder/customsvgfile.svg
      * Exampe for fontawesome 'icon' => 'fas fa-user',
      */
     'icon' => 'user-group',
@@ -105,9 +105,74 @@ return [
             'title' => 'Assign Permission',
             'description' => 'User can assign for all permission'
           ],
-          
+
         ],
       ]
+    ]
+  ],
+
+  [
+    'gate' => 'administrator.konten',
+    'name' => 'Konten',
+    'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+    'route' => null,
+    'isActive' => null,
+    'icon' => 'collection',
+    'id' => '',
+    'gates' => [],
+    'submenus' => [
+
+      [
+        'gate' => 'administrator.konten.kategori-umum.index',
+        'name' => 'Kategori-umum',
+        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+        'route' => ['administrator.konten.kategori-umum.index', []],
+        'isActive' => 'konten/kategori-umum*',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.konten.kategori-umum.create',
+            'title' => 'Create kategori-umum',
+            'description' => 'User can create new kategori-umum'
+          ],
+          [
+            'gate' => 'administrator.konten.kategori-umum.update',
+            'title' => 'Update kategori-umum',
+            'description' => 'User can update kategori-umum'
+          ],
+          [
+            'gate' => 'administrator.konten.kategori-umum.destroy',
+            'title' => 'Delete kategori-umum',
+            'description' => 'User can delete kategori-umum'
+          ]
+        ],
+      ],
+
+      [
+        'gate' => 'administrator.konten.elemen-smart.index',
+        'name' => 'Elemen-smart',
+        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+        'route' => ['administrator.konten.elemen-smart.index', []],
+        'isActive' => 'konten/elemen-smart*',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.konten.elemen-smart.create',
+            'title' => 'Create elemen-smart',
+            'description' => 'User can create new elemen-smart'
+          ],
+          [
+            'gate' => 'administrator.konten.elemen-smart.update',
+            'title' => 'Update elemen-smart',
+            'description' => 'User can update elemen-smart'
+          ],
+          [
+            'gate' => 'administrator.konten.elemen-smart.destroy',
+            'title' => 'Delete elemen-smart',
+            'description' => 'User can delete elemen-smart'
+          ]
+        ],
+      ],
     ]
   ],
 
@@ -147,5 +212,6 @@ return [
         'gates' => []
       ]
     ]
-  ]
+  ],
+
 ];
