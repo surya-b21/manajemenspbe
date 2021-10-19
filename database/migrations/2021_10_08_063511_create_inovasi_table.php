@@ -20,7 +20,7 @@ class CreateInovasiTable extends Migration
             $table->string('layanan_spbe');
             $table->date('tgl_launching');
             $table->date('tgl_upload');
-            $table->string('poster_url');
+            $table->string('poster_path');
             $table->string('status');
             $table->timestamps();
         });

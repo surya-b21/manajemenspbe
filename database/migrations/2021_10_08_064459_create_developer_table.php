@@ -19,7 +19,7 @@ class CreateDeveloperTable extends Migration
             $table->text('alamat_dev');
             $table->string('NPWP_dev');
             $table->string('telepon_dev');
-            $table->string('foto_dev_url');
+            $table->string('foto_dev_path');
             $table->timestamps();
         });
     }

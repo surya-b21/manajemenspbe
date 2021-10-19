@@ -17,7 +17,7 @@ class CreateTopikForumTable extends Migration
             $table->id();
             $table->string('judul');
             $table->text('isi');
-            $table->string('foto_url')->nullable();
+            $table->string('foto_path')->nullable();
             $table->timestamps();
         });
     }
