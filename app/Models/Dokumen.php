@@ -14,6 +14,6 @@ class Dokumen extends Model
 
     protected $fillable = [
         'judul',
-        'file_url'
+        'file_path'
     ];
 }
