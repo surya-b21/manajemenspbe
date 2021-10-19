@@ -2,11 +2,11 @@
 
   namespace App\DataTables;
 
-  use App\Models\ElemenSmart;
+  use App\Models\Dokumen;
   use Hexters\Ladmin\Datatables\Datatables;
   use Hexters\Ladmin\Contracts\DataTablesInterface;
 
-  class ElemenSmartDataTables extends Datatables implements DataTablesInterface {
+  class DokumenDataTables extends Datatables implements DataTablesInterface {
 
     /**
      * Datatables function
@@ -18,17 +18,21 @@
        */
       $data = self::$data;
 
-      return $this->eloquent(ElemenSmart::query())
-        ->addColumn('action', function($item) {
+      return $this->eloquent(Dokumen::query())
+      ->addColumn('action', function($item) {
             return view('ladmin::table.action', [
             'show' => null,
             'edit' => [
-                'gate' => 'administrator.kelola.elemen-smart.update',
-                'url' => route('administrator.kelola.elemen-smart.edit', [$item->id, 'back' => request()->fullUrl()])
+                'gate' => 'administrator.kelola.dokumen.update',
+                'url' => route('administrator.kelola.dokumen.edit', [$item->id, 'back' => request()->fullUrl()])
+            ],
+            'view' => [
+                'gate' => 'administrator.kelola.dokumen.update',
+                'url' => route('administrator.kelola.dokumen.edit', [$item->id, 'back' => request()->fullUrl()])
             ],
             'destroy' => [
-                'gate' => 'administrator.kelola.elemen-smart.destroy',
-                'url' => route('administrator.kelola.elemen-smart.destroy', [$item->id, 'back' => request()->fullUrl()]),
+                'gate' => 'administrator.kelola.dokumen.destroy',
+                'url' => route('administrator.kelola.dokumen.destroy', [$item->id, 'back' => request()->fullUrl()]),
             ]
             ]);
         })
@@ -47,9 +51,9 @@
       $data = self::$data;
 
       return [
-        'title' => 'Elemen Smart',
-        'buttons' => view('vendor.ladmin.elemen-smart._partials._topButton'), // e.g : view('user.actions.create')
-        'fields' => [__('ID'), __('Elemen Smart'),__('Deskripsi'),__('Action')], // Table header
+        'title' => 'Dokumen',
+        'buttons' => view('vendor.ladmin.dokumen._partials._topButton'), // e.g : view('user.actions.create')
+        'fields' => [ __('ID'),__('Judul'),__('Action') ], // Table header
         'foos' => [ // Custom data array. You can call in your blade with variable $foos
           'bar' => 'baz',
           'baz' => 'bar',
@@ -63,8 +67,7 @@
           'ajax' => request()->fullurl(),
           'columns' => [
               ['data' => 'id', 'class' => 'text-center'],
-              ['data' => 'element', 'class' => 'text-left'],
-              ['data' => 'deskripsi', 'class' => 'text-justify'],
+              ['data' => 'judul'],
               ['data' => 'action', 'class' => 'text-center']
           ]
         ]

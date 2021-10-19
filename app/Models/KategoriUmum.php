@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hexters\Ladmin\LadminLogable;
+use Illuminate\Database\Eloquent\Model;
 
-class KategoriUmum extends Authenticatable
+class KategoriUmum extends Model
 {
     use HasFactory, LadminLogable;
 

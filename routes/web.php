@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Administrator\DokumenController;
 use App\Http\Controllers\Administrator\ElemenSmartController;
 use App\Http\Controllers\Administrator\InovasiController;
 use App\Http\Controllers\Administrator\KategoriUmumController;
+use App\Http\Controllers\Administrator\OpdController;
 use Illuminate\Support\Facades\Route;
 use Hexters\Ladmin\Routes\Ladmin;
 
@@ -23,13 +25,16 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth','verified'])->name('dashboard');
 
 Ladmin::route(function() {
-    // Route::resource('/withdrawal', WithdrawalController::class); // Example
-    Route::group(['as' => 'konten.', 'prefix' => 'konten'], function() {
+    Route::prefix('account')->as('account.')->middleware(['verified'])->group(function () {
+        Route::resource('/opd', OpdController::class);
+    });
+    Route::prefix('kelola')->as('kelola.')->middleware(['verified'])->group(function() {
         Route::resource('/kategori-umum', KategoriUmumController::class);
         Route::resource('/elemen-smart', ElemenSmartController::class);
+        Route::resource('/dokumen', DokumenController::class);
     });
 });
 

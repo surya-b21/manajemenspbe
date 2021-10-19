@@ -19,7 +19,7 @@ return [
 
       [
         'gate' => 'administrator.account.admin.index',
-        'name' => 'User Admin',
+        'name' => 'Data User',
         'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
         /**
          * Declaration route Example
@@ -45,7 +45,32 @@ return [
             'description' => 'User can delete account'
           ]
         ],
-      ]
+    ],
+    [
+        'gate' => 'administrator.account.opd.index',
+        'name' => 'Data OPD',
+        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+        'route' => ['administrator.account.opd.index', []],
+        'isActive' => 'account/opd*',
+        'id' => '',
+        'gates' => [
+            [
+              'gate' => 'administrator.account.opd.create',
+              'title' => 'Create opd',
+              'description' => 'User can create new opd'
+            ],
+            [
+              'gate' => 'administrator.account.opd.update',
+              'title' => 'Update opd',
+              'description' => 'User can update opd'
+            ],
+            [
+              'gate' => 'administrator.account.opd.destroy',
+              'title' => 'Delete account',
+              'description' => 'User can delete account'
+            ]
+          ],
+    ]
 
     ]
   ],
@@ -112,36 +137,36 @@ return [
   ],
 
   [
-    'gate' => 'administrator.konten',
-    'name' => 'Konten',
+    'gate' => 'administrator.kelola',
+    'name' => 'Kelola',
     'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
     'route' => null,
     'isActive' => null,
-    'icon' => 'collection',
+    'icon' => 'fas fa-tasks',
     'id' => '',
     'gates' => [],
     'submenus' => [
 
       [
-        'gate' => 'administrator.konten.kategori-umum.index',
-        'name' => 'Kategori-umum',
+        'gate' => 'administrator.kelola.kategori-umum.index',
+        'name' => 'Kategori umum',
         'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-        'route' => ['administrator.konten.kategori-umum.index', []],
-        'isActive' => 'konten/kategori-umum*',
+        'route' => ['administrator.kelola.kategori-umum.index', []],
+        'isActive' => 'kelola/kategori-umum*',
         'id' => '',
         'gates' => [
           [
-            'gate' => 'administrator.konten.kategori-umum.create',
+            'gate' => 'administrator.kelola.kategori-umum.create',
             'title' => 'Create kategori-umum',
             'description' => 'User can create new kategori-umum'
           ],
           [
-            'gate' => 'administrator.konten.kategori-umum.update',
+            'gate' => 'administrator.kelola.kategori-umum.update',
             'title' => 'Update kategori-umum',
             'description' => 'User can update kategori-umum'
           ],
           [
-            'gate' => 'administrator.konten.kategori-umum.destroy',
+            'gate' => 'administrator.kelola.kategori-umum.destroy',
             'title' => 'Delete kategori-umum',
             'description' => 'User can delete kategori-umum'
           ]
@@ -149,27 +174,52 @@ return [
       ],
 
       [
-        'gate' => 'administrator.konten.elemen-smart.index',
-        'name' => 'Elemen-smart',
+        'gate' => 'administrator.kelola.elemen-smart.index',
+        'name' => 'Elemen smart',
         'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-        'route' => ['administrator.konten.elemen-smart.index', []],
-        'isActive' => 'konten/elemen-smart*',
+        'route' => ['administrator.kelola.elemen-smart.index', []],
+        'isActive' => 'kelola/elemen-smart*',
         'id' => '',
         'gates' => [
           [
-            'gate' => 'administrator.konten.elemen-smart.create',
+            'gate' => 'administrator.kelola.elemen-smart.create',
             'title' => 'Create elemen-smart',
             'description' => 'User can create new elemen-smart'
           ],
           [
-            'gate' => 'administrator.konten.elemen-smart.update',
+            'gate' => 'administrator.kelola.elemen-smart.update',
             'title' => 'Update elemen-smart',
             'description' => 'User can update elemen-smart'
           ],
           [
-            'gate' => 'administrator.konten.elemen-smart.destroy',
+            'gate' => 'administrator.kelola.elemen-smart.destroy',
             'title' => 'Delete elemen-smart',
             'description' => 'User can delete elemen-smart'
+          ]
+        ],
+      ],
+      [
+        'gate' => 'administrator.kelola.dokumen.index',
+        'name' => 'Dokumen',
+        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+        'route' => ['administrator.kelola.dokumen.index', []],
+        'isActive' => 'kelola/dokumen*',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.kelola.dokumen.create',
+            'title' => 'Create dokumen',
+            'description' => 'User can create new dokumen'
+          ],
+          [
+            'gate' => 'administrator.kelola.dokumen.update',
+            'title' => 'Update dokumen',
+            'description' => 'User can update dokumen'
+          ],
+          [
+            'gate' => 'administrator.kelola.dokumen.destroy',
+            'title' => 'Delete dokumen',
+            'description' => 'User can delete dokumen'
           ]
         ],
       ],

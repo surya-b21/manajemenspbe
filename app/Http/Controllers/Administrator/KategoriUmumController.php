@@ -17,7 +17,7 @@ class KategoriUmumController extends Controller
      */
     public function index()
     {
-        ladmin()->allow('administrator.konten.kategori-umum.index');
+        ladmin()->allow('administrator.kelola.kategori-umum.index');
 
         return KategoriUmumDataTables::view();
     }
@@ -29,7 +29,7 @@ class KategoriUmumController extends Controller
      */
     public function create()
     {
-        ladmin()->allow('administrator.konten.kategori-umum.create');
+        ladmin()->allow('administrator.kelola.kategori-umum.create');
 
         return view('vendor.ladmin.kategori-umum.create');
     }
@@ -42,7 +42,7 @@ class KategoriUmumController extends Controller
      */
     public function store(Request $request)
     {
-        ladmin()->allow('administrator.konten.kategori-umum.create');
+        ladmin()->allow('administrator.kelola.kategori-umum.create');
 
         $request->validate([
             'kategori' => ['required']
@@ -59,7 +59,7 @@ class KategoriUmumController extends Controller
                 'Kategori Umum berhasil ditambahkan'
             ]);
 
-            return redirect('/administrator/konten/kategori-umum');
+            return redirect('/administrator/kelola/kategori-umum');
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
@@ -76,7 +76,7 @@ class KategoriUmumController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('administrator.konten.kategori-umum.index');
+        return redirect()->route('administrator.kelola.kategori-umum.index');
     }
 
     /**
@@ -87,7 +87,7 @@ class KategoriUmumController extends Controller
      */
     public function edit($id)
     {
-        ladmin()->allow('administrator.konten.kategori-umum.update');
+        ladmin()->allow('administrator.kelola.kategori-umum.update');
 
         $data['kategori'] = KategoriUmum::findOrFail($id);
         return view('vendor.ladmin.kategori-umum.edit',$data);
@@ -102,7 +102,7 @@ class KategoriUmumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ladmin()->allow('administrator.konten.kategori-umum.update');
+        ladmin()->allow('administrator.kelola.kategori-umum.update');
 
         $request->validate([
             'kategori' => ['required']
@@ -119,7 +119,7 @@ class KategoriUmumController extends Controller
             session()->flash('success', [
                 'Update berhasil'
             ]);
-            return redirect('/administrator/konten/kategori-umum');
+            return redirect('/administrator/kelola/kategori-umum');
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
@@ -135,7 +135,7 @@ class KategoriUmumController extends Controller
      */
     public function destroy($id)
     {
-        ladmin()->allow('administrator.konten.kategori-umum.destroy');
+        ladmin()->allow('administrator.kelola.kategori-umum.destroy');
 
         try {
             $kategori = KategoriUmum::findOrFail($id);
@@ -144,7 +144,7 @@ class KategoriUmumController extends Controller
             session()->flash('success', [
                 'Data berhasil dihapus'
             ]);
-            return redirect('/administrator/konten/kategori-umum');
+            return redirect('/administrator/kelola/kategori-umum');
         } catch (LadminException $e) {
 
         }

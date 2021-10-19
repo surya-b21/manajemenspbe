@@ -24,12 +24,12 @@
             return view('ladmin::table.action', [
             'show' => null,
             'edit' => [
-                'gate' => 'administrator.konten.kategori-umum.update',
-                'url' => route('administrator.konten.kategori-umum.edit', [$item->id, 'back' => request()->fullUrl()])
+                'gate' => 'administrator.kelola.kategori-umum.update',
+                'url' => route('administrator.kelola.kategori-umum.edit', [$item->id, 'back' => request()->fullUrl()])
             ],
             'destroy' => [
-                'gate' => 'administrator.konten.kategori-umum.destroy',
-                'url' => route('administrator.konten.kategori-umum.destroy', [$item->id, 'back' => request()->fullUrl()]),
+                'gate' => 'administrator.kelola.kategori-umum.destroy',
+                'url' => route('administrator.kelola.kategori-umum.destroy', [$item->id, 'back' => request()->fullUrl()]),
             ]
             ]);
         })

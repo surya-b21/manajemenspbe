@@ -1,4 +1,4 @@
-<?php 
+<?php
 
   namespace App\DataTables;
 
@@ -51,7 +51,7 @@
       $data = self::$data;
 
       return [
-        'title' => 'User Admin',
+        'title' => 'Data User',
         'buttons' => view('vendor.ladmin.user._partials._topButton'),
         'fields' => [ __('Avatar'), __('Name'), __('Email'), __('Role'), __('Action')],
         'options' => [

@@ -1,7 +1,7 @@
 <x-ladmin-layout>
     <x-slot name="title">Edit Kategori Umum</x-slot>
 
-    <form action="{{route('administrator.konten.kategori-umum.update', $kategori->id)}}" method="POST">
+    <form action="{{route('administrator.kelola.kategori-umum.update', $kategori->id)}}" method="POST">
         @csrf
         @method('PUT')
 

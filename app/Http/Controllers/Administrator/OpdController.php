@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Administrator;
 
-use App\DataTables\ElemenSmartDataTables;
+use App\DataTables\OpdDataTables;
 use App\Http\Controllers\Controller;
-use App\Models\ElemenSmart;
+use App\Models\Opd;
 use Hexters\Ladmin\Exceptions\LadminException;
 use Illuminate\Http\Request;
 
-class ElemenSmartController extends Controller
+class OpdController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class ElemenSmartController extends Controller
      */
     public function index()
     {
-        ladmin()->allow('administrator.kelola.elemen-smart.index');
+        ladmin()->allow('administrator.account.opd.index');
 
-        return ElemenSmartDataTables::view();
+        return OpdDataTables::view();
     }
 
     /**
@@ -29,9 +29,9 @@ class ElemenSmartController extends Controller
      */
     public function create()
     {
-        ladmin()->allow('administrator.kelola.elemen-smart.create');
+        ladmin()->allow('administrator.account.opd.create');
 
-        return view('vendor.ladmin.elemen-smart.create');
+        return view('vendor.ladmin.opd.create');
     }
 
     /**
@@ -42,27 +42,31 @@ class ElemenSmartController extends Controller
      */
     public function store(Request $request)
     {
-        ladmin()->allow('administrator.kelola.elemen-smart.create');
+        ladmin()->allow('administrator.account.opd.create');
 
         $request->validate([
-            'element' => 'required',
-            'deskripsi' => 'required'
+            'nama_opd' => ['required'],
+            'email' => ['required'],
+            'telepon' => ['required'],
+            'alamat' => ['required']
         ],
         [
-            'required' => ':attribute harus diisi!'
+            'required' => ':attribute harus diisi!!'
         ]);
 
         try {
-            ElemenSmart::create([
-                'element' => $request->element,
-                'deskripsi' => $request->deskripsi
+            Opd::create([
+                'nama_opd' => $request->nama_opd,
+                'email' => $request->email,
+                'telepon' => $request->telepon,
+                'alamat' => $request->alamat,
             ]);
 
             session()->flash('success', [
-                'Element Smart berhasil ditambahkan'
+                'OPD berhasil ditambahkan'
             ]);
 
-            return redirect('/administrator/kelola/elemen-smart');
+            return redirect('/administrator/account/opd');
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
@@ -78,7 +82,7 @@ class ElemenSmartController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('administrator.kelola.elemen-smart.index');
+        return redirect()->route('administrator.account.opd.index');
     }
 
     /**
@@ -89,10 +93,10 @@ class ElemenSmartController extends Controller
      */
     public function edit($id)
     {
-        ladmin()->allow('administrator.kelola.elemen-smart.update');
+        ladmin()->allow('administrator.account.opd.update');
 
-        $data['esmart'] = ElemenSmart::findOrFail($id);
-        return view('vendor.ladmin.elemen-smart.edit', $data);
+        $data['opd'] = Opd::findOrFail($id);
+        return view('vendor.ladmin.opd.edit',$data);
     }
 
     /**
@@ -104,27 +108,31 @@ class ElemenSmartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ladmin()->allow('administrator.kelola.elemen-smart.update');
+        ladmin()->allow('administrator.account.opd.update');
 
         $request->validate([
-            'element' => 'required',
-            'deskripsi' => 'required'
+            'nama_opd' => ['required'],
+            'email' => ['required'],
+            'telepon' => ['required'],
+            'alamat' => ['required']
         ],
         [
-            'required' => ':attribute harus diisi!'
+            'required' => ':attribute harus diisi!!'
         ]);
 
         try {
-            $esmart = ElemenSmart::findOrFail($id);
-            $esmart->element = $request->element;
-            $esmart->deskripsi = $request->deskripsi;
-            $esmart->save();
+            $opd = Opd::findOrFail($id);
+            $opd->nama_opd = $request->nama_opd;
+            $opd->email = $request->email;
+            $opd->telepon = $request->telepon;
+            $opd->alamat = $request->alamat;
+            $opd->save();
 
             session()->flash('success', [
-                'Update Element Smart berhasil'
+                'Data OPD berhasil diperbarui'
             ]);
 
-            return redirect('/administrator/kelola/elemen-smart');
+            return redirect('/administrator/account/opd');
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
@@ -140,17 +148,17 @@ class ElemenSmartController extends Controller
      */
     public function destroy($id)
     {
-        ladmin()->allow('administrator.kelola.elemen-smart.destroy');
+        ladmin()->allow('administrator.account.opd.destroy');
 
-        try {
-            $esmart = ElemenSmart::findOrFail($id);
-            $esmart->delete();
+        try{
+            $opd = Opd::findOrFail($id);
+            $opd->delete();
 
             session()->flash('success', [
-                'Data Element Smart berhasil dihapus'
+                'Data OPD berhasil dihapus'
             ]);
 
-            return redirect('/administrator/kelola/elemen-smart');
+            return redirect('/administrator/account/opd');
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
