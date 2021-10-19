@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Administrator;
 
 use App\DataTables\ElemenSmartDataTables;
 use App\Http\Controllers\Controller;
+use App\Models\ElemenSmart;
+use Hexters\Ladmin\Exceptions\LadminException;
 use Illuminate\Http\Request;
 
 class ElemenSmartController extends Controller
@@ -28,7 +30,9 @@ class ElemenSmartController extends Controller
      */
     public function create()
     {
-        //
+        ladmin()->allow('administrator.konten.elemen-smart.create');
+
+        return view('vendor.ladmin.elemen-smart.create');
     }
 
     /**
@@ -39,7 +43,32 @@ class ElemenSmartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ladmin()->allow('administrator.konten.elemen-smart.create');
+
+        $request->validate([
+            'element' => 'required',
+            'deskripsi' => 'required'
+        ],
+        [
+            'required' => ':attribute harus diisi!'
+        ]);
+
+        try {
+            ElemenSmart::create([
+                'element' => $request->element,
+                'deskripsi' => $request->deskripsi
+            ]);
+
+            session()->flash('success', [
+                'Element Smart berhasil ditambahkan'
+            ]);
+
+            return redirect('/administrator/konten/elemen-smart');
+        } catch (LadminException $e) {
+            return redirect()->back()->withErrors([
+                $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -61,7 +90,10 @@ class ElemenSmartController extends Controller
      */
     public function edit($id)
     {
-        //
+        ladmin()->allow('administrator.konten.elemen-smart.update');
+
+        $data['esmart'] = ElemenSmart::findOrFail($id);
+        return view('vendor.ladmin.elemen-smart.edit', $data);
     }
 
     /**
@@ -73,7 +105,32 @@ class ElemenSmartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        ladmin()->allow('administrator.konten.elemen-smart.update');
+
+        $request->validate([
+            'element' => 'required',
+            'deskripsi' => 'required'
+        ],
+        [
+            'required' => ':attribute harus diisi!'
+        ]);
+
+        try {
+            $esmart = ElemenSmart::findOrFail($id);
+            $esmart->element = $request->element;
+            $esmart->deskripsi = $request->deskripsi;
+            $esmart->save();
+
+            session()->flash('success', [
+                'Update Element Smart berhasil'
+            ]);
+
+            return redirect('/administrator/konten/elemen-smart');
+        } catch (LadminException $e) {
+            return redirect()->back()->withErrors([
+                $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -84,6 +141,21 @@ class ElemenSmartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ladmin()->allow('administrator.konten.elemen-smart.destroy');
+
+        try {
+            $esmart = ElemenSmart::findOrFail($id);
+            $esmart->delete();
+
+            session()->flash('success', [
+                'Data Element Smart berhasil dihapus'
+            ]);
+
+            return redirect('/administrator/konten/elemen-smart');
+        } catch (LadminException $e) {
+            return redirect()->back()->withErrors([
+                $e->getMessage()
+            ]);
+        }
     }
 }
