@@ -17,7 +17,7 @@ class CreateDeveloperTable extends Migration
             $table->id();
             $table->string('nama_dev');
             $table->text('alamat_dev');
-            $table->string('NPWP_dev');
+            $table->string('npwp_dev');
             $table->string('telepon_dev');
             $table->string('foto_dev_path');
             $table->timestamps();

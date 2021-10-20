@@ -65,7 +65,7 @@
               ['data' => 'id', 'class' => 'text-center'],
               ['data' => 'element', 'class' => 'text-left'],
               ['data' => 'deskripsi', 'class' => 'text-justify'],
-              ['data' => 'action', 'class' => 'text-center']
+              ['data' => 'action', 'class' => 'text-center', 'orderable' => false]
           ]
         ]
       ];

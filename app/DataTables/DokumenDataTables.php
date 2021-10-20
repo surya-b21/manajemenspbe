@@ -21,12 +21,11 @@
       return $this->eloquent(Dokumen::query())
       ->addColumn('action', function($item) {
             return view('ladmin::table.action', [
-            'show' => null,
-            'edit' => [
-                'gate' => 'administrator.kelola.dokumen.update',
-                'url' => route('administrator.kelola.dokumen.edit', [$item->id, 'back' => request()->fullUrl()])
+            'show' => [
+                'gate' => 'administrator.kelola.dokumen.show',
+                'url' => route('administrator.kelola.dokumen.show', [$item->id, 'back' => request()->fullUrl()])
             ],
-            'view' => [
+            'edit' => [
                 'gate' => 'administrator.kelola.dokumen.update',
                 'url' => route('administrator.kelola.dokumen.edit', [$item->id, 'back' => request()->fullUrl()])
             ],
@@ -68,7 +67,7 @@
           'columns' => [
               ['data' => 'id', 'class' => 'text-center'],
               ['data' => 'judul'],
-              ['data' => 'action', 'class' => 'text-center']
+              ['data' => 'action', 'class' => 'text-center', 'orderable' => false]
           ]
         ]
       ];

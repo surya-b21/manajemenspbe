@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Administrator\DeveloperController;
 use App\Http\Controllers\Administrator\DokumenController;
 use App\Http\Controllers\Administrator\ElemenSmartController;
-use App\Http\Controllers\Administrator\InovasiController;
 use App\Http\Controllers\Administrator\KategoriUmumController;
 use App\Http\Controllers\Administrator\OpdController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +35,7 @@ Ladmin::route(function() {
         Route::resource('/kategori-umum', KategoriUmumController::class);
         Route::resource('/elemen-smart', ElemenSmartController::class);
         Route::resource('/dokumen', DokumenController::class);
+        Route::resource('/developer', DeveloperController::class);
     });
 });
 

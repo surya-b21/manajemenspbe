@@ -198,6 +198,7 @@ return [
           ]
         ],
       ],
+
       [
         'gate' => 'administrator.kelola.dokumen.index',
         'name' => 'Dokumen',
@@ -220,6 +221,37 @@ return [
             'gate' => 'administrator.kelola.dokumen.destroy',
             'title' => 'Delete dokumen',
             'description' => 'User can delete dokumen'
+          ]
+        ],
+      ],
+
+      [
+        'gate' => 'administrator.kelola.developer.index',
+        'name' => 'Developer',
+        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+        'route' => ['administrator.kelola.developer.index', []],
+        'isActive' => 'kelola/developer*',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.kelola.developer.create',
+            'title' => 'Create developer',
+            'description' => 'User can create new developer'
+          ],
+          [
+            'gate' => 'administrator.kelola.developer.show',
+            'title' => 'Show developer',
+            'description' => 'User can show developer data'
+          ],
+          [
+            'gate' => 'administrator.kelola.developer.update',
+            'title' => 'Update developer',
+            'description' => 'User can update developer'
+          ],
+          [
+            'gate' => 'administrator.kelola.developer.destroy',
+            'title' => 'Delete developer',
+            'description' => 'User can delete developer'
           ]
         ],
       ],

@@ -67,7 +67,7 @@
               ['data' => 'email'],
               ['data' => 'telepon'],
               ['data' => 'alamat'],
-              ['data' => 'action', 'class' => 'text-center']
+              ['data' => 'action', 'class' => 'text-center', 'orderable' => false]
           ]
         ]
       ];

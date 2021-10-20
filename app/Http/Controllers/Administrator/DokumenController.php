@@ -46,7 +46,7 @@ class DokumenController extends Controller
 
         $request->validate([
             'judul' => 'required',
-            // 'file_url' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'
+            'file_path' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'
         ],
         [
             'required' => ':attribute harus diisi!!',
