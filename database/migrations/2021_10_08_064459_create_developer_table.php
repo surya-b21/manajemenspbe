@@ -20,8 +20,8 @@ class CreateDeveloperTable extends Migration
             $table->string('npwp_dev');
             $table->string('telepon_dev');
             $table->string('foto_dev_path');
-            $table->integer('create_by');
-            $table->integer('update_by');
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }

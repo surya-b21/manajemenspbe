@@ -16,8 +16,8 @@ class CreateKomentarForumTable extends Migration
         Schema::create('komentar_forum', function (Blueprint $table) {
             $table->id();
             $table->text('isi');
-            $table->integer('create_by');
-            $table->integer('update_by');
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }

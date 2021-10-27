@@ -17,8 +17,8 @@ class CreateDokumenTable extends Migration
             $table->id();
             $table->string('judul');
             $table->string('file_path');
-            $table->integer('create_by');
-            $table->integer('update_by');
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }

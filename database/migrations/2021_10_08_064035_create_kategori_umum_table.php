@@ -16,8 +16,8 @@ class CreateKategoriUmumTable extends Migration
         Schema::create('kategori_umum', function (Blueprint $table) {
             $table->id();
             $table->string('kategori');
-            $table->integer('create_by');
-            $table->integer('update_by');
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }

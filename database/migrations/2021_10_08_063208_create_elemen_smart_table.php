@@ -17,8 +17,8 @@ class CreateElemenSmartTable extends Migration
             $table->id();
             $table->string('element');
             $table->text('deskripsi');
-            $table->integer('create_by');
-            $table->integer('update_by');
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }

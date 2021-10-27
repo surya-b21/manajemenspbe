@@ -18,8 +18,8 @@ class CreateTopikForumTable extends Migration
             $table->string('judul');
             $table->text('isi');
             $table->string('foto_path')->nullable();
-            $table->integer('create_by');
-            $table->integer('update_by');
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }

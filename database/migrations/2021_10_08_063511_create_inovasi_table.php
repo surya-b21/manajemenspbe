@@ -22,8 +22,8 @@ class CreateInovasiTable extends Migration
             $table->date('tgl_upload');
             $table->string('poster_path');
             $table->integer('status');
-            $table->integer('create_by');
-            $table->integer('update_by');
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }
