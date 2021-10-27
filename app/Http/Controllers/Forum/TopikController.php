@@ -1,0 +1,106 @@
+<?php
+
+namespace App\Http\Controllers\Forum;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Forum\topik;
+use App\Models\Forum\kategori;
+use PhpParser\Node\Stmt\Catch_;
+use PhpParser\Node\Stmt\TryCatch;
+
+class TopikController extends Controller
+{
+    protected $table = 'topik';
+    public function index($id)
+    {
+        $data = topik::all()->where('id_kf', $id);
+        $data2 = kategori::all();
+        $hitung = count($data2);
+        $id = $id;
+        $show = [
+            'topik' => $data,
+            'kf' => $data2,
+            'id' => $id
+        ];
+        // return view("topik")->with(['topik' => $data]);
+        // return view("topik", ['topik' => $data], ['kf' => $data2], ['id' => $id]);
+        return view(
+            "template2.topik",
+            ['tampil' => $show]
+        );
+        // return response()->json($show['kf'][$id]['kategori']);
+    }
+    function processAdd(Request $request)
+    {
+        $name = $request->file('foto_url')->store('/', 'public', time() . '' . $request->file('foto_url')->getClientOriginalExtension());
+        topik::create([
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'id_user' => $request->id_user,
+            'foto_url' => $name,
+            'id_kf' => $request->id_kf,
+        ]);
+        return redirect()->back();
+    }
+    // public function proses_upload(Request $request)
+    // {
+    //     // $this->validate($request, [
+    //     // 	'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+    //     // 	'keterangan' => 'required',
+    //     // ]);
+
+    //     // menyimpan data file yang diupload ke variabel $file
+    //     $file = $request->file('file');
+
+    //     $nama_file = time() . "_" . $file->getClientOriginalName();
+
+    //     // isi dengan nama folder tempat kemana file diupload
+    //     $tujuan_upload = 'data_file';
+    //     $file->move($tujuan_upload, $nama_file);
+
+    //     Gambar::create([
+    //         'file' => $nama_file,
+    //         'keterangan' => $request->keterangan,
+    //     ]);
+
+    //     return redirect()->back();
+    // }
+    function delete($idtopik)
+    {
+        try {
+            $process = topik::findOrFail($idtopik)->delete();
+            if ($process) {
+                return redirect()->back()->with("success");
+            } else {
+                return redirect()->back()->withErrors("Terjadi kesalahan");
+            }
+        } catch (\Exception $e) {
+        }
+    }
+    public function update($idtopik)
+    {
+        $data = topik::findOrFail($idtopik);
+        return view("template2.update", ['topik' => $data]);
+    }
+
+    public function processUpdate(Request $request, $idtopik)
+    {
+        $topik = topik::find($idtopik);
+        $topik->judul = $request->input('judul');
+        $topik->isi = $request->input('isi');
+        $topik->id_user = $request->input('id_user');
+        $topik->id_kf = $request->input('id_kf');
+        if ($request->hasFile('foto_url')) {
+            $filenameWithExt = $request->file('foto_url')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('foto_url')->getClientOriginalExtension();
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+
+            $name = $request->file('foto_url')->store('/', 'public', $filenameSimpan);
+            $topik->foto_url = $name;
+        }
+        $topik->save();
+        return redirect()->back();
+    }
+}
