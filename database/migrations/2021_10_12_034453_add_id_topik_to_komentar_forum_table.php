@@ -14,10 +14,10 @@ class AddIdTopikToKomentarForumTable extends Migration
     public function up()
     {
         Schema::table('komentar_forum', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedBigInteger('id_topik');
-            $table->foreign('id_topik')->references('id')->on('topik_forum');
+            $table->unsignedBigInteger('id_user')->after('isi');
+            $table->foreign('id_user')->references('id')->on('users')->on('opd')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('id_topik')->after('id_user');
+            $table->foreign('id_topik')->references('id')->on('topik_forum')->on('opd')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

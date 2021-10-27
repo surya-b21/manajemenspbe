@@ -5,6 +5,8 @@ use App\Http\Controllers\Administrator\DokumenController;
 use App\Http\Controllers\Administrator\ElemenSmartController;
 use App\Http\Controllers\Administrator\KategoriUmumController;
 use App\Http\Controllers\Administrator\OpdController;
+use App\Http\Controllers\Administrator\InovasiController;
+use App\Http\Controllers\Administrator\VersiController;
 use Illuminate\Support\Facades\Route;
 use Hexters\Ladmin\Routes\Ladmin;
 
@@ -36,6 +38,8 @@ Ladmin::route(function() {
         Route::resource('/elemen-smart', ElemenSmartController::class);
         Route::resource('/dokumen', DokumenController::class);
         Route::resource('/developer', DeveloperController::class);
+        Route::resource('/inovasi', InovasiController::class);
+        Route::resource('/versi', VersiController::class);
     });
 });
 

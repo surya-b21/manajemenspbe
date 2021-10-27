@@ -19,6 +19,7 @@
       $data = self::$data;
 
       return $this->eloquent(Dokumen::query())
+      ->addIndexColumn()
       ->addColumn('action', function($item) {
             return view('ladmin::table.action', [
             'show' => [
@@ -52,7 +53,7 @@
       return [
         'title' => 'Dokumen',
         'buttons' => view('vendor.ladmin.dokumen._partials._topButton'), // e.g : view('user.actions.create')
-        'fields' => [ __('ID'),__('Judul'),__('Action') ], // Table header
+        'fields' => [ __('#'),__('Judul'),__('Action') ], // Table header
         'foos' => [ // Custom data array. You can call in your blade with variable $foos
           'bar' => 'baz',
           'baz' => 'bar',
@@ -65,7 +66,7 @@
           'serverSide' => true,
           'ajax' => request()->fullurl(),
           'columns' => [
-              ['data' => 'id', 'class' => 'text-center'],
+              ['data' => 'DT_RowIndex', 'class' => 'text-center', 'orderable' => false],
               ['data' => 'judul'],
               ['data' => 'action', 'class' => 'text-center', 'orderable' => false]
           ]

@@ -18,7 +18,9 @@ class CreateVersiTable extends Migration
             $table->string('nama');
             $table->text('deskripsi');
             $table->date('tgl_versi');
-            $table->string('status');
+            $table->integer('status');
+            $table->integer('create_by');
+            $table->integer('update_by');
             $table->timestamps();
         });
     }

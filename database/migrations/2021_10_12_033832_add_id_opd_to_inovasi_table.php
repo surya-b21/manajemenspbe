@@ -14,10 +14,10 @@ class AddIdOpdToInovasiTable extends Migration
     public function up()
     {
         Schema::table('inovasi', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_opd');
-            $table->foreign('id_opd')->references('id')->on('opd');
-            $table->unsignedBigInteger('id_ku');
-            $table->foreign('id_ku')->references('id')->on('kategori_umum');
+            $table->unsignedBigInteger('id_opd')->after('status');
+            $table->foreign('id_opd')->references('id')->on('opd')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('id_ku')->after('id_opd');
+            $table->foreign('id_ku')->references('id')->on('kategori_umum')->on('opd')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -19,6 +19,8 @@ class CreateOpdTable extends Migration
             $table->text('alamat');
             $table->string('telepon');
             $table->string('email');
+            $table->integer('create_by');
+            $table->integer('update_by');
             $table->timestamps();
         });
     }

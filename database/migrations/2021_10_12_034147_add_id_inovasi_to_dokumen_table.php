@@ -14,8 +14,8 @@ class AddIdInovasiToDokumenTable extends Migration
     public function up()
     {
         Schema::table('dokumen', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_inovasi');
-            $table->foreign('id_inovasi')->references('id')->on('inovasi');
+            $table->unsignedBigInteger('id_inovasi')->after('file_path');
+            $table->foreign('id_inovasi')->references('id')->on('inovasi')->on('opd')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

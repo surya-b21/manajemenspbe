@@ -2,18 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Hexters\Ladmin\LadminTrait;
 use Hexters\Ladmin\LadminLogable;
+use Illuminate\Database\Eloquent\Model;
 
-class Inovasi extends Authenticatable
+class Inovasi extends Model
 {
-    use Notifiable, LadminTrait, MustVerifyEmail, LadminLogable;
-    use HasApiTokens, HasFactory, Notifiable;
+    use Notifiable, HasFactory, LadminLogable;
+
+    protected $table = 'inovasi';
 
     protected $fillable = [
         'nama',
@@ -21,11 +19,12 @@ class Inovasi extends Authenticatable
         'layanan_spbe',
         'tgl_launching',
         'tgl_upload',
-        'status',
+        'id_opd',
+        'id_ku'
     ];
 
     protected $casts = [
-        'tgl_launching',
-        'tgl_upload'
+        'tgl_launching' => 'datetime',
+        'tgl_upload' => 'datetime'
     ];
 }

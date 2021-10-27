@@ -1,6 +1,7 @@
 <x-ladmin-layout>
     <x-slot name="title">Dashboard</x-slot>
-    
+    <x-slot name="scripts"><script>console.log('testing')</script></x-slot>
+
     <div class="row">
         <div class="col-md-6 col-12">
             <x-ladmin-card>
@@ -47,7 +48,7 @@
                 <p>
                     See more detail about custom style <a href="https://github.com/hexters/ladmin#custom-style" target="_blank">Documentation</a>
                 </p>
-                
+
             </x-ladmin-card>
         </div>
     </div>

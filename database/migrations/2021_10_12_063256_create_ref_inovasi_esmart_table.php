@@ -16,9 +16,11 @@ class CreateRefInovasiEsmartTable extends Migration
         Schema::create('ref_inovasi_esmart', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_inovasi');
-            $table->foreign('id_inovasi')->references('id')->on('inovasi');
+            $table->foreign('id_inovasi')->references('id')->on('inovasi')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('id_esmart');
-            $table->foreign('id_esmart')->references('id')->on('elemen_smart');
+            $table->foreign('id_esmart')->references('id')->on('elemen_smart')->onDelete('cascade')->onUpdate('cascade');;
+            $table->integer('create_by');
+            $table->integer('update_by');
             $table->timestamps();
         });
     }

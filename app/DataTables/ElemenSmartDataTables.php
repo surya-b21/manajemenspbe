@@ -19,6 +19,7 @@
       $data = self::$data;
 
       return $this->eloquent(ElemenSmart::query())
+      ->addIndexColumn()
         ->addColumn('action', function($item) {
             return view('ladmin::table.action', [
             'show' => null,
@@ -49,7 +50,7 @@
       return [
         'title' => 'Elemen Smart',
         'buttons' => view('vendor.ladmin.elemen-smart._partials._topButton'), // e.g : view('user.actions.create')
-        'fields' => [__('ID'), __('Elemen Smart'),__('Deskripsi'),__('Action')], // Table header
+        'fields' => [__('#'), __('Elemen Smart'),__('Deskripsi'),__('Action')], // Table header
         'foos' => [ // Custom data array. You can call in your blade with variable $foos
           'bar' => 'baz',
           'baz' => 'bar',
@@ -62,7 +63,7 @@
           'serverSide' => true,
           'ajax' => request()->fullurl(),
           'columns' => [
-              ['data' => 'id', 'class' => 'text-center'],
+              ['data' => 'id', 'class' => 'text-center', 'orderable' => false],
               ['data' => 'element', 'class' => 'text-left'],
               ['data' => 'deskripsi', 'class' => 'text-justify'],
               ['data' => 'action', 'class' => 'text-center', 'orderable' => false]

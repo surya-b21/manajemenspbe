@@ -18,6 +18,8 @@ class CreateKategoriForumTable extends Migration
             $table->integer('parent');
             $table->string('kategori');
             $table->integer('level');
+            $table->integer('create_by');
+            $table->integer('update_by');
             $table->timestamps();
         });
     }

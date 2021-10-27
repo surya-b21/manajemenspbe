@@ -255,6 +255,68 @@ return [
           ]
         ],
       ],
+
+      [
+        'gate' => 'administrator.kelola.inovasi.index',
+        'name' => 'Inovasi',
+        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+        'route' => ['administrator.kelola.inovasi.index', []],
+        'isActive' => 'kelola/inovasi*',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.kelola.inovasi.create',
+            'title' => 'Create inovasi',
+            'description' => 'User can create new inovasi'
+          ],
+          [
+            'gate' => 'administrator.kelola.inovasi.show',
+            'title' => 'Show inovasi',
+            'description' => 'User can show new inovasi'
+          ],
+          [
+            'gate' => 'administrator.kelola.inovasi.update',
+            'title' => 'Update inovasi',
+            'description' => 'User can update inovasi'
+          ],
+          [
+            'gate' => 'administrator.kelola.inovasi.destroy',
+            'title' => 'Delete inovasi',
+            'description' => 'User can delete inovasi'
+          ]
+        ],
+      ],
+
+      [
+        'gate' => 'administrator.kelola.versi.index',
+        'name' => 'Versi',
+        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+        'route' => ['administrator.kelola.versi.index', []],
+        'isActive' => 'kelola/versi*',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.kelola.versi.create',
+            'title' => 'Create versi',
+            'description' => 'User can create new versi'
+          ],
+          [
+            'gate' => 'administrator.kelola.versi.show',
+            'title' => 'Show inovasi',
+            'description' => 'User can show new inovasi'
+          ],
+          [
+            'gate' => 'administrator.kelola.versi.update',
+            'title' => 'Update versi',
+            'description' => 'User can update versi'
+          ],
+          [
+            'gate' => 'administrator.kelola.versi.destroy',
+            'title' => 'Delete versi',
+            'description' => 'User can delete versi'
+          ]
+        ],
+      ],
     ]
   ],
 
