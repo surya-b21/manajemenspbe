@@ -6,6 +6,10 @@
             </a>
         </x-slot>
 
+        <x-slot name="header">
+            <h2 class="font-bold text-3xl">Registrasi Sistem Manajemen Pengetahuan SPBE</h2>
+        </x-slot>
+
         {{-- <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
 

@@ -11,11 +11,16 @@
                     </tr>
                     <tr>
                         <td><strong>File</strong></td>
-                        <td><a href="{{ Storage::download($dokumen->file_path) }}">Download File</a></td>
+                        <td><a href="{{ Storage::url($dokumen->file_path) }}">Download File</a></td>
                     </tr>
                     <tr>
                         <td><strong>Inovasi</strong></td>
-                        <td>{{ $dokumen->inovasi->nama }}</td>
+                        <td>
+                            @php
+                                $inovasi = DB::table('inovasi')->select('nama')->where('id',$dokumen->id_inovasi)->first();
+                                echo $inovasi->nama;
+                            @endphp
+                        </td>
                     </tr>
                 </tbody>
             </table>

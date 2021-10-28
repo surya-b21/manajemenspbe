@@ -19,7 +19,7 @@
       $data = self::$data;
 
       return $this->eloquent(ElemenSmart::query())
-      ->addIndexColumn()
+        ->addIndexColumn()
         ->addColumn('action', function($item) {
             return view('ladmin::table.action', [
             'show' => null,
@@ -63,7 +63,7 @@
           'serverSide' => true,
           'ajax' => request()->fullurl(),
           'columns' => [
-              ['data' => 'id', 'class' => 'text-center', 'orderable' => false],
+              ['data' => 'DT_RowIndex', 'class' => 'text-center', 'orderable' => false],
               ['data' => 'element', 'class' => 'text-left'],
               ['data' => 'deskripsi', 'class' => 'text-justify'],
               ['data' => 'action', 'class' => 'text-center', 'orderable' => false]

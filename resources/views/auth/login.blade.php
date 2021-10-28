@@ -5,6 +5,9 @@
                 <x-application-logo class="fill-current text-gray-500"/>
             </a>
         </x-slot>
+        <x-slot name="header">
+            <h2 class="font-bold text-3xl">Sistem Manajemen Pengetahuan SPBE</h2>
+        </x-slot>
 
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -42,7 +45,7 @@
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('Lupa Password?') }}
                     </a>
                 @endif
 

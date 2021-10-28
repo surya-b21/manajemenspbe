@@ -1,7 +1,7 @@
 <x-ladmin-layout>
     <x-slot name="title">Edit Elemen Smart</x-slot>
 
-    <form action="{{route('administrator.konten.elemen-smart.update', $esmart->id)}}" method="POST">
+    <form action="{{route('administrator.kelola.elemen-smart.update', $esmart->id)}}" method="POST">
         @csrf
         @method('PUT')
 

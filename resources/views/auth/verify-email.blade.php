@@ -6,13 +6,17 @@
             </a>
         </x-slot>
 
+        <x-slot name="header">
+            <h2 class="font-bold text-3xl text-center">Verifikasi Email </br> Sistem Manajemen Pengetahuan SPBE</h2>
+        </x-slot>
+
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+            {{ __('Terima kasih telah mendaftar. Silahkan cek email anda untuk mendapatkan link verifikasi. Jika link verifikasi tidak ditemukan anda bisa klik tombol yang ada dibawah') }}
         </div>
 
         @if (session('status') == 'verification-link-sent')
             <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+                {{ __('Link verifikasi email terbaru telah dikirim ke email anda') }}
             </div>
         @endif
 
@@ -22,7 +26,7 @@
 
                 <div>
                     <x-button>
-                        {{ __('Resend Verification Email') }}
+                        {{ __('Kirim Ulang Link Verifikasi') }}
                     </x-button>
                 </div>
             </form>

@@ -110,8 +110,9 @@ class DokumenController extends Controller
         ladmin()->allow('administrator.kelola.dokumen.update');
 
         $dokumen = Dokumen::findOrFail($id);
+        $inovasi = Inovasi::all();
 
-        return view('vendor.ladmin.dokumen.edit', compact('dokumen'));
+        return view('vendor.ladmin.dokumen.edit', compact(['dokumen','inovasi']));
     }
 
     /**
@@ -173,6 +174,8 @@ class DokumenController extends Controller
         try {
             $dokumen = Dokumen::findOrFail($id);
             $dokumen->delete();
+
+            Storage::delete($dokumen->file_path);
 
             session()->flash('success', [
                 'Dokumen berhasil dihapus'
