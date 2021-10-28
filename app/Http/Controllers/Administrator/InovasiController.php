@@ -81,7 +81,7 @@ class InovasiController extends Controller
 
         try {
             if ($request->file()) {
-                $fileName = $request->nama.'_'.$request->file('poster_path')->extension();
+                $fileName = $request->nama.'.'.$request->file('poster_path')->extension();
                 $filePath = Storage::putFileAs('public/inovasi',$request->file('poster_path'),$fileName);
 
                 $fileModel = new Inovasi;
@@ -94,6 +94,8 @@ class InovasiController extends Controller
                 $fileModel->status = 0;
                 $fileModel->id_ku = $request->id_ku;
                 $fileModel->id_opd = $request->id_opd;
+                $fileModel->create_by = $request->user()->id;
+                $fileModel->update_by = $request->user()->id;
                 $fileModel->save();
             }
 
@@ -104,6 +106,8 @@ class InovasiController extends Controller
                 is_null($inovasi) ? $esmart->id_inovasi = 1 : $esmart->id_inovasi = $inovasi->id;
                 $esmart_id = DB::table('elemen_smart')->select('id')->where('element',$data->value)->first();
                 $esmart->id_esmart = $esmart_id->id;
+                $esmart->create_by = $request->user()->id;
+                $esmart->update_by = $request->user()->id;
                 $esmart->save();
             }
             session()->flash('success', [
@@ -214,6 +218,7 @@ class InovasiController extends Controller
                 $fileModel->status = 0;
                 $fileModel->id_ku = $request->id_ku;
                 $fileModel->id_opd = $request->id_opd;
+                $fileModel->update_by = $request->user()->id;
                 $fileModel->save();
             }
 
@@ -224,6 +229,7 @@ class InovasiController extends Controller
                 is_null($inovasi) ? $esmart->id_inovasi = 1 : $esmart->id_inovasi = $inovasi->id;
                 $esmart_id = DB::table('elemen_smart')->select('id')->where('element',$data->value)->first();
                 $esmart->id_esmart = $esmart_id->id;
+                $esmart->update_by = $request->user()->id;
                 $esmart->save();
             }
 
@@ -253,13 +259,15 @@ class InovasiController extends Controller
             $inovasi = Inovasi::findOrFail($id);
             $inovasi->delete();
 
-            DB::table('users')->select('*')->where('id_inovasi',$id)->delete();
+            Storage::delete($inovasi->poster_path);
+
+            DB::table('ref_inovasi_esmart')->select('*')->where('id_inovasi',$inovasi->id)->delete();
 
             session()->flash('success', [
-                'Data Developer berhasil dihapus'
+                'Data Inovasi berhasil dihapus'
             ]);
 
-            return redirect('/administrator/kelola/developer');
+            return redirect('/administrator/kelola/inovasi');
 
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([

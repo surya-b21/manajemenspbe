@@ -213,6 +213,11 @@ return [
             'description' => 'User can create new dokumen'
           ],
           [
+            'gate' => 'administrator.kelola.dokumen.show',
+            'title' => 'Show dokumen',
+            'description' => 'User can show new dokumen'
+          ],
+          [
             'gate' => 'administrator.kelola.dokumen.update',
             'title' => 'Update dokumen',
             'description' => 'User can update dokumen'

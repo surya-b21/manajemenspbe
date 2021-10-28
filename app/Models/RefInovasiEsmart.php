@@ -13,6 +13,8 @@ class RefInovasiEsmart extends Model
 
     protected $fillable = [
         'id_inovasi',
-        'id_esmart'
+        'id_esmart',
+        'create_by',
+        'update_by',
     ];
 }

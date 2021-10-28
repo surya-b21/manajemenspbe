@@ -70,6 +70,8 @@ class DeveloperController extends Controller
                 $fileModel->npwp_dev = $request->npwp_dev;
                 $fileModel->telepon_dev = $request->telepon_dev;
                 $fileModel->foto_dev_path = $filePath;
+                $fileModel->create_by = $request->user()->id;
+                $fileModel->update_by = $request->user()->id;
                 $fileModel->save();
 
                 session()->flash('success', [
@@ -149,6 +151,7 @@ class DeveloperController extends Controller
                 $fileModel->npwp_dev = $request->npwp_dev;
                 $fileModel->telepon_dev = $request->telepon_dev;
                 $fileModel->foto_dev_path = $filePath;
+                $fileModel->update_by = $request->user()->id;
                 $fileModel->save();
 
                 session()->flash('success', [
@@ -177,6 +180,8 @@ class DeveloperController extends Controller
         try {
             $developer = Developer::findOrFail($id);
             $developer->delete();
+
+            Storage::delete($developer->foto_dev_path);
 
             session()->flash('success', [
                 'Data Developer berhasil dihapus'

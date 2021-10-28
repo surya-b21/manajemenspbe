@@ -18,7 +18,9 @@ class Versi extends Model
         'deskripsi',
         'tgl_versi',
         'status',
-        'id_dev'
+        'id_dev',
+        'create_by',
+        'update_by',
     ];
 
     protected $casts = [

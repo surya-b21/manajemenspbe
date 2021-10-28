@@ -20,11 +20,17 @@ class Inovasi extends Model
         'tgl_launching',
         'tgl_upload',
         'id_opd',
-        'id_ku'
+        'id_ku',
+        'create_by',
+        'update_by',
     ];
 
     protected $casts = [
         'tgl_launching' => 'datetime',
         'tgl_upload' => 'datetime'
     ];
+
+    public function dokumen() {
+        return $this->hasMany(Dokumen::class);
+    }
 }

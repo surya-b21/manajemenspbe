@@ -14,6 +14,8 @@ class ElemenSmart extends Model
 
     protected $fillable = [
         'element',
-        'deskripsi'
+        'deskripsi',
+        'create_by',
+        'update_by',
     ];
 }

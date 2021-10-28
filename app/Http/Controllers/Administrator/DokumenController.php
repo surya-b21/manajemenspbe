@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Administrator;
 use App\DataTables\DokumenDataTables;
 use App\Http\Controllers\Controller;
 use App\Models\Dokumen;
+use App\Models\Inovasi;
 use Illuminate\Http\Request;
 use Hexters\Ladmin\Exceptions\LadminException;
+use Illuminate\Support\Facades\Storage;
 
 class DokumenController extends Controller
 {
@@ -31,7 +33,9 @@ class DokumenController extends Controller
     {
         ladmin()->allow('administrator.kelola.dokumen.create');
 
-        return view('vendor.ladmin.dokumen.create');
+        $inovasi = Inovasi::all();
+
+        return view('vendor.ladmin.dokumen.create', compact('inovasi'));
     }
 
     /**
@@ -56,12 +60,15 @@ class DokumenController extends Controller
 
         try {
             if ($request->file()) {
-                $fileName = time().'_'.$request->file_url->getClientOriginalName();
-                $filePath = $request->file('file_url')->storeAs('uploads', $fileName, 'public');
+                $fileName = $request->judul.'.'.$request->file('file_path')->extension();
+                $filePath = Storage::putFileAs('public/dokumen',$request->file('file_path'),$fileName);
 
                 $fileModel = new Dokumen;
-                $fileModel->judul = time().'_'.$request->file_url->getClientOriginalName();
-                $fileModel->file_url = '/storage/' . $filePath;
+                $fileModel->judul = $request->judul;
+                $fileModel->file_path = $filePath;
+                $fileModel->id_inovasi = $request->id_inovasi;
+                $fileModel->create_by = $request->user()->id;
+                $fileModel->update_by = $request->user()->id;
                 $fileModel->save();
 
                 session()->flash('success', [
@@ -85,7 +92,11 @@ class DokumenController extends Controller
      */
     public function show($id)
     {
-        //
+        ladmin()->allow('administrator.kelola.dokumen.show');
+
+        $dokumen = Dokumen::findOrFail($id);
+
+        return view('vendor.ladmin.dokumen.show', compact('dokumen'));
     }
 
     /**
@@ -96,7 +107,11 @@ class DokumenController extends Controller
      */
     public function edit($id)
     {
-        //
+        ladmin()->allow('administrator.kelola.dokumen.update');
+
+        $dokumen = Dokumen::findOrFail($id);
+
+        return view('vendor.ladmin.dokumen.edit', compact('dokumen'));
     }
 
     /**
@@ -108,7 +123,41 @@ class DokumenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        ladmin()->allow('administrator.kelola.dokumen.update');
+
+        $request->validate([
+            'judul' => 'required',
+            'file_path' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'
+        ],
+        [
+            'required' => ':attribute harus diisi!!',
+            'mimes' => 'format file harus csv,txt,xlx,xls,pdf',
+            'max' => 'ukuran file maksimal 2MB'
+        ]);
+
+        try {
+            if ($request->file()) {
+                $fileName = $request->judul.'.'.$request->file('file_path')->extension();
+                $filePath = Storage::putFileAs('public/dokumen',$request->file('file_path'),$fileName);
+
+                $fileModel = Dokumen::findOrFail($id);
+                $fileModel->judul = $request->judul;
+                $fileModel->file_path = $filePath;
+                $fileModel->id_inovasi = $request->id_inovasi;
+                $fileModel->update_by = $request->user()->id;
+                $fileModel->save();
+
+                session()->flash('success', [
+                    'Dokumen berhasil diperbarui'
+                ]);
+
+                return redirect('/administrator/kelola/dokumen');
+            }
+        } catch (LadminException $e) {
+            return redirect()->back()->withErrors([
+                $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -119,6 +168,21 @@ class DokumenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ladmin()->allow('administrator.kelola.dokumen.destroy');
+
+        try {
+            $dokumen = Dokumen::findOrFail($id);
+            $dokumen->delete();
+
+            session()->flash('success', [
+                'Dokumen berhasil dihapus'
+            ]);
+
+            return redirect('/administrator/kelola/dokumen');
+        } catch (LadminException $e) {
+            return redirect()->back()->withErrors([
+                $e->getMessage()
+            ]);
+        }
     }
 }

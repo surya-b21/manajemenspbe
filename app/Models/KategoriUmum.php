@@ -11,5 +11,9 @@ class KategoriUmum extends Model
     use HasFactory, LadminLogable;
 
     protected $table = 'kategori_umum';
-    protected $fillable = ['kategori'];
+    protected $fillable = [
+        'kategori',
+        'create_by',
+        'update_by',
+    ];
 }

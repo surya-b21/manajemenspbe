@@ -16,6 +16,8 @@ class Opd extends Model
         'nama_opd',
         'alamat',
         'telepon',
-        'email'
+        'email',
+        'create_by',
+        'update_by',
     ];
 }

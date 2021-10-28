@@ -55,7 +55,9 @@ class ElemenSmartController extends Controller
         try {
             ElemenSmart::create([
                 'element' => $request->element,
-                'deskripsi' => $request->deskripsi
+                'deskripsi' => $request->deskripsi,
+                'create_by' => $request->user()->id,
+                'update_by' => $request->user()->id,
             ]);
 
             session()->flash('success', [

@@ -5,7 +5,7 @@ namespace App\Models;
 use Hexters\Ladmin\LadminLogable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Auth;
 
 class Developer extends Model
 {
@@ -18,6 +18,8 @@ class Developer extends Model
         'alamat_dev',
         'NPWP_dev',
         'telepon_dev',
-        'foto_dev_path'
+        'foto_dev_path',
+        'create_by',
+        'update_by',
     ];
 }

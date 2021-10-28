@@ -14,6 +14,12 @@ class Dokumen extends Model
 
     protected $fillable = [
         'judul',
-        'file_path'
+        'file_path',
+        'create_by',
+        'update_by',
     ];
+
+    public function inovasi() {
+        return $this->belongsTo(Inovasi::class);
+    }
 }

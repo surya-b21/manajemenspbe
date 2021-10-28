@@ -69,6 +69,8 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('developer') => storage_path('app/public/developer'),
+        public_path('inovasi') => storage_path('app/public/inovasi'),
+        public_path('dokumen') => storage_path('app/public/dokumen'),
     ],
 
 ];
