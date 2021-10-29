@@ -22,8 +22,22 @@
     <input type="date" placeholder="Tanggal Versi" class="form-control" name="tgl_versi" id="tgl_versi" value="{{ old('tgl_versi', $versi->tgl_versi) }}">
 </x-ladmin-form-group>
 
+@if (isset($inovasi))
+<x-ladmin-form-group name="id_dev" label="Inovasi *">
+    <x-slot name="prepend">
+        {!! ladmin()->icon('fas fa-list') !!}
+    </x-slot>
+
+    <select name="id_dev" id="id_dev" class="form-control border-0">
+        @foreach ($inovasi as $data )
+            <option value="{{$data->id}}" {{isset($inovasi->id_dev) ? 'selected' : ''}}>{{$data->nama}}</option>
+        @endforeach
+    </select>
+</x-ladmin-form-group>
+@endif
+
 @if (isset($developer))
-<x-ladmin-form-group name="id_dev" label="Kategori *">
+<x-ladmin-form-group name="id_dev" label="Developer *">
     <x-slot name="prepend">
         {!! ladmin()->icon('fas fa-list') !!}
     </x-slot>

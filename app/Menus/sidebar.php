@@ -326,6 +326,50 @@ return [
   ],
 
   [
+    'gate' => 'administrator.verifikasi',
+    'name' => 'Verifikasi',
+    'description' => 'Verifikasi data',
+    'route' => null,
+    'isActive' => null,
+    'icon' => 'check-circle',
+    'id' => '',
+    'gates' => [],
+    'submenus' => [
+      [
+        'gate' => 'administrator.verifikasi.inovasi.index',
+        'name' => 'Inovasi',
+        'description' => 'Daftar inovasi yang akan diverifikasi',
+        'route' => ['administrator.verifikasi.inovasi.index', []],
+        'isActive' => 'verifikasi/inovasi*',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.verifikasi.inovasi.verified',
+            'title' => 'Verifikasi Inovasi',
+            'description' => 'Verifikasi Inovasi'
+          ],
+        ]
+      ],
+
+      [
+        'gate' => 'administrator.verifikasi.versi.index',
+        'name' => 'Versi',
+        'description' => 'Daftar versi yang akan diverifikassi',
+        'route' => ['administrator.verifikasi.versi.index', []],
+        'isActive' => 'verifikasi/versi*',
+        'id' => '',
+        'gates' => [
+            [
+                'gate' => 'administrator.verifikasi.versi.verified',
+                'title' => 'Verifikasi Versi',
+                'description' => 'Verifikasi Versi'
+            ],
+        ]
+      ]
+    ]
+  ],
+
+  [
     'gate' => 'administrator.system',
     'name' => 'System',
     'description' => 'System application control',

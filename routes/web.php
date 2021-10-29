@@ -6,6 +6,8 @@ use App\Http\Controllers\Administrator\ElemenSmartController;
 use App\Http\Controllers\Administrator\KategoriUmumController;
 use App\Http\Controllers\Administrator\OpdController;
 use App\Http\Controllers\Administrator\InovasiController;
+use App\Http\Controllers\Administrator\Verifikasi\InovasiController as VerifikasiInovasiController;
+use App\Http\Controllers\Administrator\Verifikasi\VersiController as VerifikasiVersiController;
 use App\Http\Controllers\Administrator\VersiController;
 use Illuminate\Support\Facades\Route;
 use Hexters\Ladmin\Routes\Ladmin;
@@ -40,6 +42,20 @@ Ladmin::route(function() {
         Route::resource('/developer', DeveloperController::class);
         Route::resource('/inovasi', InovasiController::class);
         Route::resource('/versi', VersiController::class);
+    });
+    Route::prefix('verifikasi')->as('verifikasi.')->middleware(['verified'])->group(function() {
+        Route::prefix('inovasi')->as('inovasi.')->group(function() {
+            Route::get('/index', [VerifikasiInovasiController::class, 'index'])->name('index');
+            Route::get('/verified/{id}', [VerifikasiInovasiController::class, 'verified'])->name('verified');
+            Route::get('/get', [VerifikasiInovasiController::class, 'getdata'])->name('get');
+            Route::get('/unverify/{id}', [VerifikasiInovasiController::class, 'unverify'])->name('unverify');
+        });
+        Route::prefix('versi')->as('versi.')->group(function() {
+            Route::get('/index', [VerifikasiVersiController::class, 'index'])->name('index');
+            Route::get('/verified/{id}', [VerifikasiVersiController::class, 'verified'])->name('verified');
+            Route::get('/get', [VerifikasiVersiController::class, 'getdata'])->name('get');
+            Route::get('unverify/{id}', [VerifikasiVersiController::class, 'unverify'])->name('unverify');
+        });
     });
 });
 
