@@ -12,6 +12,10 @@ use App\Http\Controllers\Administrator\VersiController;
 use Illuminate\Support\Facades\Route;
 use Hexters\Ladmin\Routes\Ladmin;
 
+use App\Http\Controllers\Forum\KategoriController;
+use App\Http\Controllers\Forum\TopikController;
+use App\Http\Controllers\Forum\KomentarController;
+use App\Models\Forum\Kategori;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,19 +27,27 @@ use Hexters\Ladmin\Routes\Ladmin;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('template2/homepage', [
+//         'active' => '',
+//     ]);
+// });
+
+// Route::get('/home', function () {
+//     return view('template2/homepage', [
+//         'active' => '',
+//     ]);
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth','verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Ladmin::route(function() {
+Ladmin::route(function () {
     Route::prefix('account')->as('account.')->middleware(['verified'])->group(function () {
         Route::resource('/opd', OpdController::class);
     });
-    Route::prefix('kelola')->as('kelola.')->middleware(['verified'])->group(function() {
+    Route::prefix('kelola')->as('kelola.')->middleware(['verified'])->group(function () {
         Route::resource('/kategori-umum', KategoriUmumController::class);
         Route::resource('/elemen-smart', ElemenSmartController::class);
         Route::resource('/dokumen', DokumenController::class);
@@ -43,14 +55,14 @@ Ladmin::route(function() {
         Route::resource('/inovasi', InovasiController::class);
         Route::resource('/versi', VersiController::class);
     });
-    Route::prefix('verifikasi')->as('verifikasi.')->middleware(['verified'])->group(function() {
-        Route::prefix('inovasi')->as('inovasi.')->group(function() {
+    Route::prefix('verifikasi')->as('verifikasi.')->middleware(['verified'])->group(function () {
+        Route::prefix('inovasi')->as('inovasi.')->group(function () {
             Route::get('/index', [VerifikasiInovasiController::class, 'index'])->name('index');
             Route::get('/verified/{id}', [VerifikasiInovasiController::class, 'verified'])->name('verified');
             Route::get('/get', [VerifikasiInovasiController::class, 'getdata'])->name('get');
             Route::get('/unverify/{id}', [VerifikasiInovasiController::class, 'unverify'])->name('unverify');
         });
-        Route::prefix('versi')->as('versi.')->group(function() {
+        Route::prefix('versi')->as('versi.')->group(function () {
             Route::get('/index', [VerifikasiVersiController::class, 'index'])->name('index');
             Route::get('/verified/{id}', [VerifikasiVersiController::class, 'verified'])->name('verified');
             Route::get('/get', [VerifikasiVersiController::class, 'getdata'])->name('get');
@@ -59,4 +71,51 @@ Ladmin::route(function() {
     });
 });
 
-require __DIR__.'/auth.php';
+// FORUM
+
+Route::get('/forum', [KategoriController::class, 'allCategories']);
+Route::get('/forum/{id}', [TopikController::class, 'index']);
+Route::get('/topiks', [TopikController::class, 'semua']); //tambahan
+Route::post('/topik/add/', [TopikController::class, 'processAdd']);
+Route::get('/topik/delete/{idtopik}', [TopikController::class, 'delete']);
+Route::get('/topik/update/{idtopik}', [TopikController::class, 'update']);
+Route::post('/topik/update/{idtopik}', [TopikController::class, 'processUpdate', "active" => "inovasi"]);
+
+Route::get('/topik/{id}', [KomentarController::class, 'show']);
+Route::post('/komentar/add/', [KomentarController::class, 'processAdd']);
+Route::get('/komentar/delete/{idkomen}', [KomentarController::class, 'delete']);
+Route::get('/komentar/update/{idkomen}', [KomentarController::class, 'update']);
+Route::post('/komentar/update/{idkomen}', [KomentarController::class, 'processUpdate']);
+
+Route::get('/inovasi', function () {
+    return view('inovasi/inovasi', [
+        // 'title' => 'Semua Topik' . $title,
+        "active" => "inovasi"
+    ]);
+});
+
+Route::get('/kategori/{kategori:id}', function (Kategori $kategori) {
+    return view('forum/topiks', [
+        'title' => "Post by kategori : $kategori->name",
+        "active" => "topiks",
+        'topiks' => $kategori->topiks->load('kategori', 'id'),
+        // 'kategori' => $kategori->name
+    ]);
+});
+
+// Route::get('/dashboard', [InovasiController::class, 'dashboard']);
+Route::get('/tambah', [InovasiController::class, 'tambah_data']);
+Route::post('/kategori', [InovasiController::class, 'kategori']);
+
+
+Route::get('/inovasi/read/{id_inovasi}', 'App\Http\Controllers\Inovasi\InovasiController@read');
+
+Route::get('/inovasi', 'App\Http\Controllers\Inovasi\InovasiController@inovasi');
+
+Route::get('/home', 'App\Http\Controllers\Inovasi\InovasiController@index');
+
+Route::get('/inovasi/kategori_layanan/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_layanan');
+Route::get('/inovasi/kategori_smart/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_smart');
+Route::get('/inovasi/kategori_umum/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_umum');
+
+require __DIR__ . '/auth.php';
