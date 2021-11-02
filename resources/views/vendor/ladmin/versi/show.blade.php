@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <td><strong>Status</strong></td>
-                    {!!$versi->status = 'Belum Diverifikasi' ? '<td><span class="badge bg-warning text-dark">'.$versi->status.'</span></td>' : '<td><span class="badge bg-succes text-dark">'.$versi->status.'</span></td>' !!}
+                    {!!$versi->status == 0 ? '<td><span class="badge bg-warning text-dark">Belum Diverifikasi</span></td>' : '<td><span class="badge bg-success text-dark">Diverifikasi</span></td>' !!}
                 </tr>
             </tbody>
         </table>

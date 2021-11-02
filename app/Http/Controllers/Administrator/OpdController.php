@@ -60,6 +60,8 @@ class OpdController extends Controller
                 'email' => $request->email,
                 'telepon' => $request->telepon,
                 'alamat' => $request->alamat,
+                'create_by' => $request->user()->id,
+                'update_by' => $request->user()->id,
             ]);
 
             session()->flash('success', [
@@ -126,6 +128,7 @@ class OpdController extends Controller
             $opd->email = $request->email;
             $opd->telepon = $request->telepon;
             $opd->alamat = $request->alamat;
+            $opd->update_by = $request->user()->id;
             $opd->save();
 
             session()->flash('success', [

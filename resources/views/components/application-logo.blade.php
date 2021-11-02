@@ -1,1 +1,1 @@
-<img src="{{asset('uploads/logo/logo-surakarta.png')}}" class="mx-auto" alt="logo-surakarta" width="5%" height="5%">
+<img src="{{asset('storage/logo/logo-surakarta.png')}}" class="mx-auto pt-3" alt="logo-surakarta">

@@ -54,6 +54,8 @@ class KategoriUmumController extends Controller
         try {
             KategoriUmum::create([
                 'kategori' => $request->kategori,
+                'create_by' => $request->user()->id,
+                'update_by' => $request->user()->id,
             ]);
             session()->flash('success', [
                 'Kategori Umum berhasil ditambahkan'
@@ -114,6 +116,7 @@ class KategoriUmumController extends Controller
         try {
             $kategori = KategoriUmum::findOrFail($id);
             $kategori->kategori = $request->kategori;
+            $kategori->update_by = $request->user()->id;
             $kategori->save();
 
             session()->flash('success', [
