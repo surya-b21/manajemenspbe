@@ -10,9 +10,21 @@
         "production": "mix --production"
     },
     "devDependencies": {
+<<<<<<< HEAD
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
+=======
+        "@tailwindcss/forms": "^0.2.1",
+        "alpinejs": "^2.7.3",
+        "autoprefixer": "^10.1.0",
+        "axios": "^0.21",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.2.1",
+        "postcss-import": "^12.0.1",
+        "tailwindcss": "^2.0.2"
+>>>>>>> 30f376fdf611342ab7289a4ad7eda6413ae2f800
     }
 }
