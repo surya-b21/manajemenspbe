@@ -1,8 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-use Illuminate\Support\Facades\Route;
-=======
 use App\Http\Controllers\Administrator\DeveloperController;
 use App\Http\Controllers\Administrator\DokumenController;
 use App\Http\Controllers\Administrator\ElemenSmartController;
@@ -14,7 +11,6 @@ use App\Http\Controllers\Administrator\Verifikasi\VersiController as VerifikasiV
 use App\Http\Controllers\Administrator\VersiController;
 use Illuminate\Support\Facades\Route;
 use Hexters\Ladmin\Routes\Ladmin;
->>>>>>> 30f376fdf611342ab7289a4ad7eda6413ae2f800
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +26,6 @@ use Hexters\Ladmin\Routes\Ladmin;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
-=======
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -66,4 +60,3 @@ Ladmin::route(function() {
 });
 
 require __DIR__.'/auth.php';
->>>>>>> 30f376fdf611342ab7289a4ad7eda6413ae2f800

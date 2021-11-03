@@ -7,17 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-<<<<<<< HEAD
-
-class User extends Authenticatable
-{
-=======
 use Hexters\Ladmin\LadminTrait;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, LadminTrait;
->>>>>>> 30f376fdf611342ab7289a4ad7eda6413ae2f800
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -27,15 +21,10 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name',
-<<<<<<< HEAD
-        'email',
-        'password',
-=======
         'username',
         'email',
         'password',
         'alamat',
->>>>>>> 30f376fdf611342ab7289a4ad7eda6413ae2f800
     ];
 
     /**
