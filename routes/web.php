@@ -31,32 +31,32 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth','verified'])->name('dashboard');
 
-Ladmin::route(function() {
-    Route::prefix('account')->as('account.')->middleware(['verified'])->group(function () {
-        Route::resource('/opd', OpdController::class);
-    });
-    Route::prefix('kelola')->as('kelola.')->middleware(['verified'])->group(function() {
-        Route::resource('/kategori-umum', KategoriUmumController::class);
-        Route::resource('/elemen-smart', ElemenSmartController::class);
-        Route::resource('/dokumen', DokumenController::class);
-        Route::resource('/developer', DeveloperController::class);
-        Route::resource('/inovasi', InovasiController::class);
-        Route::resource('/versi', VersiController::class);
-    });
-    Route::prefix('verifikasi')->as('verifikasi.')->middleware(['verified'])->group(function() {
-        Route::prefix('inovasi')->as('inovasi.')->group(function() {
-            Route::get('/index', [VerifikasiInovasiController::class, 'index'])->name('index');
-            Route::get('/verified/{id}', [VerifikasiInovasiController::class, 'verified'])->name('verified');
-            Route::get('/get', [VerifikasiInovasiController::class, 'getdata'])->name('get');
-            Route::get('/unverify/{id}', [VerifikasiInovasiController::class, 'unverify'])->name('unverify');
-        });
-        Route::prefix('versi')->as('versi.')->group(function() {
-            Route::get('/index', [VerifikasiVersiController::class, 'index'])->name('index');
-            Route::get('/verified/{id}', [VerifikasiVersiController::class, 'verified'])->name('verified');
-            Route::get('/get', [VerifikasiVersiController::class, 'getdata'])->name('get');
-            Route::get('unverify/{id}', [VerifikasiVersiController::class, 'unverify'])->name('unverify');
-        });
-    });
-});
+// Ladmin::route(function() {
+//     Route::prefix('account')->as('account.')->middleware(['verified'])->group(function () {
+//         Route::resource('/opd', OpdController::class);
+//     });
+//     Route::prefix('kelola')->as('kelola.')->middleware(['verified'])->group(function() {
+//         Route::resource('/kategori-umum', KategoriUmumController::class);
+//         Route::resource('/elemen-smart', ElemenSmartController::class);
+//         Route::resource('/dokumen', DokumenController::class);
+//         Route::resource('/developer', DeveloperController::class);
+//         Route::resource('/inovasi', InovasiController::class);
+//         Route::resource('/versi', VersiController::class);
+//     });
+//     Route::prefix('verifikasi')->as('verifikasi.')->middleware(['verified'])->group(function() {
+//         Route::prefix('inovasi')->as('inovasi.')->group(function() {
+//             Route::get('/index', [VerifikasiInovasiController::class, 'index'])->name('index');
+//             Route::get('/verified/{id}', [VerifikasiInovasiController::class, 'verified'])->name('verified');
+//             Route::get('/get', [VerifikasiInovasiController::class, 'getdata'])->name('get');
+//             Route::get('/unverify/{id}', [VerifikasiInovasiController::class, 'unverify'])->name('unverify');
+//         });
+//         Route::prefix('versi')->as('versi.')->group(function() {
+//             Route::get('/index', [VerifikasiVersiController::class, 'index'])->name('index');
+//             Route::get('/verified/{id}', [VerifikasiVersiController::class, 'verified'])->name('verified');
+//             Route::get('/get', [VerifikasiVersiController::class, 'getdata'])->name('get');
+//             Route::get('unverify/{id}', [VerifikasiVersiController::class, 'unverify'])->name('unverify');
+//         });
+//     });
+// });
 
 require __DIR__.'/auth.php';
