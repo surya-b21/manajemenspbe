@@ -37,11 +37,11 @@
                   <div class="col-lg-12">
                     <h6>Selamat Datang</h6>
                     <h2>Sistem Manajemen Pengetahuan SPBE</h2>
-                    <p>This template is brought to you by TemplateMo website. Feel free to use this for a commercial purpose. You are not allowed to redistribute the template ZIP file on any other template website. Thank you.</p>
+                    <p>Thank you.</p>
                   </div>
                   <div class="col-lg-12">
                     <div class="border-first-button scroll-to-section">
-                      <a href="#contact">Free Quote</a>
+                      {{-- <a href="#contact">Free Quote</a> --}}
                     </div>
                   </div>
                 </div>
@@ -73,10 +73,13 @@
               <div class="about-right-content">
                 <div class="section-heading">
                   <h6>About Us</h6>
-                  <h4>Who is DigiMedia <em>Agency</em></h4>
+                  <h4>Manajemen Pengetahuan <em>SPBE?</em></h4>
                   <div class="line-dec"></div>
                 </div>
-                <p>We hope this DigiMedia template2 is useful for your work. You can use this template2 for any purpose. You may <a rel="nofollow" href="http://paypal.me/templatemo" target="_blank">contribute a little amount</a> via PayPal to <a href="https://templatemo.com/contact" target="_blank">support TemplateMo</a> in creating new templates regularly.</p>
+                <p>merupakan 
+                  <a href="#" target="_blank">Diskominfo SP</a> 
+                  ....
+                </p>
                 <div class="row">
                   <div class="col-lg-4 col-sm-4">
                     <div class="skill-item first-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
@@ -524,72 +527,28 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="loop owl-carousel">
+        {{-- @foreach ($topik as $t) --}}
+
         <div class="item">
-          <a href="#">
+          {{-- <a href="{{ url('/topik/'.$topik->id) }}"> --}}
             <div class="portfolio-item">
               <div class="thumb">
                 <span></span>
                 <h4></h4>
                 <img src="{{asset('template2/assets/images/portfolio-01.jpg')}}" alt="">
+                <div class="down-content">
+                  {{-- <h4>{{ $t->judul }}</h4> --}}
+                  {{-- <span>{{ $t->created_at->toDateString() }}</span> --}}
+                </div>
                 <div class="container ml-2 mt-2">
                   <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum voluptatem nobis, dolores perspiciatis eius omnis excepturi, odit in alias placeat molestiae saepe sequi id quos dolorem, ab repellendus. Molestias, distinctio.</p>
                 </div>
               </div>
-              <div class="down-content">
-                <h4>Alexander</h4>
-                <span>20 Oktober 2021</span>
-              </div>
             </div>
           </a>
         </div>
-        <div class="item">
-          <a href="#">
-            <div class="portfolio-item">
-              <div class="thumb">
-                <img src="{{asset('template2/assets/images/portfolio-02.jpg')}}" alt="">
-                <div class="container ml-2 mt-2">
-                  <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum voluptatem nobis, dolores perspiciatis eius omnis excepturi, odit in alias placeat molestiae saepe sequi id quos dolorem, ab repellendus. Molestias, distinctio.</p>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Alexander</h4>
-                <span>20 Oktober 2021</span>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="item">
-          <a href="#">
-            <div class="portfolio-item">
-              <div class="thumb">
-                <img src="{{asset('template2/assets/images/portfolio-03.jpg')}}" alt="">
-                <div class="container ml-2 mt-2">
-                  <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum voluptatem nobis, dolores perspiciatis eius omnis excepturi, odit in alias placeat molestiae saepe sequi id quos dolorem, ab repellendus. Molestias, distinctio.</p>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Alexander</h4>
-                <span>20 Oktober 2021</span>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="item">
-          <a href="#">
-            <div class="portfolio-item">
-              <div class="thumb">
-                <img src="{{asset('template2/assets/images/portfolio-04.jpg')}}" alt="">
-                <div class="container ml-2 mt-2">
-                  <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum voluptatem nobis, dolores perspiciatis eius omnis excepturi, odit in alias placeat molestiae saepe sequi id quos dolorem, ab repellendus. Molestias, distinctio.</p>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Alexander</h4>
-                <span>20 Oktober 2021</span>
-              </div>
-            </div>
-          </a>
-        </div>
+        {{-- @endforeach --}}
+
       </div>
     </div>
   </div>

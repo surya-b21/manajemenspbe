@@ -1,8 +1,27 @@
-@include('.../template2/main')
+{{-- @include('.../template2/main')
 
 <body  style="background-image:url('{{asset('template2/assets/images/slider-right-dec.jpg')}}')">
-    @include('../template2/navbar')
+    @include('../template2/navbar') --}}
     
+        
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- <title>Hello, world!</title> -->
+</head>
+@include('template2/main')
+@include('template2/navbar')
+<!-- ======= Breadcrumbs ======= -->
+
+  
     <div class="container" style="padding-top:150px;">
         <div>
             <a href="{{url($home)}}">Home</a> > <a href="{{url($inov)}}">Inovasi</a> > 
@@ -116,8 +135,9 @@
         </div>
     </div>
 
-    @include('../template2/footer')
-
+    {{-- @include('../template2/footer') --}}
+    
 </body>
+@include('template2/footer')
 
 </html>

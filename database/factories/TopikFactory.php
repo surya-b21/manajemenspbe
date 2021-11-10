@@ -32,6 +32,7 @@ class TopikFactory extends Factory
             //     ->implode(''),
             'id_user' => mt_rand(1, 3),
             'id_kf' => mt_rand(1, 5),
+            'created_at' => $this->faker->dateTime(),
         ];
     }
 }

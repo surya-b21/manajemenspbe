@@ -21,7 +21,7 @@ class InovasiController extends Controller
         $ks = kategori_smart::paginate(6);
         $inovasi = inovasi::all();
         return view("template2.homepage", [
-            "active" => "Inovasi",
+            "active" => "inovasi",
             "inovasi" => $inovasi,
             "ku" => $ku,
             "ks" => $ks
@@ -34,7 +34,7 @@ class InovasiController extends Controller
         $ks = kategori_smart::paginate(6);
         $inovasi = inovasi::all();
         return view("Inovasi.inovasi", [
-            "active" => "Inovasi",
+            "active" => "inovasi",
             "inovasi" => $inovasi,
             "ku" => $ku,
             "ks" => $ks
@@ -63,7 +63,7 @@ class InovasiController extends Controller
         $self_url = "/inovasi/read/$jenis/$id_jenis/$id_inovasi";
 
         return view("Inovasi.inovasi_read", [
-            "active" => "Inovasi",
+            "active" => "inovasi",
             "inovasi" => $inovasi->where('id', $data),
             "ku" => $ku,
             "ks" => $ks,
@@ -91,7 +91,7 @@ class InovasiController extends Controller
         }
 
         return view("Inovasi.inovasi_kategori", [
-            "active" => "Inovasi",
+            "active" => "inovasi",
             "jenis" => "3",
             "kategori" => $kategori,
             "id_kategori" => $id_kategori,
@@ -105,7 +105,7 @@ class InovasiController extends Controller
         $kategori = kategori_smart::all();
 
         return view("Inovasi.inovasi_kategori", [
-            "active" => "Inovasi",
+            "active" => "inovasi",
             "jenis" => "2",
             "kategori" => $kategori->where('id', $data),
             "inovasi" => $inovasi
@@ -118,7 +118,7 @@ class InovasiController extends Controller
         $kategori = kategori_umum::all();
 
         return view("Inovasi.inovasi_kategori", [
-            "active" => "Inovasi",
+            "active" => "inovasi",
             "jenis" => "1",
             "kategori" => $kategori->where('id', $data),
             "inovasi" => $inovasi
