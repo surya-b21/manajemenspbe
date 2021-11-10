@@ -26,8 +26,11 @@
     {{-- <div class="container"> --}}
     {{-- kalo belum ada isi tabel, navbar nutup konten. semakin banyak jumlah baris tabel, semakin kebawah padding(?) --}}
     <div class="row justify-content-center mb-3 mt-3">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <form action="/topiks" method="" enctype="multipart/form-data"> @csrf
+                {{-- @if (request('kategori'))
+                    <input type="hidden" name="kategori" value="{{ request('kategori') }}">
+                @endif --}}
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Masukkan keyword pencarian.." name="search" value="{{ request('search') }}">
                     <button class="btn btn-outline-primary" type="submit" name="submit">Search</button>
@@ -69,9 +72,11 @@
             @endforeach
         </tbody>
     </table>
+    <a href="/topiks" class="btn btn-dark">Semua topik</a>
 </div>
 {{-- </div> --}}
 </div>
+
 
 {{-- @else
     <p class="text-center fs-4">No post found.</p>

@@ -29,6 +29,21 @@
             </div>
         </div>
     </div> --}}
+
+    <div class="row justify-content-center mb-3 mt-3">
+        <div class="col-md-7">
+            <form action="/topiks" method="" enctype="multipart/form-data"> @csrf
+                {{-- @if (request('kategori'))
+                    <input type="hidden" name="kategori" value="{{ request('kategori') }}">
+                @endif --}}
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Masukkan keyword pencarian topik" name="search" value="{{ request('search') }}">
+                    <button class="btn btn-outline-primary" type="submit" name="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div style="margin-left: 5cm;">
         <?php for ($i = 0; $i < count($kategori); $i++) { ?>
             <header class="section-header">

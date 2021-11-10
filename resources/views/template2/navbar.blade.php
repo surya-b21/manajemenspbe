@@ -6,14 +6,14 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{url('/home')}}" class="logo">
-                        <img src="{{asset('template2/assets/images/logo-v3.png')}}" alt="">
+                        <img src="{{asset('../uploads/logo/logo-surakarta.png')}}" alt="logo-surakarta" height="80">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="{{url('/inovasi')}}" class="nav-link {{ ($active === "inovasi") ? 'active' : '' }}">Inovasi</a></li>
                         <li class="scroll-to-section"><a href="{{url('/forum')}}" class="nav-link {{ ($active === "forum") ? 'active' : '' }}">Forum</a></li>
-                        <li class="scroll-to-section"><a href="{{url('/topiks')}}" class="nav-link {{ ($active === "topiks") ? 'active' : '' }}">Topiks</a></li>
+                        {{-- <li class="scroll-to-section"><a href="{{url('/topiks')}}" class="nav-link {{ ($active === "topiks") ? 'active' : '' }}">Topiks</a></li> --}}
                         <li class="scroll-to-section">
                             <div class="border-first-button"><a href="{{url('/login')}}">Login</a></div>
                         </li>

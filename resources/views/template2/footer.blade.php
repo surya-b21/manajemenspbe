@@ -1,9 +1,9 @@
-<footer class="bottom">
-    <div class="container ">
+<footer class="bottom" style="position:static; bottom:0px;">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright © 2022 DigiMedia Co., Ltd. All Rights Reserved.
-                    <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
+                <p> Ini Footer
+                    <br>Link: <a href="/home" target="_parent" title="free css templates">Masukkan Link Anda</a>
                 </p>
             </div>
         </div>
@@ -18,7 +18,3 @@
 <script src="{{asset('template2/assets/js/animation.js')}}"></script>
 <script src="{{asset('template2/assets/js/imagesloaded.js')}}"></script>
 <script src="{{asset('template2/assets/js/custom.js')}}"></script>
-
-</body>
-
-</html>

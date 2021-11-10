@@ -22,7 +22,7 @@
     <div class="container">
         <h1 class="mb-5 text-center">{{ $title }}</h1>
         <div class="row justify-content-center mb-3 mt-3">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <form action="/topiks" method="" enctype="multipart/form-data"> @csrf
                     @if (request('kategori'))
                         <input type="hidden" name="kategori" value="{{ request('kategori') }}">
@@ -73,6 +73,7 @@
 
     <div class="d-flex justify-content-center mt-4">
         {{ $topiks->links() }}  
+        <a href=""></a>
     </div>
 
 </body>

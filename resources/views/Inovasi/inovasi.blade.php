@@ -1,36 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <title>DigiMedia - Creative SEO HTML5 Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{asset('template2/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="{{asset('template2/assets/css/fontawesome.css')}}">
-    <link rel="stylesheet" href="{{asset('template2/assets/css/templatemo-digimedia-v3.css')}}">
-    <link rel="stylesheet" href="{{asset('template2/assets/css/animated.css')}}">
-    <link rel=" stylesheet" href="{{asset('template2/assets/css/owl.css')}}">
-    <!--  TemplateMo 568 DigiMedia https://templatemo.com/tm-568-digimedia -->
-</head>
-
-<body>
-    @include('../template2/navbar')
+@include ('.../template2/main')
+<body style="background-image:url('{{asset('template2/assets/images/slider-right-dec.jpg')}}')">
+    @extends('../template')
+    @section('container')
     
     <div id="services" class="services section">
         <!-- bidang inovasi -->
         <div class="container">
-            <div class="row" style="margin-top:100px; margin-bottom: 100px;">
+            <div class="row" style="margin-bottom: 100px;">
                 <div class="col-lg-12">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
                         <!-- <h6>---</h6> -->
@@ -68,9 +44,11 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <ul class="nacc">
-                                        <?php $i=0; ?>
+                                        <?php $i=0; $jenis=1; ?>
                                         @foreach ($ku as $ku)
+                                        <?php $id_jenis = $ku['id'];?>
                                         <?php if ($i==0){ ?>
+                                            <?php $k=1;?>
                                             <li class="active">
                                                 <div>
                                                     <div class="thumb">
@@ -79,17 +57,20 @@
                                                                 <div class="left-text mb-4">
                                                                     <h4>ini nampilin list tentang topik yang masuk dikategori "{{$ku['kategori']}}" </h4>
                                                                     @foreach ($inovasi as $data)
-                                                                    @if ($data['id_ku'] == $ku['id'])
-                                                                    <a href="{{url('/inovasi/read/'.$data['id'])}}">
-                                                                        <div>
-                                                                            {{$data['nama']}}
-                                                                            <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
-                                                                        </div>
-                                                                    </a>
+                                                                    @if ($k <= 5)
+                                                                        @if ($data['id_ku'] == $ku['id'])
+                                                                        <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
+                                                                            <div>
+                                                                                {{$data['nama']}}
+                                                                                <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
+                                                                            </div>
+                                                                        </a>
+                                                                        <?php $k++; ?>
+                                                                        @endif
                                                                     @endif
                                                                     @endforeach
                                                                 </div>
-                                                                <a class="btn btn-primary" href="{{url('/inovasi/kategori_umum/'.$ku['id'])}}">Selengkapnya →</a>
+                                                                    <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_umum/'.$ku['id'])}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ku['kategori']}}</a>
                                                             </div>
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="right-image">
@@ -102,6 +83,7 @@
                                             </li>
                                         <?php }
                                             else {?>
+                                            <?php $k=1; ?>
                                             <li class="">
                                                 <div>
                                                     <div class="thumb">
@@ -110,17 +92,20 @@
                                                                 <div class="left-text mb-4">
                                                                     <h4>ini nampilin list tentang topik yang masuk dikategori "{{$ku['kategori']}}" </h4>
                                                                     @foreach ($inovasi as $data)
-                                                                    @if ($data['id_ku'] == $ku['id'])
-                                                                    <a href="{{url('/inovasi/read/'.$data['id'])}}">
-                                                                        <div>
-                                                                            {{$data['nama']}}
-                                                                            <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
-                                                                        </div>
-                                                                    </a>
+                                                                    @if ($k <= 5)
+                                                                        @if ($data['id_ku'] == $ku['id'])
+                                                                        <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
+                                                                            <div>
+                                                                                {{$data['nama']}}
+                                                                                <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
+                                                                            </div>
+                                                                        </a>
+                                                                        <?php $k++; ?>
+                                                                        @endif
                                                                     @endif
                                                                     @endforeach
                                                                 </div>
-                                                                <a class="btn btn-primary" href="{{url('/inovasi/kategori_umum/'.$ku['id'])}}">Selengkapnya →</a>
+                                                                    <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_umum/'.$ku['id'])}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ku['kategori']}}</a>
                                                             </div>
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="right-image">
@@ -181,9 +166,11 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <ul class="nacc">
-                                        <?php $i=0; ?>
+                                        <?php $i=0; $jenis=2;?>
                                         @foreach ($ks as $ks)
+                                        <?php $id_jenis = $ks['id'];?>
                                         <?php if ($i==0){ ?>
+                                            <?php $k=1; ?>
                                             <li class="active">
                                                 <div>
                                                     <div class="thumb">
@@ -192,17 +179,20 @@
                                                                 <div class="left-text mb-4">
                                                                         <h4>ini nampilin list tentang topik yang masuk di kategori "{{$ks['element']}}" </h4>
                                                                         @foreach ($inovasi as $data)
+                                                                        @if ($k <= 5)
                                                                         @if ($data['id_smart'] == $ks['id'])
-                                                                        <a href="{{url('/inovasi/read/'.$data['id'])}}">
+                                                                        <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
                                                                             <div>
                                                                                 {{$data['nama']}}
                                                                                 <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
                                                                             </div>
                                                                         </a>
+                                                                        <?php $k++; ?>
+                                                                        @endif
                                                                         @endif
                                                                         @endforeach
-                                                                </div>
-                                                                <a class="btn btn-primary" href="{{url('/inovasi/kategori_smart/'.$ks['id'])}}">Selengkapnya →</a>
+                                                                    </div>
+                                                                    <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_smart/'.$ks['id'])}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ks['element']}}</a>
                                                             </div>
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="right-image">
@@ -215,6 +205,7 @@
                                             </li>
                                         <?php }
                                             else {?>
+                                            <?php $k=1; ?>
                                             <li class="">
                                                 <div>
                                                     <div class="thumb">
@@ -223,17 +214,20 @@
                                                                 <div class="left-text mb-4">
                                                                     <h4>ini nampilin list tentang topik yang masuk di kategori "{{$ks['element']}}" </h4>
                                                                     @foreach ($inovasi as $data)
+                                                                    @if ($k <= 5)
                                                                     @if ($data['id_smart'] == $ks['id'])
-                                                                    <a href="{{url('/inovasi/read/'.$data['id'])}}">
+                                                                    <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
                                                                         <div>
                                                                             {{$data['nama']}}
                                                                             <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
                                                                         </div>
                                                                     </a>
+                                                                    <?php $k++; ?>
+                                                                    @endif
                                                                     @endif
                                                                     @endforeach
                                                                 </div>
-                                                                <a class="btn btn-primary" href="{{url('/inovasi/kategori_smart/'.$ks['id'])}}">Selengkapnya →</a>
+                                                                <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_smart/'.$ks['id'])}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ks['element']}}</a>
                                                             </div>
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="right-image">
@@ -257,7 +251,7 @@
 
 
 
-    <!-- layanan spbe -->
+            <!-- layanan spbe -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
@@ -272,102 +266,96 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="menu">
-                                        <?php $i=0; ?>
-                                        @foreach ($kl as $data)
-                                        <?php if ($i==0){ ?>
-                                            <div class="active">
-                                                <div class="thumb">
-                                                    <span class="icon"><img src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""></span>
-                                                    {{ Str::limit(
-                                                        $data['nama']
-                                                        , 25, '...') 
-                                                    }}
-                                                </div>
+                                        <div class="active">
+                                            <div class="thumb">
+                                                <span class="icon"><img src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""></span>
+                                                {{ Str::limit(
+                                                    'Layanan Administrasi Pemerintah'
+                                                    , 35, '...')
+                                                }}
                                             </div>
-                                        <?php }
-                                            else {?>
-                                            <div class="">
-                                                <div class="thumb">
-                                                    <span class="icon"><img src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""></span>
-                                                    {{ Str::limit(
-                                                        $data['nama']
-                                                        , 20, '...') 
-                                                    }}
-                                                </div>
+                                        </div>
+                                        <div class="">
+                                            <div class="thumb">
+                                                <span class="icon"><img src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""></span>
+                                                {{ Str::limit(
+                                                    'Layanan Publik'
+                                                    , 35, '...')
+                                                }}
                                             </div>
-                                        <?php }?>
-                                        <?php $i++; ?>
-                                        @endforeach
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <ul class="nacc">
-                                        <?php $i=0; ?>
-                                        @foreach ($kl as $kl)
-                                        <?php if ($i==0){ ?>
-                                            <li class="active">
-                                                <div>
-                                                    <div class="thumb">
-                                                        <div class="row">
-                                                            <div class="col-lg-6 align-self-center">
-                                                                <div class="left-text mb-4">
-                                                                    <h4>ini nampilin list tentang topik yang masuk dikategori "layanan Administrasi" </h4>
-                                                                    @foreach ($inovasi as $data)
-                                                                    @if ($data['id_layanan'] == $kl['id'])
-                                                                    <a href="{{url('/inovasi/read/'.$data['id'])}}">
-                                                                        <div>
-                                                                            {{$data['nama']}}
-                                                                            <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
-                                                                        </div>
-                                                                    </a>
-                                                                    @endif
-                                                                    @endforeach
-                                                                </div>
-                                                                <a class="btn btn-primary" href="{{url('/inovasi/kategori_layanan/'.$kl['id'])}}">Selengkapnya →</a>
+                                        <?php $k=1; $layanan1 = 1; $jenis=3; ?>
+                                        <li class="active">
+                                            <div>
+                                                <?php $id_jenis = 1;?>
+                                                <div class="thumb">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 align-self-center">
+                                                            <div class="left-text mb-4">
+                                                                <h4>ini nampilin list tentang topik yang masuk dikategori Layanan Administrasi Pemerintah </h4>
+                                                                @foreach ($inovasi as $data)
+                                                                @if ($k <= 5)
+                                                                @if ($data['id_layanan'] == $layanan1)
+                                                                <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
+                                                                    <div>
+                                                                        {{$data['nama']}}
+                                                                        <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
+                                                                    </div>
+                                                                </a>
+                                                                <?php $k++; ?>
+                                                                @endif
+                                                                @endif
+                                                                @endforeach
                                                             </div>
-                                                            <div class="col-lg-6 align-self-center">
-                                                                <div class="right-image">
-                                                                    <img src="{{asset('template2/assets/images/services-image.jpg')}}" alt="">
-                                                                </div>
+                                                                <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_layanan/'.$layanan1)}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> Layanan Administrasi Pemerintah</a>
+                                                        </div>
+                                                        <div class="col-lg-6 align-self-center">
+                                                            <div class="right-image">
+                                                                <img src="{{asset('template2/assets/images/services-image.jpg')}}" alt="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </li>
-                                        <?php }
-                                            else {?>
-                                            <li class="">
-                                                <div>
-                                                    <div class="thumb">
-                                                        <div class="row">
-                                                            <div class="col-lg-6 align-self-center">
-                                                                <div class="left-text mb-4">
-                                                                    <h4>ini nampilin list tentang topik yang masuk dikategori "layanan Administrasi" </h4>
-                                                                    @foreach ($inovasi as $data)
-                                                                    @if ($data['id_layanan'] == $kl['id'])
-                                                                    <a href="{{url('/inovasi/read/'.$data['id'])}}">
-                                                                        <div>
-                                                                            {{$data['nama']}}
-                                                                            <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
-                                                                        </div>
-                                                                    </a>
-                                                                    @endif
-                                                                    @endforeach    
-                                                                </div>
-                                                                <a class="btn btn-primary" href="{{url('/inovasi/kategori_layanan/'.$kl['id'])}}">Selengkapnya →</a>
+                                            </div>
+                                        </li>
+                                        <?php $k=1; $layanan2 = 2; ?>
+                                        <li class="">
+                                            <div>
+                                                <?php $id_jenis = 2; ?>
+                                                <div class="thumb">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 align-self-center">
+                                                            <div class="left-text mb-4">
+                                                                <h4>ini nampilin list tentang topik yang masuk dikategori Layanan Publik </h4>
+                                                                @foreach ($inovasi as $data)
+                                                                @if ($k <= 5)
+                                                                @if ($data['id_layanan'] == $layanan2)
+                                                                <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
+                                                                    <div>
+                                                                        {{$data['nama']}}
+                                                                        <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
+                                                                    </div>
+                                                                </a>
+                                                                <?php $k++; ?>
+                                                                @endif
+                                                                @endif
+                                                                @endforeach    
                                                             </div>
-                                                            <div class="col-lg-6 align-self-center">
-                                                                <div class="right-image">
-                                                                    <img src="{{asset('template2/assets/images/services-image.jpg')}}" alt="">
-                                                                </div>
+                                                                <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_layanan/'.$layanan2)}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> Layanan Publik </a>
+                                                        </div>
+                                                        <div class="col-lg-6 align-self-center">
+                                                            <div class="right-image">
+                                                                <img src="{{asset('template2/assets/images/services-image.jpg')}}" alt="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </li>
-                                        <?php }?>
-                                        <?php $i++; ?>
-                                        @endforeach
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -376,10 +364,7 @@
                 </div>
             </div>
     </div>
-
-
-    @include('../template2/footer')
-
+    @endsection
 </body>
 
 </html>

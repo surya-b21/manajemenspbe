@@ -112,6 +112,7 @@ Route::get('/inovasi/read/{id_inovasi}', 'App\Http\Controllers\Inovasi\InovasiCo
 
 Route::get('/inovasi', 'App\Http\Controllers\Inovasi\InovasiController@inovasi');
 
+Route::get('/', 'App\Http\Controllers\Inovasi\InovasiController@index');
 Route::get('/home', 'App\Http\Controllers\Inovasi\InovasiController@index');
 
 Route::get('/inovasi/kategori_layanan/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_layanan');

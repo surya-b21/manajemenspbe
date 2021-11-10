@@ -40,9 +40,10 @@
                     
                     <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->kategori }} - {{ $t->kategori->parent }}, </a> 
                     <small class="text-muted">{{ $t->created_at->toDateString() }}</small>
+                    {{-- <small class="text-muted">{{ $t->created_at }}</small> --}}
                     <!-- <h5 class="card-title">Card title</h5> -->
-                    <p class="lead text-dark"> {{$t->isi}}</p>
-                    <a href="/forum"><button type="button" class="btn btn-dark">Kembali ke Forum</button>
+                    <p class="lead text-dark"> {!! $t->isi !!}</p>
+                    <a href="/forum" class="btn btn-dark">Kembali ke Forum</a>
                 </div>
                 @endforeach
                 </div>
