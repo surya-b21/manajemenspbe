@@ -6,6 +6,7 @@ use App\DataTables\VersiDataTables;
 use App\Http\Controllers\Controller;
 use App\Models\Developer;
 use App\Models\Versi;
+use App\Models\Inovasi;
 use Hexters\Ladmin\Exceptions\LadminException;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,7 @@ class VersiController extends Controller
         ladmin()->allow('administrator.kelola.versi.create');
 
         $data['developer'] = Developer::all();
+        $data['inovasi'] = Inovasi::all();
         return view('vendor.ladmin.versi.create', $data);
     }
 
@@ -62,8 +64,11 @@ class VersiController extends Controller
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
                 'tgl_versi' => $request->tgl_versi,
-                'status' => 'Belum Diverifikasi',
-                'id_dev' => $request->id_dev
+                'status' => 0,
+                'id_inovasi' => $request->id_inovasi,
+                'id_dev' => $request->id_dev,
+                'create_by' => $request->user()->id,
+                'update_by' => $request->user()->id,
             ]);
 
             session()->flash('success', [
@@ -103,6 +108,7 @@ class VersiController extends Controller
         ladmin()->allow('administrator.kelola.versi.update');
 
         $data['developer'] = Developer::all();
+        $data['inovasi'] = Inovasi::findOrFail($id);
         $data['versi'] = Versi::findOrFail($id);
         return view('vendor.ladmin.versi.edit', $data);
     }
@@ -133,7 +139,9 @@ class VersiController extends Controller
             $versi = Versi::findOrFail($id);
             $versi->nama = $request->nama;
             $versi->deskripsi = $request->deskripsi;
+            $versi->id_inovasi = $request->id_inovasi;
             $versi->id_dev = $request->id_dev;
+            $versi->update_by = $request->user()->id;
             $versi->save();
 
             session()->flash('success', [

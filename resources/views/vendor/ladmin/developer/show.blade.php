@@ -14,7 +14,7 @@
                     </tr>
                     <tr>
                         <td><strong>NPWP</strong></td>
-                        <td>{{$developer->NPWP_dev}}</td>
+                        <td>{{$developer->npwp_dev}}</td>
                     </tr>
                     <tr>
                         <td><strong>Telepon</strong></td>

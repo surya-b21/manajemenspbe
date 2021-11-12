@@ -1,17 +1,17 @@
-<?php 
+<?php
 
   return [
-    
+
     /**
      * Url image logo
      */
-    'logo' => env('LADMIN_LOGO', 'https://github.com/hexters/ladmin/blob/master/logo.svg?raw=true'),
+    'logo' => env('LADMIN_LOGO', asset('storage/logo/logo-surakarta.png')),
 
     /**
      * Ladmin prefix page
      */
     'prefix' => env('LADMIN_PREFIX_PAGE', 'administrator'),
-    
+
     /**
      * Admin account Model
      */
@@ -25,7 +25,7 @@
        * Set the guard to be used during authentication.
        */
       'guard' => 'web',
-      
+
       /**
        * Set the broker to be used during password reset.
        */
@@ -36,7 +36,7 @@
      * Notification status
      */
     'notification' => env('LADMIN_NOTIFICATION', true),
-    
+
     /**
      * Interval deleted log Activity
      */
@@ -47,5 +47,5 @@
      */
 
      'cache_option' => true
-    
+
   ];

@@ -98,7 +98,7 @@
 
     <select name="id_opd" id="id_opd" class="form-control border-0">
         @foreach ($opd as $data )
-            <option value="{{$data->id}}" {{isset($inovasi->id_ku) ? 'selected' : ''}}>{{$data->nama_opd}}</option>
+            <option value="{{$data->id}}" {{isset($inovasi->id_opd) ? 'selected' : ''}}>{{$data->nama_opd}}</option>
         @endforeach
     </select>
 </x-ladmin-form-group>

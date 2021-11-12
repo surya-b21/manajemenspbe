@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Administrator;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Hexters\Ladmin\Exceptions\LadminException;
 
 class ProfileController extends Controller {
-  
+
     /**
      * Display a detail of the profile.
      *
@@ -16,7 +17,7 @@ class ProfileController extends Controller {
     {
         return view('ladmin::profile.index');
     }
-    
+
     /**
      * Store a update profile in storage.
      *
@@ -31,13 +32,13 @@ class ProfileController extends Controller {
         ]);
 
         try {
-            
+
             if(!is_null($request->pass)) {
                 $request->merge([
                     'password' => bcrypt($request->pass)
                 ]);
             }
-            
+
             auth()->user()->update($request->all());
             session()->flash('success', [
                 'Profile has been created sucessfully'

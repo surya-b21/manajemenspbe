@@ -70,7 +70,7 @@
               ['data' => 'DT_RowIndex', 'class' => 'text-center','orderable' => false],
               ['data' => 'nama_dev'],
               ['data' => 'alamat_dev'],
-              ['data' => 'NPWP_dev'],
+              ['data' => 'npwp_dev'],
               ['data' => 'telepon_dev'],
               ['data' => 'action', 'class' => 'text-center', 'orderable' => false],
 

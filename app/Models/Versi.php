@@ -18,6 +18,7 @@ class Versi extends Model
         'deskripsi',
         'tgl_versi',
         'status',
+        'id_inovasi',
         'id_dev',
         'create_by',
         'update_by',
