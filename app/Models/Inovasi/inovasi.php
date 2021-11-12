@@ -11,7 +11,7 @@ class inovasi extends Model
     protected $primaryKey = 'id';
     public $keyType = 'string';
     protected $table = 'inovasi';
-    protected $guarded = [];
+    protected $guarded = ['id'];
     public function children()
     {
         return $this->hasMany(inovasi::class, 'parent');

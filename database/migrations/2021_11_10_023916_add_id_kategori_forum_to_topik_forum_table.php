@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIdUserToTopikForumTable extends Migration
+class AddIdKategoriForumToTopikForumTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,8 @@ class AddIdUserToTopikForumTable extends Migration
     public function up()
     {
         Schema::table('topik_forum', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_user')->after('foto_path');
-            $table->foreign('id_user')->references('id')->on('users')->on('opd')->onDelete('cascade')->onUpdate('cascade');
-            // $table->unsignedBigInteger('id_kf')->after('id_user');
-            // $table->foreign('id_kf')->references('id')->on('kategori_forum')->on('opd')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('id_kf')->after('id_user');
+            $table->foreign('id_kf')->references('id')->on('kategori_forum')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

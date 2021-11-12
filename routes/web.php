@@ -27,18 +27,6 @@ use App\Models\Forum\Kategori;
 |
 */
 
-// Route::get('/', function () {
-//     return view('template2/homepage', [
-//         'active' => '',
-//     ]);
-// });
-
-// Route::get('/home', function () {
-//     return view('template2/homepage', [
-//         'active' => '',
-//     ]);
-// });
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -72,10 +60,9 @@ Ladmin::route(function () {
 });
 
 // FORUM
-
 Route::get('/forum', [KategoriController::class, 'allCategories']);
 Route::get('/forum/{id}', [TopikController::class, 'index']);
-Route::get('/topiks', [TopikController::class, 'semua']); //tambahan
+Route::get('/topik', [TopikController::class, 'semua']); //tambahan
 Route::post('/topik/add/', [TopikController::class, 'processAdd']);
 Route::get('/topik/delete/{idtopik}', [TopikController::class, 'delete']);
 Route::get('/topik/update/{idtopik}', [TopikController::class, 'update']);
@@ -87,13 +74,6 @@ Route::get('/komentar/delete/{idkomen}', [KomentarController::class, 'delete']);
 Route::get('/komentar/update/{idkomen}', [KomentarController::class, 'update']);
 Route::post('/komentar/update/{idkomen}', [KomentarController::class, 'processUpdate']);
 
-Route::get('/inovasi', function () {
-    return view('inovasi/inovasi', [
-        // 'title' => 'Semua Topik' . $title,
-        "active" => "inovasi"
-    ]);
-});
-
 Route::get('/kategori/{kategori:id}', function (Kategori $kategori) {
     return view('forum/topiks', [
         'title' => "Post by kategori : $kategori->name",
@@ -103,6 +83,10 @@ Route::get('/kategori/{kategori:id}', function (Kategori $kategori) {
     ]);
 });
 
+// INOVASI
+Route::get('/inovasi', [InovasiController::class, 'inovasi']);
+Route::get('/', 'App\Http\Controllers\Inovasi\InovasiController@index');
+Route::get('/home', 'App\Http\Controllers\Inovasi\InovasiController@index');
 // Route::get('/dashboard', [InovasiController::class, 'dashboard']);
 Route::get('/tambah', [InovasiController::class, 'tambah_data']);
 Route::post('/kategori', [InovasiController::class, 'kategori']);
@@ -111,8 +95,6 @@ Route::post('/kategori', [InovasiController::class, 'kategori']);
 Route::get('/inovasi/read/{id_inovasi}', 'App\Http\Controllers\Inovasi\InovasiController@read');
 
 Route::get('/inovasi', 'App\Http\Controllers\Inovasi\InovasiController@inovasi');
-
-Route::get('/home', 'App\Http\Controllers\Inovasi\InovasiController@index');
 
 Route::get('/inovasi/kategori_layanan/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_layanan');
 Route::get('/inovasi/kategori_smart/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_smart');

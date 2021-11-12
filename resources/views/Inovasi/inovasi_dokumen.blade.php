@@ -27,37 +27,27 @@
             <a href="{{url($home)}}">Home</a> > <a href="{{url($inov)}}">Inovasi</a> > 
             <a href="{{url($kategori)}}">  
                 <?php 
-                    foreach ($inovasi as $data){
-                        foreach ($ku as $ku){
-                            if ($ku['id'] == $data['id_ku']){
-                                $umum = $ku['kategori'];
-                                $id_umum = $ku['id'];
-                            }
-                        }
-                        foreach ($ks as $ks){
-                            if ($ks['id'] == $data['id_smart']){
-                                $smart = $ks['element'];
-                                $id_smart = $ks['id'];
-                            }
-                        }
-                        if ($data['id_layanan'] == 1){
-                            $layanan = "Layanan Administrasi Pemerintah";
-                            $id_layanan = 1;
-                        }
-                        else {
-                            $layanan = "Layanan Publik";
-                            $id_layanan = 2;
-                        }
-                    }
-
                     if ($jenis == 1){
-                        echo $umum;
+                        foreach ($ku as $ku){
+                            if ($ku['id'] == $id_jenis){
+                                echo $ku['kategori'];
+                            }
+                        }
                     }
                     else if ($jenis == 2){
-                        echo $smart;
+                        foreach ($ks as $ks){
+                            if ($ks['id'] == $id_jenis){
+                                echo $ks['element'];
+                            }
+                        }
                     }
                     else if ($jenis == 3){
-                        echo $layanan;
+                        if ($id_jenis == 1){
+                            echo "Layanan Administrasi Pemerintah";
+                        }
+                        else {
+                            echo "Layanan Publik";
+                        }
                     }
                 ?>
             </a> >
@@ -94,33 +84,6 @@
                             {{$data['deskripsi']}}
                         </div>
                         <div class="mt-5">
-                            <div style="display: inline-block;">
-                                <?php $doc = "#"; ?>
-                                @foreach ($dokumen as $dokumen)
-                                <?php
-                                    if ($dokumen['id_inovasi'] == $data['id']){
-                                        $doc = $dokumen['file_url'];
-                                    }
-                                ?>
-                                @endforeach
-                                <a href="{{url($doc)}}"><img src="https://cdn.pixabay.com/photo/2017/03/08/21/19/file-2127825_960_720.png" class="rounded" alt="" width="30px" height="30px"></a>
-                            </div>
-                            <div style="display: inline-block; margin-left:5px;">
-                                <a href="{{url($doc)}}">Lihat Dokumen</a>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <div>
-                                <a href="/inovasi/kategori_umum/{{$id_umum}}">#{{$umum}}</a>
-                            </div>
-                            <div>
-                                <a href="/inovasi/kategori_smart/{{$id_smart}}">#{{$smart}}</a>
-                            </div>
-                            <div>
-                                <a href="/inovasi/kategori_layanan/{{$id_layanan}}">#{{$layanan}}</a>
-                            </div>
-                        </div>
-                        <div class="mt-4">
                             <p>Dibuat oleh : 
                             @foreach ($dev as $dev)
                             @if ($dev['id'] == $data['id_dev'])
@@ -135,9 +98,8 @@
         </div>
     </div>
 
-    {{-- @include('../template2/footer') --}}
-    
+    @include('../template2/footer')
+
 </body>
-@include('template2/footer')
 
 </html>

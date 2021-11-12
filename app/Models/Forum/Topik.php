@@ -38,13 +38,13 @@ class Topik extends Model
                 ->orWhere('isi', 'like', '%' . $search . '%');
         });
 
-        $query->when(
-            $filters['kategori_forum'] ?? false,
-            fn ($query, $kategori) =>
-            $query->whereHas(
-                'kategori_forum',
-                fn ($query) => $query->where('kategori_forum', $kategori)
-            )
-        );
+        // $query->when(
+        //     $filters['kategori_forum'] ?? false,
+        //     fn ($query, $kategori) =>
+        //     $query->whereHas(
+        //         'kategori_forum',
+        //         fn ($query) => $query->where('kategori_forum', $kategori)
+        //     )
+        // );
     }
 }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+// use App\Models\Forum\Kategori;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,7 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(OpdSeeder::class);
-        $this->call(UserSeeder::class);
+        $this->call([
+            OpdSeeder::class,
+            UserSeeder::class,
+            KategoriForumSeeder::class,
+            KategoriUmumSeeder::class,
+            ESmartSeeder::class,
+            // TopikSeeder::class,
+        ]);
     }
 }
