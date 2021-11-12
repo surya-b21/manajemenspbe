@@ -1,4 +1,5 @@
 <x-ladmin-layout>
+    <x-slot name="title_page">Dashboard</x-slot>
     <x-slot name="title">Dashboard</x-slot>
     <div class="row">
         <div class="col-md-6 col-12">
@@ -56,5 +57,4 @@
             </x-ladmin-card>
         </div>
     </div>
-
 </x-ladmin-layout>
