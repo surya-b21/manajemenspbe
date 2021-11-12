@@ -29,7 +29,11 @@ return [
     | mailers below. You are free to add additional mailers as required.
     |
     | Supported: "smtp", "sendmail", "mailgun", "ses",
+<<<<<<< HEAD
+    |            "postmark", "log", "array", "failover"
+=======
     |            "postmark", "log", "array"
+>>>>>>> 30f376fdf611342ab7289a4ad7eda6413ae2f800
     |
     */
 

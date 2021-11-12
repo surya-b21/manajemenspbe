@@ -21,6 +21,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+<<<<<<< HEAD
+    | Deprecations Log Channel
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the log channel that should be used to log warnings
+    | regarding deprecated PHP and library features. This allows you to get
+    | your application ready for upcoming major versions of dependencies.
+    |
+    */
+
+    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
+
+    /*
+    |--------------------------------------------------------------------------
+=======
+>>>>>>> 30f376fdf611342ab7289a4ad7eda6413ae2f800
     | Log Channels
     |--------------------------------------------------------------------------
     |
