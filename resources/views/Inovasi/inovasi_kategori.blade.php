@@ -64,7 +64,7 @@
                         <div class="small text-muted">{{$data['tgl_upload']}}</div>
                         <h2 class="card-title h4">{{ Str::limit($data['nama'], 10, '...') }}</h2>
                         <p class="card-text">
-                            {{ Str::limit($data['deskripsi'], 80, '...') }}
+                            {!! Str::limit($data['deskripsi'], 80, '...') !!}
                         </p>
                         <a class="btn btn-primary w-100 mt-2" href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">Selengkapnya →</a>
                     </div>

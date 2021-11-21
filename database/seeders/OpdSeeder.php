@@ -18,26 +18,54 @@ class OpdSeeder extends Seeder
         $faker = Factory::create('id_ID');
         DB::table('opd')->insert([
             [
-                'id' => 1,
+                // 'id' => 1,
                 'nama_opd' => "Dinas Kesehatan",
                 'alamat' => $faker->address(),
                 'telepon' => $faker->phoneNumber(),
                 'email' => $faker->email(),
             ],
             [
-                'id_opd' => 2,
+                // 'id_opd' => 2,
                 'nama_opd' => "Dinas Sosial",
                 'alamat' => $faker->address(),
                 'telepon' => $faker->phoneNumber(),
                 'email' => $faker->email(),
             ],
             [
-                'id_opd' => 3,
+                // 'id_opd' => 3,
                 'nama_opd' => "Dinas Lingkungan Hidup",
                 'alamat' => $faker->address(),
                 'telepon' => $faker->phoneNumber(),
                 'email' => $faker->email(),
-            ]
+            ],
+            [
+                // 'id_opd' => 3,
+                'nama_opd' => "Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu",
+                'alamat' => $faker->address(),
+                'telepon' => $faker->phoneNumber(),
+                'email' => $faker->email(),
+            ],
+            [
+                // 'id_opd' => 3,
+                'nama_opd' => "Dinas Perhubungan",
+                'alamat' => $faker->address(),
+                'telepon' => $faker->phoneNumber(),
+                'email' => $faker->email(),
+            ],
+            [
+                // 'id_opd' => 3,
+                'nama_opd' => "Dinas Pemadam Kebakaran",
+                'alamat' => $faker->address(),
+                'telepon' => $faker->phoneNumber(),
+                'email' => $faker->email(),
+            ],
+            [
+                // 'id_opd' => 3,
+                'nama_opd' => "Dinas Pendidikan",
+                'alamat' => $faker->address(),
+                'telepon' => $faker->phoneNumber(),
+                'email' => $faker->email(),
+            ],
         ]);
     }
 }

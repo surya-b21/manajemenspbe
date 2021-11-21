@@ -17,16 +17,19 @@ class KategoriUmumSeeder extends Seeder
     {
         DB::table('kategori_umum')->insert([
             [
-                'kategori' => 'kesehatan'
+                'kategori' => 'Kesehatan'
             ],
             [
-                'kategori' => 'pendidikan'
+                'kategori' => 'Pendidikan'
             ],
             [
-                'kategori' => 'budaya'
+                'kategori' => 'Budaya'
             ],
             [
-                'kategori' => 'pariwisata'
+                'kategori' => 'Sosial'
+            ],
+            [
+                'kategori' => 'Pariwisata'
             ],
         ]);
     }

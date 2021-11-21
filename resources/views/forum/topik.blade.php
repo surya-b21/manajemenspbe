@@ -21,7 +21,7 @@
 
 <div class="container mt-5">
     
-    {{-- <h1 class="mb-3"> Topik tentang {{ $tampil->id }} </h1> --}}
+    {{-- <h1 class="mb-3"> Topik tentang {{ $tampil['kf']->katwgori }} </h1> --}}
 
     {{-- <div class="container"> --}}
     {{-- kalo belum ada isi tabel, navbar nutup konten. semakin banyak jumlah baris tabel, semakin kebawah padding(?) --}}
@@ -62,9 +62,9 @@
                         </a>
                     </td>
                     <td>
+                        <p class="text-dark">{{ $tampil['t']->created_at->isoFormat('DD MMMM YYYY') }}</p>
                         {{-- <a href="<?= url('/topik/delete/' . $tampil['t']->id) ?>"><i class="fas fa-trash"></i></a>
                         <a href="<?= url('/topik/update/' . $tampil['t']->id) ?>"><i class="fas fa-pen"></i></a> --}}
-                        <p class="text-dark">{{ $tampil['t']->created_at->toDateString() }}</p>
                     </td>
                     <br />
                 <?php } else { ?>

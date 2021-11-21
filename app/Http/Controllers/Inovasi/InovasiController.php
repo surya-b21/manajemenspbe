@@ -8,6 +8,7 @@ use App\Models\Inovasi\kategori_smart;
 use App\Models\opd;
 use App\Models\developer;
 use App\Models\dokumen;
+use App\Models\Forum\Topik;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,7 @@ class InovasiController extends Controller
 {
     public function index()
     {
+        $topik = Topik::all();
         $ku = kategori_umum::paginate(5);
         $ks = kategori_smart::paginate(6);
         $inovasi = inovasi::all();
@@ -24,7 +26,8 @@ class InovasiController extends Controller
             "active" => "inovasi",
             "inovasi" => $inovasi,
             "ku" => $ku,
-            "ks" => $ks
+            "ks" => $ks,
+            'topik' => $topik,
         ]);
     }
 

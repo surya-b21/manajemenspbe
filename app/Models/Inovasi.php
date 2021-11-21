@@ -12,7 +12,7 @@ class Inovasi extends Model
     use Notifiable, HasFactory, LadminLogable;
 
     protected $table = 'inovasi';
-
+    // protected $guarded = [];
     protected $fillable = [
         'nama',
         'deskripsi',
@@ -30,7 +30,8 @@ class Inovasi extends Model
         'tgl_upload' => 'datetime'
     ];
 
-    public function dokumen() {
+    public function dokumen()
+    {
         return $this->hasMany(Dokumen::class);
     }
 }

@@ -44,7 +44,7 @@
                     <tr>
                         <th scope="col">Judul Topik</th>
                         <th scope="col">Kategori</th>
-                        <th scope="col">Aksi</th>
+                        {{-- <th scope="col">Aksi</th> --}}
                     </tr>
                 </thead>
                 <tbody>                    
@@ -56,10 +56,10 @@
                             <td>
                                 <a href="/kategori/{{ $topik->kategori->id_kf }}">{{ $topik->kategori->kategori }}</a>
                             </td>
-                            <td>
+                            {{-- <td>
                                 <a href="<?= url('/topik/delete/') ?>"><i class="fas fa-trash"></i></a>
                                 <a href="<?= url('/topik/update/') ?>"><i class="fas fa-pen"></i></a>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

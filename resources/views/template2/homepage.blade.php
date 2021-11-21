@@ -393,7 +393,7 @@
 
 
             <!-- layanan spbe -->
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-12">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
                         <!-- <h6>---</h6> -->
@@ -504,12 +504,12 @@
                     </div>
                 </div>
             </div>
-    </div>
+    </div> --}}
 
   <div id="portfolio" class="our-portfolio section">
     <div class="container">
       <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-12">
           <div style="text-align: center;" class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
             <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
               <!-- <h6>---</h6> -->
@@ -517,7 +517,6 @@
               <div class="line-dec"></div>
             </div>
             <!-- <h6>Our Portofolio</h6> -->
-
           </div>
         </div>
       </div>
@@ -527,27 +526,30 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="loop owl-carousel">
-        {{-- @foreach ($topik as $t) --}}
+        @foreach ($topik as $t)
 
         <div class="item">
-          {{-- <a href="{{ url('/topik/'.$topik->id) }}"> --}}
+          <a href="{{ url('/topik/'.$t->id) }}">
             <div class="portfolio-item">
               <div class="thumb">
                 <span></span>
                 <h4></h4>
                 <img src="{{asset('template2/assets/images/portfolio-01.jpg')}}" alt="">
                 <div class="down-content">
-                  {{-- <h4>{{ $t->judul }}</h4> --}}
-                  {{-- <span>{{ $t->created_at->toDateString() }}</span> --}}
+                  <h6>{{ $t->judul }}</h6> 
+                  {{-- <span class="fs-7">{{ $t->created_at->toDateString() }}</span> --}}
+                  <span class="fs-7">{{ $t->created_at->isoFormat('DD MMMM YYYY') }}</span>
                 </div>
-                <div class="container ml-2 mt-2">
-                  <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum voluptatem nobis, dolores perspiciatis eius omnis excepturi, odit in alias placeat molestiae saepe sequi id quos dolorem, ab repellendus. Molestias, distinctio.</p>
+                <div class="container ml-2">
+                  <p class="card-text">
+                    {!! Str::limit($t->isi, 100, '...') !!}
+                  </p>                
                 </div>
               </div>
             </div>
           </a>
         </div>
-        {{-- @endforeach --}}
+        @endforeach
 
       </div>
     </div>
