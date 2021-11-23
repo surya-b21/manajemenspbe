@@ -45,8 +45,8 @@ return [
             'description' => 'User can delete account'
           ]
         ],
-    ],
-    [
+      ],
+      [
         'gate' => 'administrator.account.opd.index',
         'name' => 'Data OPD',
         'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
@@ -54,23 +54,23 @@ return [
         'isActive' => 'account/opd*',
         'id' => '',
         'gates' => [
-            [
-              'gate' => 'administrator.account.opd.create',
-              'title' => 'Create opd',
-              'description' => 'User can create new opd'
-            ],
-            [
-              'gate' => 'administrator.account.opd.update',
-              'title' => 'Update opd',
-              'description' => 'User can update opd'
-            ],
-            [
-              'gate' => 'administrator.account.opd.destroy',
-              'title' => 'Delete account',
-              'description' => 'User can delete account'
-            ]
+          [
+            'gate' => 'administrator.account.opd.create',
+            'title' => 'Create opd',
+            'description' => 'User can create new opd'
           ],
-    ]
+          [
+            'gate' => 'administrator.account.opd.update',
+            'title' => 'Update opd',
+            'description' => 'User can update opd'
+          ],
+          [
+            'gate' => 'administrator.account.opd.destroy',
+            'title' => 'Delete account',
+            'description' => 'User can delete account'
+          ]
+        ],
+      ]
 
     ]
   ],
@@ -322,6 +322,38 @@ return [
           ]
         ],
       ],
+
+      // topik forum
+      [
+        'gate' => 'administrator.kelola.topik-forum.index',
+        'name' => 'Topik forum',
+        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+        'route' => ['administrator.kelola.topik-forum.index', []],
+        'isActive' => 'kelola/topik-forum*',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.kelola.topik-forum.create',
+            'title' => 'Create topik-forum',
+            'description' => 'User can create new topik-forum'
+          ],
+          [
+            'gate' => 'administrator.kelola.topik-forum.show',
+            'title' => 'Show topik-forum',
+            'description' => 'User can show new topik-forum'
+          ],
+          [
+            'gate' => 'administrator.kelola.topik-forum.update',
+            'title' => 'Update topik-forum',
+            'description' => 'User can update topik-forum'
+          ],
+          [
+            'gate' => 'administrator.kelola.topik-forum.destroy',
+            'title' => 'Delete topik-forum',
+            'description' => 'User can delete topik-forum'
+          ]
+        ],
+      ],
     ]
   ],
 
@@ -359,11 +391,11 @@ return [
         'isActive' => 'verifikasi/versi*',
         'id' => '',
         'gates' => [
-            [
-                'gate' => 'administrator.verifikasi.versi.verified',
-                'title' => 'Verifikasi Versi',
-                'description' => 'Verifikasi Versi'
-            ],
+          [
+            'gate' => 'administrator.verifikasi.versi.verified',
+            'title' => 'Verifikasi Versi',
+            'description' => 'Verifikasi Versi'
+          ],
         ]
       ]
     ]

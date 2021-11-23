@@ -6,6 +6,7 @@ use App\Http\Controllers\Administrator\ElemenSmartController;
 use App\Http\Controllers\Administrator\KategoriUmumController;
 use App\Http\Controllers\Administrator\OpdController;
 use App\Http\Controllers\Administrator\InovasiController;
+use App\Http\Controllers\Administrator\TopikForumController;
 use App\Http\Controllers\Administrator\Verifikasi\InovasiController as VerifikasiInovasiController;
 use App\Http\Controllers\Administrator\Verifikasi\VersiController as VerifikasiVersiController;
 use App\Http\Controllers\Administrator\VersiController;
@@ -42,6 +43,7 @@ Ladmin::route(function () {
         Route::resource('/developer', DeveloperController::class);
         Route::resource('/inovasi', InovasiController::class);
         Route::resource('/versi', VersiController::class);
+        Route::resource('/topik-forum', TopikForumController::class);
     });
     Route::prefix('verifikasi')->as('verifikasi.')->middleware(['verified'])->group(function () {
         Route::prefix('inovasi')->as('inovasi.')->group(function () {
@@ -69,7 +71,7 @@ Route::get('/topik/update/{idtopik}', [TopikController::class, 'update']);
 Route::post('/topik/update/{idtopik}', [TopikController::class, 'processUpdate', "active" => "inovasi"]);
 
 Route::get('/topik/{id}', [KomentarController::class, 'show']);
-Route::post('/komentar/add/', [KomentarController::class, 'processAdd']);
+Route::post('/komentar/add/', [KomentarController::class, 'processAdd'])->middleware('auth');
 Route::get('/komentar/delete/{idkomen}', [KomentarController::class, 'delete']);
 Route::get('/komentar/update/{idkomen}', [KomentarController::class, 'update']);
 Route::post('/komentar/update/{idkomen}', [KomentarController::class, 'processUpdate']);

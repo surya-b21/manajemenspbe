@@ -129,7 +129,7 @@ class TopikController extends Controller
         return view('forum.topiks', [
             'title' => 'Semua Topik' . $title,
             'active' => 'forum',
-            'topiks' => Topik::latest()->filter(request(['search', 'kategori']))->paginate(7)->withQueryString()
+            'topiks' => Topik::latest()->filter(request(['search', 'kategori']))->paginate(20)->withQueryString()
             // ->get()
         ]);
     }

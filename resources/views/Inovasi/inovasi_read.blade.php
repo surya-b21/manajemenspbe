@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div class="text-justify">
-                            {{$data['deskripsi']}}
+                            {!! $data['deskripsi'] !!}
                         </div>
                         <div class="mt-5">
                             <div style="display: inline-block;">

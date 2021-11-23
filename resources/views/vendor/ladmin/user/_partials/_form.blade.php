@@ -22,6 +22,14 @@
   <input type="password" placeholder="Password" class="form-control" name="pass" id="pass">
 </x-ladmin-form-group>
 
+<!-- kurang alamat -->
+<x-ladmin-form-group name="pass" label="alamat">
+  <x-slot name="prepend">
+    {!! ladmin()->icon('home') !!}
+  </x-slot>
+
+  <input type="text" placeholder="Alamat" class="form-control" name="alamat" id="alamat">
+</x-ladmin-form-group>
 
 @if (isset($roles))
 <x-ladmin-form-group name="role_id" label="Role *">
@@ -32,7 +40,7 @@
   <select name="role_id" id="role_id" class="form-control border-0" required>
     <option value="">- Select Role -</option>
     @foreach ($roles as $role)
-      <option value="{{ $role->id }}" {{ isset($user->role->id) && $user->role->id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+    <option value="{{ $role->id }}" {{ isset($user->role->id) && $user->role->id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
     @endforeach
   </select>
 </x-ladmin-form-group>
