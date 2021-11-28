@@ -57,4 +57,18 @@
             </x-ladmin-card>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6 col-12 mt-3">
+            <x-ladmin-card>
+                <x-slot name="header"><h4 class="card-title text-center">Total Topik Forum</h4></x-slot>
+                <h2 class="text-center">{{$topik}}</h2>
+            </x-ladmin-card>
+        </div>
+        {{-- <div class="col-md-6 col-12 mt-3">
+            <x-ladmin-card>
+                <x-slot name="header"><h4 class="card-title text-center">Total Versi</h4></x-slot>
+                <h2 class="text-center">{{$versi}}</h2>
+            </x-ladmin-card>
+        </div> --}}
+    </div>
 </x-ladmin-layout>

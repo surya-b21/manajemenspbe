@@ -72,7 +72,7 @@
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h6 class="text-primary fw-bold mb-0">
-                                            mindyy_def (Nama User?)
+                                            {{ $k->id_user->name }}
                                             <span class="text-dark ms-2">{{$k->isi}}
                                             </span>
                                         </h6>
@@ -98,7 +98,10 @@
                             <div class="row">
                                 <textarea class="form-control" id="isi" name="isi" rows="4" style="background: #fff;" placeholder="komentar baru"></textarea>
                                 <!-- <input type="text" name="isi" class="form-control" placeholder="Komentar"> -->
-                                <input name="id_user" type="hidden" class="form-control" value=1>
+                                @foreach ($komentar as $k)
+                                <input name="id_user" type="hidden" class="form-control" value= <?= Auth::user()->id ?>>
+                                {{-- {!! Form::hidden('id_user', '[Auth::user()->id]') !!} --}}
+                                @endforeach
                                 @foreach ($topik as $t)
                                 <input name="id_topik" type="hidden" class="form-control" value="<?= $t->id ?>">
                                 @endforeach

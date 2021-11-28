@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Forum;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Forum\Komentar;
 use App\Models\Forum\Topik;
+use Illuminate\Http\Request;
+use App\Models\Forum\Komentar;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class KomentarController extends Controller
 {
@@ -25,6 +26,7 @@ class KomentarController extends Controller
 
     function processAdd(Request $request)
     {
+        $id_user = Auth::user()->id;
         $inserting = Komentar::create($request->except('_token'));
         if ($inserting) {
             return redirect()->back()->with("success", "Data berhasil ditambahkan");
