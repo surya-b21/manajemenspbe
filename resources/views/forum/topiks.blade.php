@@ -54,7 +54,7 @@
                                 <a href="/topik/{{ $topik->id }}">{{ $topik->judul }}</a>
                             </td>
                             <td>
-                                <a href="/kategori/{{ $topik->kategori->id_kf }}">{{ $topik->kategori->kategori }}</a>
+                                <a href="/forum/{{ $topik->kategori->id }}">{{ $topik->kategori->kategori }}</a>
                             </td>
                             {{-- <td>
                                 <a href="<?= url('/topik/delete/') ?>"><i class="fas fa-trash"></i></a>

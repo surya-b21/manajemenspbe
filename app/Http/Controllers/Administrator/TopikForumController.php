@@ -8,7 +8,6 @@ use App\Models\TopikForum;
 use App\Models\Forum\Kategori;
 use App\Models\Opd;
 use App\Models\User;
-use App\Models\RefInovasiEsmart;
 use Hexters\Ladmin\Exceptions\LadminException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -38,10 +37,10 @@ class TopikForumController extends Controller
         ladmin()->allow('administrator.kelola.topik-forum.create');
 
         $kategori_forum = Kategori::all();
-        $opd = Opd::all();
+        $topik = TopikForum::all();
         $user = User::all();
 
-        return view('vendor.ladmin.topik-forum.create', compact(['kategori', 'opd', 'user']));
+        return view('vendor.ladmin.topik-forum.create', compact(['kategori_forum', 'topik', 'user']));
     }
 
     /**
@@ -88,10 +87,10 @@ class TopikForumController extends Controller
             }
 
             session()->flash('success', [
-                'Data Inovasi berhasil ditambahkan'
+                'Data Topik Forum berhasil ditambahkan'
             ]);
 
-            return redirect('/administrator/kelola/inovasi');
+            return redirect('/administrator/kelola/topik-forum');
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
@@ -199,15 +198,13 @@ class TopikForumController extends Controller
         ladmin()->allow('administrator.kelola.topik-forum.destroy');
 
         try {
-            $inovasi = Inovasi::findOrFail($id);
-            $inovasi->delete();
+            $topik = TopikForum::findOrFail($id);
+            $topik->delete();
 
-            Storage::delete($inovasi->poster_path);
-
-            DB::table('ref_inovasi_esmart')->select('*')->where('id_inovasi', $inovasi->id)->delete();
+            Storage::delete($topik->poster_path);
 
             session()->flash('success', [
-                'Data Inovasi berhasil dihapus'
+                'Data Topik Forum berhasil dihapus'
             ]);
 
             return redirect('/administrator/kelola/topik-forum');

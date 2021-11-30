@@ -65,10 +65,10 @@ Ladmin::route(function () {
 Route::get('/forum', [KategoriController::class, 'allCategories']);
 Route::get('/forum/{id}', [TopikController::class, 'index']);
 Route::get('/topik', [TopikController::class, 'semua']); //tambahan
-Route::post('/topik/add/', [TopikController::class, 'processAdd']);
-Route::get('/topik/delete/{idtopik}', [TopikController::class, 'delete']);
-Route::get('/topik/update/{idtopik}', [TopikController::class, 'update']);
-Route::post('/topik/update/{idtopik}', [TopikController::class, 'processUpdate', "active" => "inovasi"]);
+// Route::post('/topik/add/', [TopikController::class, 'processAdd']);
+// Route::get('/topik/delete/{idtopik}', [TopikController::class, 'delete']);
+// Route::get('/topik/update/{idtopik}', [TopikController::class, 'update']);
+// Route::post('/topik/update/{idtopik}', [TopikController::class, 'processUpdate', "active" => "inovasi"]);
 
 Route::get('/topik/{id}', [KomentarController::class, 'show']);
 Route::post('/komentar/add/', [KomentarController::class, 'processAdd'])->middleware('auth');
@@ -85,21 +85,32 @@ Route::get('/kategori/{kategori:id}', function (Kategori $kategori) {
     ]);
 });
 
+// <=====================================================================================================================>
 // INOVASI
 Route::get('/inovasi', [InovasiController::class, 'inovasi']);
 Route::get('/', 'App\Http\Controllers\Inovasi\InovasiController@index');
 Route::get('/home', 'App\Http\Controllers\Inovasi\InovasiController@index');
-// Route::get('/dashboard', [InovasiController::class, 'dashboard']);
-Route::get('/tambah', [InovasiController::class, 'tambah_data']);
-Route::post('/kategori', [InovasiController::class, 'kategori']);
 
+// Inovasi
+Route::get('/inovasi', [InovasiController::class, 'inovasi']);
+// 
 
-Route::get('/inovasi/read/{id_inovasi}', 'App\Http\Controllers\Inovasi\InovasiController@read');
-
-Route::get('/inovasi', 'App\Http\Controllers\Inovasi\InovasiController@inovasi');
-
+// Kategori Inovasi
+Route::post('/inovasi/kategori', [InovasiController::class, 'kategori']);
 Route::get('/inovasi/kategori_layanan/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_layanan');
 Route::get('/inovasi/kategori_smart/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_smart');
 Route::get('/inovasi/kategori_umum/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_umum');
+// 
+
+// Baca Inovasi
+Route::get('/inovasi/read/{jenis}/{id_jenis}/{id_inovasi}', [InovasiController::class, 'read']);
+// 
+
+// Cari Inovasi
+// Route::get('/inovasi/cari_kategori', 'App\Http\Controllers\Inovasi\InovasiController@cari_kategori')->name('search');
+Route::post('/inovasi/kategori/search', [InovasiController::class, 'cari_kategori']);
+// 
+
+// <=====================================================================================================================>
 
 require __DIR__ . '/auth.php';

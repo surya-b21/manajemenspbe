@@ -36,7 +36,9 @@
                     </tr>
                     <tr>
                         <td><strong>Foto</strong></td>
-                        <td><img src="{{Storage::url($topik->foto_path)}}" alt="foto {{$topik->judul}}" width="50%" height="50%"></td>
+                        <td>
+                            <img src="{{Storage::url($topik->foto_path)}}" alt="foto {{$topik->judul}}" width="50%" height="50%">
+                        </td>
                     </tr> 
                 </tbody>
             </table>

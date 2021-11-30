@@ -34,9 +34,9 @@ class TopikController extends Controller
                 'active' => 'forum',
                 'tampil' => $show,
             ],
-            [
-                'topiks' => Topik::latest()->filter(request(['search']))->get()
-            ]
+            // [
+            //     'topiks' => Topik::latest()->filter(request(['search']))->get()
+            // ]
         );
         // return response()->json($show['kf'][$id]['kategori']);
     }
