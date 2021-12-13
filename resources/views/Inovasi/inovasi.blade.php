@@ -29,7 +29,7 @@
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
                         <!-- <h6>---</h6> -->
                         <h4>Bidang <em style="color: #145A32;">Inovasi</em></h4>
-                        <div class="line-dec"></div>
+                        <div class="line-dec" style="background-color: #145A32;"></div>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -183,7 +183,7 @@
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
                         <!-- <h6>---</h6> -->
                         <h4>Elemen <em style="color: #145A32;">Smart City</em></h4>
-                        <div class="line-dec"></div>
+                        <div class="line-dec" style="background-color: #145A32;"></div>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -350,7 +350,7 @@
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
                         <!-- <h6>---</h6> -->
                         <h4>Layanan <em style="color: #145A32;">SPBE</em></h4>
-                        <div class="line-dec"></div>
+                        <div class="line-dec" style="background-color: #145A32;"></div>
                     </div>
                 </div>
                 <div class="col-lg-12">
