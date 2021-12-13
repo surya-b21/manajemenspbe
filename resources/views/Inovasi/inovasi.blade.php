@@ -75,20 +75,36 @@
                                                                 <div class="left-text mb-4">
                                                                     <h4>ini nampilin list tentang topik yang masuk dikategori "{{$ku['kategori']}}" </h4>
                                                                     @foreach ($inovasi as $data)
-                                                                    @if ($k <= 5)
-                                                                        @if ($data['id_ku'] == $ku['id'])
-                                                                        <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
-                                                                            <div>
-                                                                                {{$data['nama']}}
-                                                                                <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
-                                                                            </div>
-                                                                        </a>
-                                                                        <?php $k++; ?>
+                                                                        @if ($k <= 5)
+                                                                            @if ($data['id_ku'] == $ku['id'])
+                                                                            <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                                    <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
+                                                                                    <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
+                                                                                    <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                        {{$data['nama']}}
+                                                                                    </button>
+                                                                                </div>
+                                                                            </form>
+                                                                            <?php $k++; ?>
+                                                                            @endif
+                                                                        @else
+                                                                            @break
                                                                         @endif
-                                                                    @endif
                                                                     @endforeach
                                                                 </div>
-                                                                    <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_umum/'.$ku['id'])}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ku['kategori']}}</a>
+                                                                <form action="/inovasi/kategori" method="post" enctype="multipart/form-data"> 
+                                                                    @csrf
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                        <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
+                                                                            Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ku['kategori']}}
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="right-image">
@@ -110,20 +126,36 @@
                                                                 <div class="left-text mb-4">
                                                                     <h4>ini nampilin list tentang topik yang masuk dikategori "{{$ku['kategori']}}" </h4>
                                                                     @foreach ($inovasi as $data)
-                                                                    @if ($k <= 5)
-                                                                        @if ($data['id_ku'] == $ku['id'])
-                                                                        <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
-                                                                            <div>
-                                                                                {{$data['nama']}}
-                                                                                <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
-                                                                            </div>
-                                                                        </a>
-                                                                        <?php $k++; ?>
+                                                                        @if ($k <= 5)
+                                                                            @if ($data['id_ku'] == $ku['id'])
+                                                                            <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                                    <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
+                                                                                    <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
+                                                                                    <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                        {{$data['nama']}}
+                                                                                    </button>
+                                                                                </div>
+                                                                            </form>
+                                                                            <?php $k++; ?>
+                                                                            @endif
+                                                                        @else
+                                                                            @break
                                                                         @endif
-                                                                    @endif
                                                                     @endforeach
                                                                 </div>
-                                                                    <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_umum/'.$ku['id'])}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ku['kategori']}}</a>
+                                                                <form action="/inovasi/kategori" method="post" enctype="multipart/form-data"> 
+                                                                    @csrf
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                        <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
+                                                                            Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ku['kategori']}}
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="right-image">
@@ -161,7 +193,7 @@
                                 <div class="col-lg-12">
                                     <div class="menu">
                                         <?php $i=0; ?>
-                                        @foreach ($ks as $data)
+                                        @foreach ($esmart as $data)
                                         <?php if ($i==0){ ?>
                                             <div class="active">
                                                 <div class="thumb">
@@ -185,8 +217,8 @@
                                 <div class="col-lg-12">
                                     <ul class="nacc">
                                         <?php $i=0; $jenis=2;?>
-                                        @foreach ($ks as $ks)
-                                        <?php $id_jenis = $ks['id'];?>
+                                        @foreach ($esmart as $e_smart)
+                                        <?php $id_jenis = $e_smart['id'];?>
                                         <?php if ($i==0){ ?>
                                             <?php $k=1; ?>
                                             <li class="active">
@@ -195,22 +227,43 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="left-text mb-4">
-                                                                        <h4>ini nampilin list tentang topik yang masuk di kategori "{{$ks['element']}}" </h4>
-                                                                        @foreach ($inovasi as $data)
+                                                                    <h4>ini nampilin list tentang topik yang masuk di kategori "{{$e_smart['element']}}" </h4>
+                                                                    @foreach ($inovasi as $data)
                                                                         @if ($k <= 5)
-                                                                        @if ($data['id_smart'] == $ks['id'])
-                                                                        <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
-                                                                            <div>
-                                                                                {{$data['nama']}}
-                                                                                <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
-                                                                            </div>
-                                                                        </a>
-                                                                        <?php $k++; ?>
+                                                                            @foreach ($ks as $ksa)
+                                                                                @if ($e_smart['id'] == $ksa['id_esmart'])
+                                                                                    @if ($data['id'] == $ksa['id_inovasi'])
+                                                                                        <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
+                                                                                            @csrf
+                                                                                            <div class="input-group mb-3">
+                                                                                                <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                                                <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
+                                                                                                <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
+                                                                                                <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                                    {{$data['nama']}}
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                        <?php $k++; ?>
+                                                                                    @endif
+                                                                                @endif
+                                                                            @endforeach
+                                                                        @else
+                                                                            @break
                                                                         @endif
-                                                                        @endif
-                                                                        @endforeach
+                                                                    @endforeach
+                                                                </div>
+                                                                <form action="/inovasi/kategori" method="post" enctype="multipart/form-data"> 
+                                                                    @csrf
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                        <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
+                                                                            Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> 
+                                                                            {{$e_smart['element']}}
+                                                                        </button>
                                                                     </div>
-                                                                    <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_smart/'.$ks['id'])}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ks['element']}}</a>
+                                                                </form>
                                                             </div>
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="right-image">
@@ -230,22 +283,44 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="left-text mb-4">
-                                                                    <h4>ini nampilin list tentang topik yang masuk di kategori "{{$ks['element']}}" </h4>
+                                                                    <h4>ini nampilin list tentang topik yang masuk di kategori "{{$e_smart['element']}}" </h4>
                                                                     @foreach ($inovasi as $data)
                                                                     @if ($k <= 5)
-                                                                    @if ($data['id_smart'] == $ks['id'])
-                                                                    <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
-                                                                        <div>
-                                                                            {{$data['nama']}}
-                                                                            <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
-                                                                        </div>
-                                                                    </a>
-                                                                    <?php $k++; ?>
-                                                                    @endif
+                                                                        @foreach ($ks as $ksb)
+                                                                        @if ($e_smart['id'] == $ksb['id_esmart'])
+                                                                            @if ($data['id'] == $ksb['id_inovasi'])
+                                                                            <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                                    <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
+                                                                                    <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
+                                                                                    <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                        {{$data['nama']}}
+                                                                                    </button>
+                                                                                </div>
+                                                                            </form>
+                                                                            <?php $k++; ?>
+                                                                            @endif
+                                                                        @endif
+                                                                        @endforeach
+                                                                    @else 
+                                                                        @break
                                                                     @endif
                                                                     @endforeach
                                                                 </div>
-                                                                <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_smart/'.$ks['id'])}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ks['element']}}</a>
+                                                                <form action="/inovasi/kategori" method="post" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                        <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
+                                                                            Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> 
+                                                                            <!-- -->
+                                                                            {{$e_smart['element']}}
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="right-image">
@@ -316,20 +391,38 @@
                                                             <div class="left-text mb-4">
                                                                 <h4>ini nampilin list tentang topik yang masuk dikategori Layanan Administrasi Pemerintah </h4>
                                                                 @foreach ($inovasi as $data)
-                                                                @if ($k <= 5)
-                                                                @if ($data['id_layanan'] == $layanan1)
-                                                                <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
-                                                                    <div>
-                                                                        {{$data['nama']}}
-                                                                        <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
-                                                                    </div>
-                                                                </a>
-                                                                <?php $k++; ?>
-                                                                @endif
-                                                                @endif
+                                                                    @if ($k <= 5)
+                                                                        @if ($data['layanan_spbe'] == "Layanan Administrasi Pemerintah")
+                                                                            <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                                    <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
+                                                                                    <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
+                                                                                    <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                        {{$data['nama']}}
+                                                                                    </button>
+                                                                                </div>
+                                                                            </form>
+                                                                        <?php $k++; ?>
+                                                                        @endif
+                                                                    @else
+                                                                        @break
+                                                                    @endif
                                                                 @endforeach
-                                                            </div>
-                                                                <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_layanan/'.$layanan1)}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> Layanan Administrasi Pemerintah</a>
+                                                            </div> 
+                                                                <form action="/inovasi/kategori" method="post" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                        <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
+                                                                            Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> 
+                                                                            Layanan Administrasi Pemerintah
+                                                                            <!-- -->
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
                                                         </div>
                                                         <div class="col-lg-6 align-self-center">
                                                             <div class="right-image">
@@ -350,20 +443,38 @@
                                                             <div class="left-text mb-4">
                                                                 <h4>ini nampilin list tentang topik yang masuk dikategori Layanan Publik </h4>
                                                                 @foreach ($inovasi as $data)
-                                                                @if ($k <= 5)
-                                                                @if ($data['id_layanan'] == $layanan2)
-                                                                <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">
-                                                                    <div>
-                                                                        {{$data['nama']}}
-                                                                        <input name="id_inovasi" type="hidden" class="form-control" value="<?= $data['id'] ?>">
-                                                                    </div>
-                                                                </a>
-                                                                <?php $k++; ?>
-                                                                @endif
-                                                                @endif
+                                                                    @if ($k <= 5)
+                                                                    @if ($data['layanan_spbe'] == "Layanan Publik")
+                                                                            <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="input-group mb-3">
+                                                                                    <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                                    <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
+                                                                                    <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
+                                                                                    <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                        {{$data['nama']}}
+                                                                                    </button>
+                                                                                </div>
+                                                                            </form>
+                                                                        <?php $k++; ?>
+                                                                        @endif
+                                                                    @else
+                                                                        @break
+                                                                    @endif
                                                                 @endforeach    
                                                             </div>
-                                                                <a class="btn btn-primary w-100" href="{{url('/inovasi/kategori_layanan/'.$layanan2)}}">Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> Layanan Publik </a>
+                                                                <form action="/inovasi/kategori" method="post" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="hidden" name="jenis" value="{{$jenis}}">
+                                                                        <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
+                                                                            Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> 
+                                                                            Layanan Publik
+                                                                            <!-- -->
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
                                                         </div>
                                                         <div class="col-lg-6 align-self-center">
                                                             <div class="right-image">
