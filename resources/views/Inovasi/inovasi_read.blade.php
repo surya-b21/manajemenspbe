@@ -23,19 +23,21 @@
 
     <div class="container" style="padding-top:150px;">
         <div>
-            <a href="{{url($home)}}">Home</a> > <a href="{{url($inov)}}">Inovasi</a> > 
+            <a href="{{url($home)}}" style="color: #145A32;">Home</a> > <a href="{{url($inov)}}" style="color: #145A32;">Inovasi</a> > 
             <form action="/inovasi/kategori" style="display: inline; padding: 0; margin:none;" method="post" enctype="multipart/form-data">
                 @csrf
                     <input type="hidden" name="jenis" value="{{$jenis}}">
                     <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
-                    <button class="btn btn-link align-baseline" style="box-shadow: none !important; text-decoration: none; padding: 0; margin: 0;" type="submit" name="submit">
+                    <button class="btn btn-link align-baseline" style="color: #145A32; box-shadow: none !important; text-decoration: none; padding: 0; margin: 0;" type="submit" name="submit">
                         <?php 
                             foreach ($inovasi as $data){
+                                // $umum_tag = array();
                                 foreach ($ku as $ku){
                                     if ($ku['id'] == $data['id_ku']){
                                         $umum = $ku['kategori'];
                                         $id_umum = $ku['id'];
                                     }
+                                    // $umum_tag = $ku;
                                 }
                                 foreach ($ks as $ks){
                                     foreach ($esmart as $e_smart){
@@ -70,14 +72,17 @@
             >
             @foreach ($inovasi as $data)
                 <?php $judul = $data['nama'];?>
-                <a href="{{url($self_url)}}">{{$judul}}</a>
+                <a href="{{url($self_url)}}" style="color: #145A32;">{{$judul}}</a>
             @endforeach
         </div>
     </div>
+
     <!-- Page content-->
-    <div class="container mt-4 bg-white" style="padding-top:50px; border-radius:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <div class="container">
+        <div class="row">
+    <div class="mt-4 bg-white col-lg-8" style="display:inline-block;padding-top:50px; border-radius:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
         <div class="row" style="margin-top:0px; margin-bottom: 100px;">
-            <div class="col-lg-12 shadow-sm rounded" style="height:fit-content;">
+            <div class="" style="height:fit-content;">
                 <div class="m-5">
                     @foreach ($inovasi as $data)
                         <div class="w-50 h-50 mb-4 m-auto" style="">
@@ -114,7 +119,7 @@
                                 <a href="{{url($doc)}}"><img src="https://cdn.pixabay.com/photo/2017/03/08/21/19/file-2127825_960_720.png" class="rounded" alt="" width="30px" height="30px"></a>
                             </div>
                             <div style="display: inline-block; margin-left:5px;">
-                                <a href="{{url($doc)}}">Lihat Dokumen</a>
+                                <a href="{{url($doc)}}" style="color: #145A32;">Lihat Dokumen</a>
                             </div>
                         </div>
                         <div class="mt-4">
@@ -123,7 +128,7 @@
                                     @csrf
                                     <input type="hidden" name="jenis" value="1">
                                     <input type="hidden" name="id_kategori" value="{{$id_umum}}">
-                                    <a class="link-primary" style="cursor: pointer;" onclick="document.getElementById('link_umum').submit();" name="submit">
+                                    <a class="link-primary" style="color: #145A32; cursor: pointer;" onclick="document.getElementById('link_umum').submit();" name="submit">
                                         #{{$umum}}
                                     </a>
                                 </form>
@@ -133,7 +138,7 @@
                                     @csrf
                                     <input type="hidden" name="jenis" value="2">
                                     <input type="hidden" name="id_kategori" value="{{$id_smart}}">
-                                    <a class="link-primary" style="cursor: pointer;" onclick="document.getElementById('link_esmart').submit();" name="submit">
+                                    <a class="link-primary" style="color: #145A32; cursor: pointer;" onclick="document.getElementById('link_esmart').submit();" name="submit">
                                         #{{$smart}}
                                     </a>
                                 </form>
@@ -143,7 +148,7 @@
                                     @csrf
                                     <input type="hidden" name="jenis" value="3">
                                     <input type="hidden" name="id_kategori" value="{{$id_layanan}}">
-                                    <a class="link-primary" style="cursor: pointer;" onclick="document.getElementById('link_layanan').submit();" name="submit">
+                                    <a class="link-primary" style="color: #145A32; cursor: pointer;" onclick="document.getElementById('link_layanan').submit();" name="submit">
                                         #{{$layanan}}
                                     </a>
                                 </form>
@@ -156,6 +161,7 @@
                                 {{$dev['nama_dev']}}
                             @endif
                             @endforeach
+                            Dev 1
                             </p>
                         </div>
                     @endforeach
@@ -163,15 +169,84 @@
             </div>
         </div>
     </div>
+            <div class="col-lg-4 mt-4" style="display:inline-block;">
+                <div class="card mb-4" style="border-radius:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="m-5">
+                        <div class="section-heading wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <h4 style="text-align:center; font-size:20pt;">Kategori <em style="color: #145A32;">Umum</em><br></h4>
+                        </div>
+                        @foreach ($ku2 as $ku2)
+                            <li>
+                            <form style="display: inline;" action="/inovasi/kategori" id="link_umum" method="post" enctype="multipart/form-data"> 
+                                @csrf
+                                <input type="hidden" name="jenis" value="1">
+                                <input type="hidden" name="id_kategori" value="{{$ku2['id']}}">
+                                <button class="btn btn-link " style="color: #145A32; text-align: left; margin: 0; padding:0; box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                    {{$ku2['kategori']}}
+                                </button>
+                            </form>
+                            </li>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="card mb-4" style="border-radius:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="m-5">
+                        <div class="section-heading wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <h4 style="text-align:center; font-size:20pt;">Smart <em style="color: #145A32;">City</em><br></h4>
+                        </div>
+                        @foreach ($esmart2 as $esmart2)
+                            <li>
+                            <form style="display: inline;" action="/inovasi/kategori" id="link_umum" method="post" enctype="multipart/form-data"> 
+                                @csrf
+                                <input type="hidden" name="jenis" value="2">
+                                <input type="hidden" name="id_kategori" value="{{$esmart2['id']}}">
+                                <button class="btn btn-link " style="color: #145A32; text-align: left; margin: 0; padding:0; box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                    {{$esmart2['element']}}
+                                </button>
+                            </form>
+                            </li>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="card mb-4" style="border-radius:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="m-5">
+                        <div class="section-heading wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <h4 style="text-align:center; font-size:20pt;">Layanan <em style="color: #145A32;">SPBE</em><br></h4>
+                        </div>
+                        <li>
+                            <form style="display: inline;" action="/inovasi/kategori" id="link_umum" method="post" enctype="multipart/form-data"> 
+                                @csrf
+                                <input type="hidden" name="jenis" value="3">
+                                <input type="hidden" name="id_kategori" value="1">
+                                <button class="btn btn-link " style="color: #145A32; text-align: left; margin: 0; padding:0; box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                    Layanan Administrasi Pemerintah
+                                </button>
+                            </form>
+                        </li>
+                        <li>
+                            <form style="display: inline;" action="/inovasi/kategori" id="link_umum" method="post" enctype="multipart/form-data"> 
+                                @csrf
+                                <input type="hidden" name="jenis" value="3">
+                                <input type="hidden" name="id_kategori" value="2">
+                                <button class="btn btn-link " style="color: #145A32; text-align: left; margin: 0; padding:0; box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                    Layanan Publik
+                                </button>
+                            </form>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     
-    <div class="container">
+    <div class="container" style="margin-top:100px;">
         <div class="row " style="padding-bottom:20px;">
             <div class="col-lg-12 d-flex justify-content-center">
                 <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
                     <!-- <h6>---</h6> -->
-                    <h4 style="text-align:center;">Artikel <em>Terkait</em><br>{{$judul}}</h4>
-                        <div class="line-dec m-auto"></div>
+                    <h4 style="text-align:center;">Artikel Terkait <br> <em style="color: #145A32;">{{$judul}}</em></h4>
+                        <div class="line-dec m-auto" style="background-color: #145A32;"></div>
                 </div>
                 <!-- <h6>Our Portofolio</h6> -->
             </div>
@@ -209,7 +284,7 @@
                                                     <input type="hidden" name="jenis" value="{{$jenis}}">
                                                     <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
                                                     <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
-                                                    <button class="btn btn-primary w-100 mt-2 rounded" type="submit" name="submit">
+                                                    <button class="btn w-100 mt-2 rounded" style="background-color: #145A32; color:white;" type="submit" name="submit">
                                                         Selengkapnya →
                                                     </button>
                                                 </div>
@@ -249,7 +324,7 @@
                                 <input type="hidden" name="jenis" value="{{$jenis}}">
                                 <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
                                 <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
-                                <button class="btn btn-primary w-100 mt-2 rounded" type="submit" name="submit">
+                                <button class="btn btn-success w-100 mt-2 rounded" style="background-color: #145A32; color:white;" type="submit" name="submit">
                                     Selengkapnya →
                                 </button>
                             </div>
