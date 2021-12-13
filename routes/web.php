@@ -61,6 +61,14 @@ Ladmin::route(function () {
     });
 });
 
+Route::middleware(['auth','verified'])->group(function (){
+    //route yang butuh login ditaruh disini
+});
+
+Route::middleware('guest')->group(function (){
+    //route yang ga butuh login taruh disini
+});
+
 // FORUM
 Route::get('/forum', [KategoriController::class, 'allCategories']);
 Route::get('/forum/{id}', [TopikController::class, 'index']);
@@ -93,23 +101,23 @@ Route::get('/home', 'App\Http\Controllers\Inovasi\InovasiController@index');
 
 // Inovasi
 Route::get('/inovasi', [InovasiController::class, 'inovasi']);
-// 
+//
 
 // Kategori Inovasi
 Route::post('/inovasi/kategori', [InovasiController::class, 'kategori']);
 Route::get('/inovasi/kategori_layanan/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_layanan');
 Route::get('/inovasi/kategori_smart/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_smart');
 Route::get('/inovasi/kategori_umum/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_umum');
-// 
+//
 
 // Baca Inovasi
 Route::get('/inovasi/read/{jenis}/{id_jenis}/{id_inovasi}', [InovasiController::class, 'read']);
-// 
+//
 
 // Cari Inovasi
 // Route::get('/inovasi/cari_kategori', 'App\Http\Controllers\Inovasi\InovasiController@cari_kategori')->name('search');
 Route::post('/inovasi/kategori/search', [InovasiController::class, 'cari_kategori']);
-// 
+//
 
 // <=====================================================================================================================>
 
