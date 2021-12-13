@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\TopikForum;
 use App\Models\Forum\Kategori;
 use App\Models\Opd;
-use App\Models\RefInovasiEsmart;
+use App\Models\User;
 use Hexters\Ladmin\Exceptions\LadminException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -37,18 +37,10 @@ class TopikForumController extends Controller
         ladmin()->allow('administrator.kelola.topik-forum.create');
 
         $kategori_forum = Kategori::all();
-        // $esmart = DB::table('elemen_smart')->select('element')->get()->toArray();
-        $opd = Opd::all();
+        $topik = TopikForum::all();
+        $user = User::all();
 
-        // $value_esmart = [];
-        // $arrEM = [];
-        // $index = 0;
-        // foreach ($esmart as $data) {
-        //     $arrEM[$index] = $data->element;
-        //     $index++;
-        // }
-
-        return view('vendor.ladmin.topik-forum.create', compact(['kategori_umum', 'opd', 'arrEM', 'value_esmart']));
+        return view('vendor.ladmin.topik-forum.create', compact(['kategori_forum', 'topik', 'user']));
     }
 
     /**
@@ -63,15 +55,13 @@ class TopikForumController extends Controller
 
         $request->validate(
             [
-                'nama' => 'required',
-                'deskripsi' => 'required',
-                'layanan_spbe' => 'required',
-                'tgl_launching' => 'required',
-                'tgl_upload' => 'required',
-                'poster_path' => 'required|mimes:png,jpg,jpeg|max:2048',
-                'esmart' => 'required',
-                'id_opd' => 'required',
-                'id_ku' => 'required',
+                'judul' => 'required',
+                'isi' => 'required',
+                'foto_path' => 'required|mimes:png,jpg,jpeg|max:2048',
+                'id_user' => 'required',
+                'id_kf' => 'required',
+                'created_by' => 'required',
+                'update_by' => 'required',
             ],
             [
                 'required' => ':attribute harus diisi!!',
@@ -82,40 +72,25 @@ class TopikForumController extends Controller
 
         try {
             if ($request->file()) {
-                $fileName = $request->nama . '.' . $request->file('poster_path')->extension();
-                $filePath = Storage::putFileAs('public/forum', $request->file('poster_path'), $fileName);
+                $fileName = $request->nama . '.' . $request->file('foto_path')->extension();
+                $filePath = Storage::putFileAs('public/forum', $request->file('foto_path'), $fileName);
 
                 $fileModel = new TopikForum;
                 $fileModel->judul = $request->judul;
-                $fileModel->deskripsi = $request->deskripsi;
-                $fileModel->layanan_spbe = $request->layanan_spbe;
-                $fileModel->tgl_launching = $request->tgl_launching;
-                $fileModel->tgl_upload = $request->tgl_upload;
-                $fileModel->poster_path = $filePath;
-                $fileModel->status = 0;
-                $fileModel->id_ku = $request->id_ku;
-                $fileModel->id_opd = $request->id_opd;
+                $fileModel->isi = $request->isi;
+                $fileModel->foto_path = $filePath;
+                $fileModel->id_user = $request->id_user;
+                $fileModel->id_kf = $request->id_kf;
                 $fileModel->create_by = $request->user()->id;
                 $fileModel->update_by = $request->user()->id;
                 $fileModel->save();
             }
 
-            $temp = json_decode($request->esmart);
-            $inovasi = DB::table('inovasi')->whereRaw('inovasi.id = (SELECT MAX(inovasi.id) FROM inovasi)')->first();
-            foreach ($temp as $data) {
-                $esmart = new RefInovasiEsmart;
-                is_null($inovasi) ? $esmart->id_inovasi = 1 : $esmart->id_inovasi = $inovasi->id;
-                $esmart_id = DB::table('elemen_smart')->select('id')->where('element', $data->value)->first();
-                $esmart->id_esmart = $esmart_id->id;
-                $esmart->create_by = $request->user()->id;
-                $esmart->update_by = $request->user()->id;
-                $esmart->save();
-            }
             session()->flash('success', [
-                'Data Inovasi berhasil ditambahkan'
+                'Data Topik Forum berhasil ditambahkan'
             ]);
 
-            return redirect('/administrator/kelola/inovasi');
+            return redirect('/administrator/kelola/topik-forum');
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
@@ -131,11 +106,12 @@ class TopikForumController extends Controller
      */
     public function show($id)
     {
-        ladmin()->allow('administrator.kelola.inovasi.show');
+        ladmin()->allow('administrator.kelola.topik-forum.show');
 
-        $inovasi = DB::table('inovasi')->where('id', $id)->get()->first();
-        $esmart = DB::table('ref_inovasi_esmart')->where('id_inovasi', $id)->get()->toArray();
-        return view('vendor.ladmin.inovasi.show', compact(['inovasi', 'esmart']));
+        $kategori_forum = Kategori::all();
+        $user = User::all();
+        $topik = DB::table('topik_forum')->where('id', $id)->get()->first();
+        return view('vendor.ladmin.topik-forum.show', compact(['kategori_forum', 'user', 'topik']));
     }
 
     /**
@@ -146,35 +122,13 @@ class TopikForumController extends Controller
      */
     public function edit($id)
     {
-        ladmin()->allow('administrator.kelola.inovasi.update');
+        ladmin()->allow('administrator.kelola.topik-forum.update');
 
         $kategori_forum = Kategori::all();
+        $user = User::all();
         $topik = TopikForum::findOrFail($id);
-        $esmart = DB::table('elemen_smart')->select('element')->get()->toArray();
-        $ref_esmart = DB::table('ref_inovasi_esmart')->select('id_esmart')->where('id_inovasi', $id)->get();
-        $opd = Opd::all();
 
-        $value_esmart = [];
-        $index = 0;
-        foreach ($ref_esmart as $data) {
-            $value_esmart[$index] = DB::table('elemen_smart')->select('element')->where('id', $data->id_esmart)->first();
-            $index++;
-        }
-
-        $index = 0;
-        foreach ($value_esmart as $data) {
-            $value_esmart[$index] = $data->element;
-            $index++;
-        }
-
-        $arrEM = [];
-        $index = 0;
-        foreach ($esmart as $data) {
-            $arrEM[$index] = $data->element;
-            $index++;
-        }
-
-        return view('vendor.ladmin.inovasi.edit', compact(['kategori_umum', 'opd', 'arrEM', 'inovasi', 'value_esmart']));
+        return view('vendor.ladmin.topik-forum.edit', compact(['kategori_forum', 'user', 'topik']));
     }
 
     /**
@@ -186,18 +140,17 @@ class TopikForumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ladmin()->allow('administrator.kelola.inovasi.update');
+        ladmin()->allow('administrator.kelola.topik-forum.update');
 
         $request->validate(
             [
-                'nama' => 'required',
-                'deskripsi' => 'required',
-                'layanan_spbe' => 'required',
-                'tgl_launching' => 'required',
-                'tgl_upload' => 'required',
-                'poster_path' => 'required|mimes:png,jpg,jpeg|max:2048',
-                'esmart' => 'required',
-                'id_ku' => 'required',
+                'judul' => 'required',
+                'isi' => 'required',
+                'foto_path' => 'required|mimes:png,jpg,jpeg|max:2048',
+                'id_user' => 'required',
+                'id_kf' => 'required',
+                'created_by' => 'required',
+                'update_by' => 'required',
             ],
             [
                 'required' => ':attribute harus diisi!!',
@@ -208,39 +161,25 @@ class TopikForumController extends Controller
 
         try {
             if ($request->file()) {
-                $fileName = $request->nama . '_' . $request->file('poster_path')->extension();
-                $filePath = Storage::putFileAs('public/inovasi', $request->file('poster_path'), $fileName);
+                $fileName = $request->nama . '.' . $request->file('foto_path')->extension();
+                $filePath = Storage::putFileAs('public/forum', $request->file('foto_path'), $fileName);
 
-                $fileModel = Inovasi::findOrFail($id);
-                $fileModel->nama = $request->nama;
-                $fileModel->deskripsi = $request->deskripsi;
-                $fileModel->layanan_spbe = $request->layanan_spbe;
-                $fileModel->tgl_launching = $request->tgl_launching;
-                $fileModel->tgl_upload = $request->tgl_upload;
-                $fileModel->poster_path = $filePath;
-                $fileModel->status = 0;
-                $fileModel->id_ku = $request->id_ku;
-                $fileModel->id_opd = $request->id_opd;
+                $fileModel = new TopikForum;
+                $fileModel->judul = $request->judul;
+                $fileModel->isi = $request->isi;
+                $fileModel->foto_path = $filePath;
+                $fileModel->id_user = $request->id_user;
+                $fileModel->id_kf = $request->id_kf;
+                $fileModel->create_by = $request->user()->id;
                 $fileModel->update_by = $request->user()->id;
                 $fileModel->save();
             }
 
-            $temp = json_decode($request->esmart);
-            $inovasi = DB::table('inovasi')->whereRaw('inovasi.id = (SELECT MAX(inovasi.id) FROM inovasi)')->first();
-            foreach ($temp as $data) {
-                $esmart = RefInovasiEsmart::findOrFail($id);
-                is_null($inovasi) ? $esmart->id_inovasi = 1 : $esmart->id_inovasi = $inovasi->id;
-                $esmart_id = DB::table('elemen_smart')->select('id')->where('element', $data->value)->first();
-                $esmart->id_esmart = $esmart_id->id;
-                $esmart->update_by = $request->user()->id;
-                $esmart->save();
-            }
-
             session()->flash('success', [
-                'Data Inovasi berhasil diperbarui'
+                'Data Topik Forum berhasil diperbarui'
             ]);
 
-            return redirect('/administrator/kelola/inovasi');
+            return redirect('/administrator/kelola/topik-forum');
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
@@ -256,21 +195,19 @@ class TopikForumController extends Controller
      */
     public function destroy($id)
     {
-        ladmin()->allow('administrator.kelola.inovasi.destroy');
+        ladmin()->allow('administrator.kelola.topik-forum.destroy');
 
         try {
-            $inovasi = Inovasi::findOrFail($id);
-            $inovasi->delete();
+            $topik = TopikForum::findOrFail($id);
+            $topik->delete();
 
-            Storage::delete($inovasi->poster_path);
-
-            DB::table('ref_inovasi_esmart')->select('*')->where('id_inovasi', $inovasi->id)->delete();
+            Storage::delete($topik->poster_path);
 
             session()->flash('success', [
-                'Data Inovasi berhasil dihapus'
+                'Data Topik Forum berhasil dihapus'
             ]);
 
-            return redirect('/administrator/kelola/inovasi');
+            return redirect('/administrator/kelola/topik-forum');
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()

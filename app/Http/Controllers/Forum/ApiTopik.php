@@ -25,7 +25,7 @@ class ApiTopik extends Controller
         $topik[] = Topik::all();
         $top = Topik::all();
         $row = count($top);
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i < $row; $i++) {
             if ($topik[0][$i]['id'] == $id) {
                 //  return ($topik[0][$i]['foto_path']);
                 return response()->file(public_path(

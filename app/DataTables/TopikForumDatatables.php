@@ -3,8 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\TopikForum;
+use App\Models\Forum\Kategori;
 use Hexters\Ladmin\Datatables\Datatables;
 use Hexters\Ladmin\Contracts\DataTablesInterface;
+use Illuminate\Support\Facades\DB;
 
 class TopikForumDatatables extends Datatables implements DataTablesInterface
 {
@@ -52,12 +54,13 @@ class TopikForumDatatables extends Datatables implements DataTablesInterface
      * Data from controller
      */
     $data = self::$data;
+    // $kategori = DB::table('kategori_forum')->where('id', $id)->get()->first();
 
     return [
-      'title' => 'List Of TopikForum',
+      'title' => 'TopikForum',
       'title_page' => 'Topik Forum',
       'buttons' => view('vendor.ladmin.topik-forum._partials._topButton'), // e.g : view('user.actions.create')
-      'fields' => [__('#'), __('Nama'), __('Kategori Forum'), __('Action')], // Table header
+      'fields' => [__('#'), __('Judul'), __('Kategori Forum'), __('Action')], // Table header
       'foos' => [ // Custom data array. You can call in your blade with variable $foos
         'bar' => 'baz',
         'baz' => 'bar',
@@ -71,8 +74,8 @@ class TopikForumDatatables extends Datatables implements DataTablesInterface
         'ajax' => request()->fullurl(),
         'columns' => [
           ['data' => 'DT_RowIndex', 'class' => 'text-center', 'orderable' => 'false'],
-          ['data' => 'nama'],
-          ['data' => 'layanan_spbe'],
+          ['data' => 'judul'],
+          ['data' => 'id_kf'],
           ['data' => 'action', 'class' => 'text-center', 'orderable' => false]
         ]
       ]

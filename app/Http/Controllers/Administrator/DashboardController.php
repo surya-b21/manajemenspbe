@@ -12,15 +12,18 @@ use App\Models\KategoriUmum;
 use App\Models\Opd;
 use App\Models\User;
 use App\Models\Versi;
+use App\Models\TopikForum;
 
-class DashboardController extends Controller {
+class DashboardController extends Controller
+{
 
   /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-  public function index() {
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
 
     $data['user'] = User::all()->count();
     $data['opd'] = Opd::all()->count();
@@ -30,8 +33,8 @@ class DashboardController extends Controller {
     $data['esmart'] = ElemenSmart::all()->count();
     $data['developer'] = Developer::all()->count();
     $data['versi'] = Versi::all()->count();
+    $data['topik'] = TopikForum::all()->count();
 
-    return view('vendor.ladmin.dashboard.index',$data);
+    return view('vendor.ladmin.dashboard.index', $data);
   }
-
 }

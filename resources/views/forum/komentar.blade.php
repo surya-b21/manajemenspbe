@@ -32,13 +32,17 @@
                         </h2>
                     </h2>
                     <div class="mx-auto text-center">
-                        <figure class="figure">
-                            <img src="{{asset('storage/'.$t->foto_url)}}" class="figure-img rounded text-center" alt="<?= $t->foto_url ?>" width="600" height="300">
+                        <figure class="figure">                            
+                            <img src="{{Storage::url($t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300">
+                            {{-- <img src="{{$t['foto_path']}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
+                            {{-- <img src="{{asset('storage/app/public/forum'.$t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
+                            {{-- <img src="{{asset('storage/'.$t->foto_url)}}" class="figure-img rounded text-center" alt="<?= $t->foto_url ?>" width="600" height="300"> --}}
                             <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
                         </figure>
                     </div>
                     
-                    <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->kategori }} - {{ $t->kategori->parent }}, </a> 
+                    <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->kategori }}, </a> 
+                    {{-- <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->parent }}, </a>  --}}
                     {{-- <small class="text-muted">{{ $t->created_at->toDateString() }}</small> --}}
                     <small class="text-muted">{{ $t->created_at->isoFormat('DD MMMM YYYY') }}</small>
                     <!-- <h5 class="card-title">Card title</h5> -->
@@ -72,7 +76,7 @@
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h6 class="text-primary fw-bold mb-0">
-                                            mindyy_def (Nama User?)
+                                            {{ $k->id_user->name }}
                                             <span class="text-dark ms-2">{{$k->isi}}
                                             </span>
                                         </h6>
@@ -98,7 +102,12 @@
                             <div class="row">
                                 <textarea class="form-control" id="isi" name="isi" rows="4" style="background: #fff;" placeholder="komentar baru"></textarea>
                                 <!-- <input type="text" name="isi" class="form-control" placeholder="Komentar"> -->
-                                <input name="id_user" type="hidden" class="form-control" value=1>
+                                <?php if (Auth::check()) : ?>
+                                @foreach ($komentar as $k)
+                                <input name="id_user" type="hidden" class="form-control" value= <?= $k->id_user ?>>
+                                {{-- {!! Form::hidden('id_user', '[Auth::user()->id]') !!} --}}
+                                @endforeach
+                                <?php endif ?>
                                 @foreach ($topik as $t)
                                 <input name="id_topik" type="hidden" class="form-control" value="<?= $t->id ?>">
                                 @endforeach

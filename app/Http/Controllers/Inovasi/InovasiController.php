@@ -23,27 +23,13 @@ class InovasiController extends Controller
         $ks = kategori_smart::paginate(6);
         $inovasi = inovasi::all();
         return view("template2.homepage", [
-            "active" => "inovasi",
+            "active" => "home",
             "inovasi" => $inovasi,
             "ku" => $ku,
             "ks" => $ks,
             'topik' => $topik,
         ]);
     }
-
-    public function inovasi()
-    {
-        $ku = kategori_umum::paginate(5);
-        $ks = kategori_smart::paginate(6);
-        $inovasi = inovasi::all();
-        return view("Inovasi.inovasi", [
-            "active" => "inovasi",
-            "inovasi" => $inovasi,
-            "ku" => $ku,
-            "ks" => $ks
-        ]);
-    }
-
     public function read($jenis, $id_jenis, $id_inovasi)
     {
         $data = $id_inovasi;
@@ -51,17 +37,21 @@ class InovasiController extends Controller
         $ks = kategori_smart::all();
         $dev = developer::all();
         $inovasi = inovasi::all();
+        $inovasi2 = inovasi::paginate(4);
         $dokumen = dokumen::all();
         $opd = opd::all();
 
         if ($jenis == 1) {
             $kategori = "/inovasi/kategori_umum/$id_jenis";
+            $terkait = $inovasi2->where('id_ku', $id_jenis);
         }
         if ($jenis == 2) {
             $kategori = "/inovasi/kategori_smart/$id_jenis";
+            $terkait = $inovasi2->where('id_smart', $id_jenis);
         }
         if ($jenis == 3) {
             $kategori = "/inovasi/kategori_layanan/$id_jenis";
+            $terkait = $inovasi2->where('layanan_spbe', $id_jenis);
         }
         $self_url = "/inovasi/read/$jenis/$id_jenis/$id_inovasi";
 
@@ -78,52 +68,87 @@ class InovasiController extends Controller
             "dokumen" => $dokumen,
             "id_jenis" => $id_jenis,
             "kategori" => $kategori,
-            "self_url" => $self_url
+            "self_url" => $self_url,
+            "terkait" => $terkait
         ]);
     }
 
-    public function kategori_layanan($data)
+    public function kategori(Request $request)
     {
-        $inovasi = inovasi::where('id_layanan', $data)->paginate(8);
-        if ($data == 1) {
-            $kategori = "Layanan Administrasi Pemerintah";
-            $id_kategori = 1;
-        } else {
-            $kategori = "Layanan Publik";
-            $id_kategori = 2;
+        // Get the search value from the request
+        $jenis = $request->input('jenis');
+        $id_kategori = $request->input('id_kategori');
+
+        // dd(request('search'));
+        // dd(request('jenis'));
+        // dd(request('id_kategori'));
+        if ($jenis == 1) {
+            $inovasi = inovasi::where('id_ku', $id_kategori)->paginate(8);
+            $kategori = kategori_umum::all()->where('id', $id_kategori);
+        } else if ($jenis == 2) {
+            $inovasi = inovasi::where('id_smart', $id_kategori)->paginate(8);
+            $kategori = kategori_smart::all()->where('id', $id_kategori);
+        } else if ($jenis == 3) {
+            $inovasi = inovasi::where('layanan_spbe', $id_kategori)->paginate(8);
+            if ($id_kategori == 1) {
+                $kategori = "Layanan Administrasi Pemerintah";
+            } else {
+                $kategori = "Layanan Publik";
+            }
+        }
+        // Return the search view with the resluts compacted
+        return view("Inovasi.inovasi_kategori", [
+            "active" => "inovasi",
+            "jenis" => $jenis,
+            "id_kategori" => $id_kategori,
+            "kategori" => $kategori,
+            "inovasi" => $inovasi
+        ]);
+    }
+
+    public function cari_kategori(Request $request)
+    {
+        // Get the search value from the request
+        $search = $request->input('search');
+        $jenis = $request->input('jenis');
+        $id_kategori = $request->input('id_kategori');
+
+        if ($jenis == 1) {
+            $inovasi = Inovasi::where('id_ku', $id_kategori)
+                ->where(function ($query) use ($search) {
+                    $query->where('nama', 'LIKE', '%' . $search . '%')
+                        ->orWhere('deskripsi', 'LIKE', '%' . $search . '%');
+                })
+                ->paginate(8);
+            $kategori = kategori_umum::all()->where('id', $id_kategori);
+        } else if ($jenis == 2) {
+            $inovasi = Inovasi::where('id_smart', $id_kategori)
+                ->where(function ($query) use ($search) {
+                    $query->where('nama', 'LIKE', '%' . $search . '%')
+                        ->orWhere('deskripsi', 'LIKE', '%' . $search . '%');
+                })
+                ->paginate(8);
+            $kategori = kategori_smart::all()->where('id', $id_kategori);
+        } else if ($jenis == 3) {
+            $inovasi = Inovasi::where('layanan_spbe', $id_kategori)
+                ->where(function ($query) use ($search) {
+                    $query->where('nama', 'LIKE', "%{$search}%")
+                        ->orWhere('deskripsi', 'LIKE', "%{$search}%");
+                })
+                ->paginate(8);
+            if ($id_kategori == 1) {
+                $kategori = "Layanan Administrasi Pemerintah";
+            } else {
+                $kategori = "Layanan Publik";
+            }
         }
 
+        // Return the search view with the resluts compacted
         return view("Inovasi.inovasi_kategori", [
             "active" => "inovasi",
-            "jenis" => "3",
-            "kategori" => $kategori,
+            "jenis" => $jenis,
             "id_kategori" => $id_kategori,
-            "inovasi" => $inovasi
-        ]);
-    }
-
-    public function kategori_smart($data)
-    {
-        $inovasi = inovasi::where('id_smart', $data)->paginate(8);
-        $kategori = kategori_smart::all();
-
-        return view("Inovasi.inovasi_kategori", [
-            "active" => "inovasi",
-            "jenis" => "2",
-            "kategori" => $kategori->where('id', $data),
-            "inovasi" => $inovasi
-        ]);
-    }
-
-    public function kategori_umum($data)
-    {
-        $inovasi = inovasi::where('id_ku', $data)->paginate(8);
-        $kategori = kategori_umum::all();
-
-        return view("Inovasi.inovasi_kategori", [
-            "active" => "inovasi",
-            "jenis" => "1",
-            "kategori" => $kategori->where('id', $data),
+            "kategori" => $kategori,
             "inovasi" => $inovasi
         ]);
     }

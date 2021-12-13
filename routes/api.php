@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Forum\ApiForum;
 use App\Http\Controllers\Forum\ApiKomentar;
 use App\Http\Controllers\Forum\ApiTopik;
+use App\Http\Controllers\Inovasi\ApiInovasi;
+use App\Http\Controllers\Inovasi\ApiKategoriUmum;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +38,7 @@ Route::get('/topik/showimage/{id?}', [ApiTopik::class, 'showimage']);
 Route::get('/kategori/showchild/{parent?}', [ApiForum::class, 'showchild']);
 Route::get('/topik', [ApiTopik::class, 'index']);
 Route::get('/komentar', [ApiKomentar::class, 'index']);
+
+Route::get('/inovasi', [ApiInovasi::class, 'index']);
+// Route::get('/kategoriumum', [ApiKategoriUmum::class, 'index']);
+Route::get('/inovasi/showimage/{id?}', [ApiInovasi::class, 'showimage']);
