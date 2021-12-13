@@ -28,7 +28,6 @@
         <div class="row " style="padding-bottom:50px; padding-top:150px;">
                 <div class="col-lg-12 d-flex justify-content-center">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <!-- <h6>---</h6> -->
                         <h4><em>
                             <?php
                                 $id_jenis = 1;
