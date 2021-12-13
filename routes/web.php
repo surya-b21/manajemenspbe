@@ -13,6 +13,8 @@ use App\Http\Controllers\Administrator\VersiController;
 use Illuminate\Support\Facades\Route;
 use Hexters\Ladmin\Routes\Ladmin;
 
+use App\Http\Controllers\Inovasi\InovasiController as InovasiC;
+
 use App\Http\Controllers\Forum\KategoriController;
 use App\Http\Controllers\Forum\TopikController;
 use App\Http\Controllers\Forum\KomentarController;
@@ -26,7 +28,7 @@ use App\Models\Forum\Kategori;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+// */
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -95,30 +97,13 @@ Route::get('/kategori/{kategori:id}', function (Kategori $kategori) {
 
 // <=====================================================================================================================>
 // INOVASI
-Route::get('/inovasi', [InovasiController::class, 'inovasi']);
-Route::get('/', 'App\Http\Controllers\Inovasi\InovasiController@index');
-Route::get('/home', 'App\Http\Controllers\Inovasi\InovasiController@index');
-
-// Inovasi
-Route::get('/inovasi', [InovasiController::class, 'inovasi']);
-//
-
-// Kategori Inovasi
-Route::post('/inovasi/kategori', [InovasiController::class, 'kategori']);
-Route::get('/inovasi/kategori_layanan/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_layanan');
-Route::get('/inovasi/kategori_smart/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_smart');
-Route::get('/inovasi/kategori_umum/{kategori}', 'App\Http\Controllers\Inovasi\InovasiController@kategori_umum');
-//
-
-// Baca Inovasi
-Route::get('/inovasi/read/{jenis}/{id_jenis}/{id_inovasi}', [InovasiController::class, 'read']);
-//
-
-// Cari Inovasi
-// Route::get('/inovasi/cari_kategori', 'App\Http\Controllers\Inovasi\InovasiController@cari_kategori')->name('search');
-Route::post('/inovasi/kategori/search', [InovasiController::class, 'cari_kategori']);
-//
-
+Route::get('/inovasi', [InovasiC::class, 'inovasi']);
+Route::get('/', [InovasiC::class, 'index']);
+Route::get('/home', [InovasiC::class, 'index']);
+Route::post('/inovasi/kategori', [InovasiC::class, 'kategori']);
+Route::post('/inovasi/read/{nama}', [InovasiC::class, 'read']);
+Route::post('/inovasi/kategori/search', [InovasiC::class, 'cari_kategori']);
+// 
 // <=====================================================================================================================>
 
 require __DIR__ . '/auth.php';
