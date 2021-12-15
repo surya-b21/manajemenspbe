@@ -24,12 +24,16 @@ use App\Http\Controllers\Inovasi\ApiKategoriUmum;
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
-    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name("verification.verify");
-    Route::post('/logout', [AuthController::class, 'deleteToken']);
-    Route::get('/profile', function(Request $request) {
+    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify']);
+    Route::post('logout', [AuthController::class, 'deleteToken']);
+    Route::get('profile', function() {
         return auth()->user();
     });
 });
+
+Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
+Route::post('reset-password', [NewPasswordController::class, 'reset']);
+
 Route::post('/token', [AuthController::class, 'requestToken']);
 Route::post('/registrasi', [AuthController::class, 'register']);
 Route::get('/kategori', [ApiForum::class, 'index']);

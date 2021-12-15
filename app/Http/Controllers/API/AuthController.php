@@ -36,9 +36,7 @@ class AuthController extends Controller
     {
         auth()->user()->tokens()->delete();
 
-        return [
-            "message" => "Token berhasil dihapus"
-        ];
+        return "Token berhasil dihapus";
     }
 
     public function register(Request $req)
