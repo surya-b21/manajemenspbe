@@ -23,12 +23,11 @@ class AuthController extends Controller
 
         $user = User::where('username', $request->username)->firstOrFail();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'username' => ['Username atau password tidak ada dalam database'],
             ]);
         }
-
         return $user->createToken($request->device_name)->plainTextToken;
     }
 
@@ -38,10 +37,15 @@ class AuthController extends Controller
 
         return "Token berhasil dihapus";
     }
+    public function getID($username)
+    {
+        $user = User::select('id')->where('username', $username)->first();
+        return $user;
+    }
 
     public function register(Request $req)
     {
-        $validator = Validator::make($req->all(),[
+        $validator = Validator::make($req->all(), [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -50,7 +54,7 @@ class AuthController extends Controller
             'device_name' => 'required',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json($validator->errors());
         }
 
@@ -64,6 +68,4 @@ class AuthController extends Controller
 
         return $user->createToken($req->device_name)->plainTextToken;
     }
-
-
 }

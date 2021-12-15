@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Forum;
+namespace App\Http\Controllers\API\Forum;
 
 use App\Models\Forum\Kategori;
 use App\Http\Controllers\Controller;

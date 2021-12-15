@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Inovasi;
+namespace App\Http\Controllers\API\Inovasi;
 
 use App\Models\Inovasi\kategori_umum;
 use App\Http\Controllers\Controller;

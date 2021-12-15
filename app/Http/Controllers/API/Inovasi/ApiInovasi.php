@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Inovasi;
+namespace App\Http\Controllers\API\Inovasi;
 
 use App\Models\Inovasi\inovasi;
 use App\Http\Controllers\Controller;
