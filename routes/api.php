@@ -8,7 +8,7 @@ use App\Http\Controllers\API\Forum\ApiForum;
 use App\Http\Controllers\API\Forum\ApiKomentar;
 use App\Http\Controllers\API\Forum\ApiTopik;
 use App\Http\Controllers\API\Inovasi\ApiInovasi;
-// use App\Http\Controllers\API\Inovasi\ApiKategoriUmum;
+use App\Http\Controllers\API\Inovasi\ApiElemen;
 use App\Http\Controllers\API\ApiUser;
 
 
@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/token', [AuthController::class, 'requestToken']);
 Route::get('/tokenID/{username?}', [AuthController::class, 'getID']);
 Route::post('/registrasi', [AuthController::class, 'register']);
+
 Route::get('/kategori', [ApiForum::class, 'index']);
 Route::get('/kategori/showparent', [ApiForum::class, 'showparent']);
 Route::get('/topik/showimage/{id?}', [ApiTopik::class, 'showimage']);
@@ -46,6 +47,7 @@ Route::delete('/komentar/delete/{id?}', [ApiKomentar::class, 'delete']);
 Route::get('/inovasi', [ApiInovasi::class, 'index']);
 // Route::get('/kategoriumum', [ApiKategoriUmum::class, 'index']);
 Route::get('/inovasi/showimage/{id?}', [ApiInovasi::class, 'showimage']);
+Route::get('/elemen', [ApiElemen::class, 'index']);
 
 Route::get('/user', [ApiUser::class, 'index']);
 Route::get('/user/showimage/{id?}', [ApiUser::class, 'showimage']);
