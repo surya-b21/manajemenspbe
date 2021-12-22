@@ -18,7 +18,6 @@
 
                         <?php if (Auth::check()) : ?>
                             <!-- Nav Item - User Information -->
-
                             <li class="nav-item dropdown border-first-button">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ Auth::user()->name }}

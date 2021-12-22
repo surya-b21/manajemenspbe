@@ -10,10 +10,16 @@ use Illuminate\Support\Facades\Auth;
 
 class KomentarController extends Controller
 {
+    public function __construct()
+    {
+        $this->Komentar = new Komentar();
+    }
+
     public function show($id)
     {
         $data = Topik::all()->where('id', $id);
-        $data2 = Komentar::joinUser()->where('id_topik', $id);
+        $data2 = $this->Komentar->joinUser()->where('id_topik', $id);
+        // $data2 = Komentar::all()->where('id_topik', $id);
         return view(
             "forum.komentar",
             [
