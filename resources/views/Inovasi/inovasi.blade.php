@@ -23,13 +23,13 @@
 
     <div id="services" class="services section">
         <!-- bidang inovasi -->
-        <div class="container" style="margin-top:50px;">
+        <div class="container">
             <div class="row" style="margin-bottom: 100px;">
                 <div class="col-lg-12">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
                         <!-- <h6>---</h6> -->
-                        <h4>Bidang <em style="color: #145A32;">Inovasi</em></h4>
-                        <div class="line-dec" style="background-color: #145A32;"></div>
+                        <h4>Bidang <em>Inovasi</em></h4>
+                        <div class="line-dec"></div>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -72,8 +72,8 @@
                                                     <div class="thumb">
                                                         <div class="row">
                                                             <div class="col-lg-6 align-self-center">
-                                                                <div class="mb-4" style="color: #145A32;">
-                                                                    <h4>Bidang Inovasi Berkategori Umum "<em style="color: #145A32;">{{$ku['kategori']}}</em>" </h4>
+                                                                <div class="left-text mb-4">
+                                                                    <h4>ini nampilin list tentang topik yang masuk dikategori "{{$ku['kategori']}}" </h4>
                                                                     @foreach ($inovasi as $data)
                                                                         @if ($k <= 5)
                                                                             @if ($data['id_ku'] == $ku['id'])
@@ -83,7 +83,7 @@
                                                                                     <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                                     <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
                                                                                     <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
-                                                                                    <button class="btn btn-link" style="color: #145A32; box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                    <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
                                                                                         {{$data['nama']}}
                                                                                     </button>
                                                                                 </div>
@@ -100,7 +100,7 @@
                                                                     <div class="input-group mb-3">
                                                                         <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                         <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
-                                                                        <button class="btn btn-success w-100 rounded" style="background-color: #145A32;" type="submit" name="submit">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
                                                                             Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ku['kategori']}}
                                                                         </button>
                                                                     </div>
@@ -123,8 +123,8 @@
                                                     <div class="thumb">
                                                         <div class="row">
                                                             <div class="col-lg-6 align-self-center">
-                                                                <div class="mb-4" style="color: #145A32;">
-                                                                    <h4>Bidang Inovasi Berkategori Umum "<em style="color: #145A32;">{{$ku['kategori']}}</em>" </h4>
+                                                                <div class="left-text mb-4">
+                                                                    <h4>ini nampilin list tentang topik yang masuk dikategori "{{$ku['kategori']}}" </h4>
                                                                     @foreach ($inovasi as $data)
                                                                         @if ($k <= 5)
                                                                             @if ($data['id_ku'] == $ku['id'])
@@ -134,7 +134,7 @@
                                                                                     <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                                     <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
                                                                                     <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
-                                                                                    <button class="btn btn-link " style="color: #145A32; box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                    <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
                                                                                         {{$data['nama']}}
                                                                                     </button>
                                                                                 </div>
@@ -151,7 +151,7 @@
                                                                     <div class="input-group mb-3">
                                                                         <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                         <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
-                                                                        <button class="btn btn-success w-100 rounded" style="background-color: #145A32;" type="submit" name="submit">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
                                                                             Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> {{$ku['kategori']}}
                                                                         </button>
                                                                     </div>
@@ -182,8 +182,8 @@
                 <div class="col-lg-12">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
                         <!-- <h6>---</h6> -->
-                        <h4>Elemen <em style="color: #145A32;">Smart City</em></h4>
-                        <div class="line-dec" style="background-color: #145A32;"></div>
+                        <h4>Elemen <em>Smart City</em></h4>
+                        <div class="line-dec"></div>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -226,8 +226,8 @@
                                                     <div class="thumb">
                                                         <div class="row">
                                                             <div class="col-lg-6 align-self-center">
-                                                                <div class="mb-4">
-                                                                    <h4>Element Smart City "<em style="color: #145A32;">{{$e_smart['element']}}</em>" </h4>
+                                                                <div class="left-text mb-4">
+                                                                    <h4>ini nampilin list tentang topik yang masuk di kategori "{{$e_smart['element']}}" </h4>
                                                                     @foreach ($inovasi as $data)
                                                                         @if ($k <= 5)
                                                                             @foreach ($ks as $ksa)
@@ -239,7 +239,7 @@
                                                                                                 <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                                                 <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
                                                                                                 <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
-                                                                                                <button class="btn btn-link " style="color: #145A32; box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                                <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
                                                                                                     {{$data['nama']}}
                                                                                                 </button>
                                                                                             </div>
@@ -258,7 +258,7 @@
                                                                     <div class="input-group mb-3">
                                                                         <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                         <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
-                                                                        <button class="btn btn-success w-100 rounded" style="background-color: #145A32;" type="submit" name="submit">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
                                                                             Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> 
                                                                             {{$e_smart['element']}}
                                                                         </button>
@@ -282,8 +282,8 @@
                                                     <div class="thumb">
                                                         <div class="row">
                                                             <div class="col-lg-6 align-self-center">
-                                                                <div class="mb-4">
-                                                                    <h4>Elemen Smart City "<em style="color: #145A32;">{{$e_smart['element']}}</em>" </h4>
+                                                                <div class="left-text mb-4">
+                                                                    <h4>ini nampilin list tentang topik yang masuk di kategori "{{$e_smart['element']}}" </h4>
                                                                     @foreach ($inovasi as $data)
                                                                     @if ($k <= 5)
                                                                         @foreach ($ks as $ksb)
@@ -295,7 +295,7 @@
                                                                                     <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                                     <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
                                                                                     <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
-                                                                                    <button class="btn btn-link " style="color: #145A32;box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                    <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
                                                                                         {{$data['nama']}}
                                                                                     </button>
                                                                                 </div>
@@ -314,7 +314,7 @@
                                                                     <div class="input-group mb-3">
                                                                         <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                         <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
-                                                                        <button class="btn btn-success w-100 rounded" style="background-color: #145A32;" type="submit" name="submit">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
                                                                             Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> 
                                                                             <!-- -->
                                                                             {{$e_smart['element']}}
@@ -349,8 +349,8 @@
                 <div class="col-lg-12">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
                         <!-- <h6>---</h6> -->
-                        <h4>Layanan <em style="color: #145A32;">SPBE</em></h4>
-                        <div class="line-dec" style="background-color: #145A32;"></div>
+                        <h4>Layanan <em>SPBE</em></h4>
+                        <div class="line-dec"></div>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -388,8 +388,8 @@
                                                 <div class="thumb">
                                                     <div class="row">
                                                         <div class="col-lg-6 align-self-center">
-                                                            <div class="mb-4">
-                                                                <h4>Layanan <em style="color: #145A32;">Administrasi Pemerintah</em> </h4>
+                                                            <div class="left-text mb-4">
+                                                                <h4>ini nampilin list tentang topik yang masuk dikategori Layanan Administrasi Pemerintah </h4>
                                                                 @foreach ($inovasi as $data)
                                                                     @if ($k <= 5)
                                                                         @if ($data['layanan_spbe'] == "Layanan Administrasi Pemerintah")
@@ -399,7 +399,7 @@
                                                                                     <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                                     <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
                                                                                     <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
-                                                                                    <button class="btn btn-link " style="color: #145A32; box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                    <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
                                                                                         {{$data['nama']}}
                                                                                     </button>
                                                                                 </div>
@@ -416,7 +416,7 @@
                                                                     <div class="input-group mb-3">
                                                                         <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                         <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
-                                                                        <button class="btn btn-success w-100 rounded" style="background-color: #145A32;" type="submit" name="submit">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
                                                                             Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> 
                                                                             Layanan Administrasi Pemerintah
                                                                             <!-- -->
@@ -440,8 +440,8 @@
                                                 <div class="thumb">
                                                     <div class="row">
                                                         <div class="col-lg-6 align-self-center">
-                                                            <div class="mb-4">
-                                                                <h4>Layanan <em style="color: #145A32;">Publik</em> </h4>
+                                                            <div class="left-text mb-4">
+                                                                <h4>ini nampilin list tentang topik yang masuk dikategori Layanan Publik </h4>
                                                                 @foreach ($inovasi as $data)
                                                                     @if ($k <= 5)
                                                                     @if ($data['layanan_spbe'] == "Layanan Publik")
@@ -451,7 +451,7 @@
                                                                                     <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                                     <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
                                                                                     <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
-                                                                                    <button class="btn btn-link " style="color: #145A32; box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
+                                                                                    <button class="btn btn-link " style="box-shadow: none !important; text-decoration: none;" type="submit" name="submit">
                                                                                         {{$data['nama']}}
                                                                                     </button>
                                                                                 </div>
@@ -468,7 +468,7 @@
                                                                     <div class="input-group mb-3">
                                                                         <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                         <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
-                                                                        <button class="btn btn-success w-100 rounded" style="background-color: #145A32;" type="submit" name="submit">
+                                                                        <button class="btn btn-primary w-100 rounded" type="submit" name="submit">
                                                                             Jelajahi → <img style="width:15px; height:15px" src="{{asset('template2/assets/images/service-icon-01.png')}}" alt=""> 
                                                                             Layanan Publik
                                                                             <!-- -->
