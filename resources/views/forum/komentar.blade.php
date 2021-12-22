@@ -27,20 +27,16 @@
                 <div class="card-body"> -->
                 <h2 class="entry-title">
                     @foreach ($topik as $t)
-                    <h2 class="lead">
-                        <h2 class="text-center mb-3">{{$t->judul}}</h2>
-                    </h2>
                 </h2>
                 <div class="mx-auto text-center">
                     <figure class="figure">
-                        <img src="{{Storage::url($t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300">
-                        {{-- <img src="{{$t['foto_path']}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
-                        {{-- <img src="{{asset('storage/app/public/forum'.$t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
-                        {{-- <img src="{{asset('storage/'.$t->foto_url)}}" class="figure-img rounded text-center" alt="<?= $t->foto_url ?>" width="600" height="300"> --}}
-                        <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
+                        <img src="{{Storage::url($t->foto_path)}}" alt="">
+                        {{-- <img src="{{Storage::url($t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
                     </figure>
                 </div>
-
+                <h2 class="lead">
+                    <h2 class="mb-3">{{$t->judul}}</h2>
+                </h2>
                 <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->kategori }}, </a>
                 {{-- <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->parent }}, </a> --}}
                 {{-- <small class="text-muted">{{ $t->created_at->toDateString() }}</small> --}}
@@ -76,8 +72,9 @@
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h6 class="text-primary fw-bold mb-0">
-                                            <span class="text-dark ms-2">{{$k->isi}}
-                                            </span>
+                                            <span class="text-dark ms-2">{{$k->name}}</span>
+                                            <p class="text-dark ms-2">{{$k->isi}}</p>
+                                            
                                         </h6>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex flex-row">
@@ -88,6 +85,7 @@
                                     </div>
                                     <p class="mb-0">
                                         <time datetime="2020-01-01">{{$k->created_at}}</time>
+                                        {{-- <small class="text-muted">{{ $k->created_at->format('d-m-Y') }}</small> --}}
                                     </p>
                                 </div>
                             </div>
@@ -102,11 +100,9 @@
                                 <textarea class="form-control" id="isi" name="isi" rows="4" style="background: #fff;" placeholder="komentar baru"></textarea>
                                 <!-- <input type="text" name="isi" class="form-control" placeholder="Komentar"> -->
                                 <?php if (Auth::check()) : ?>
-                                    @foreach ($komentar as $k)
-                                    <input name="id_user" type="hidden" class="form-control" value=<?= $k->id_user ?>>
-                                    {{-- {!! Form::hidden('id_user', '[Auth::user()->id]') !!} --}}
-                                    @endforeach
+                                    <input name="id_user" type="hidden" class="form-control" value="{{ Auth::user()->id }}" ?>
                                 <?php endif ?>
+
                                 @foreach ($topik as $t)
                                 <input name="id_topik" type="hidden" class="form-control" value="<?= $t->id ?>">
                                 @endforeach
@@ -123,7 +119,8 @@
         </div>
         </div>
     </section>
-    </div><!-- End blog comments -->
+    </div>
+    <!-- End blog comments -->
     </div>
     </section>
 </body>

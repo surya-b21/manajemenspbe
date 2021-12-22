@@ -18,11 +18,10 @@
 
                         <?php if (Auth::check()) : ?>
                             <!-- Nav Item - User Information -->
-
                             <li class="nav-item dropdown border-first-button">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ Auth::user()->name }}
-                                    <img class="img-profile rounded-circle ms-1" width="20px" src="{{ asset('img') }}/{{ Auth::user()->user_image }}">
+                                    {{-- <img class="img-profile rounded-circle ms-1" width="20px" src="{{ asset('img') }}/{{ Auth::user()->user_image }}"> --}}
                                     <i class="bi bi-chevron-down"></i>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
