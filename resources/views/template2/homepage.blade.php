@@ -634,7 +634,7 @@
                                 <div class="thumb">
                                     <span></span>
                                     <h4></h4>
-                                    <img src="{{asset('template2/assets/images/portfolio-01.jpg')}}" alt="">
+                                    <img src="{{Storage::url($t->foto_path)}}" alt="">
                                     <div class="down-content">
                                         <h6>{{ $t->judul }}</h6>
                                         {{-- <span class="fs-7">{{ $t->created_at->toDateString() }}</span> --}}
