@@ -23,37 +23,37 @@
     <div class="container mt-6 shadow-sm p-3 mb-5 bg-body rounded">
         <div class="row justify-content-center">
             <div class="col-md-8">
-            <!-- <div class=" card mb-3">
+                <!-- <div class=" card mb-3">
                 <div class="card-body"> -->
-                    <h2 class="entry-title">
-                        @foreach ($topik as $t)
-                        <h2 class="lead">
-                            <h2 class="text-center mb-3">{{$t->judul}}</h2>
-                        </h2>
+                <h2 class="entry-title">
+                    @foreach ($topik as $t)
+                    <h2 class="lead">
+                        <h2 class="text-center mb-3">{{$t->judul}}</h2>
                     </h2>
-                    <div class="mx-auto text-center">
-                        <figure class="figure">                            
-                            <img src="{{Storage::url($t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300">
-                            {{-- <img src="{{$t['foto_path']}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
-                            {{-- <img src="{{asset('storage/app/public/forum'.$t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
-                            {{-- <img src="{{asset('storage/'.$t->foto_url)}}" class="figure-img rounded text-center" alt="<?= $t->foto_url ?>" width="600" height="300"> --}}
-                            <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
-                        </figure>
-                    </div>
-                    
-                    <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->kategori }}, </a> 
-                    {{-- <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->parent }}, </a>  --}}
-                    {{-- <small class="text-muted">{{ $t->created_at->toDateString() }}</small> --}}
-                    <small class="text-muted">{{ $t->created_at->isoFormat('DD MMMM YYYY') }}</small>
-                    <!-- <h5 class="card-title">Card title</h5> -->
-                    <p class="lead text-dark"> {!! $t->isi !!}</p>
-                    <a href="/forum" class="btn btn-dark">Kembali ke Forum</a>
+                </h2>
+                <div class="mx-auto text-center">
+                    <figure class="figure">
+                        <img src="{{Storage::url($t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300">
+                        {{-- <img src="{{$t['foto_path']}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
+                        {{-- <img src="{{asset('storage/app/public/forum'.$t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
+                        {{-- <img src="{{asset('storage/'.$t->foto_url)}}" class="figure-img rounded text-center" alt="<?= $t->foto_url ?>" width="600" height="300"> --}}
+                        <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
+                    </figure>
                 </div>
-                @endforeach
-                </div>
-                </div>
+
+                <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->kategori }}, </a>
+                {{-- <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->parent }}, </a> --}}
+                {{-- <small class="text-muted">{{ $t->created_at->toDateString() }}</small> --}}
+                <small class="text-muted">{{ $t->created_at->isoFormat('DD MMMM YYYY') }}</small>
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="lead text-dark"> {!! $t->isi !!}</p>
+                <a href="/forum" class="btn btn-dark">Kembali ke Forum</a>
             </div>
+            @endforeach
         </div>
+    </div>
+    </div>
+    </div>
 
 
     <section>
@@ -71,12 +71,11 @@
                         <div class="card-body">
                             <div class="d-flex flex-start">
                                 <figure class="figure">
-                                    <img class="rounded-circle shadow-1-strong me-1" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" alt="avatar" width="40" height="40" />
+                                    <img class="rounded-circle shadow-1-strong me-1" src="{{Storage::url($k->foto_path)}}" alt="avatar" width="40" height="40" />
                                 </figure>
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h6 class="text-primary fw-bold mb-0">
-                                            {{ $k->id_user->name }}
                                             <span class="text-dark ms-2">{{$k->isi}}
                                             </span>
                                         </h6>
@@ -103,10 +102,10 @@
                                 <textarea class="form-control" id="isi" name="isi" rows="4" style="background: #fff;" placeholder="komentar baru"></textarea>
                                 <!-- <input type="text" name="isi" class="form-control" placeholder="Komentar"> -->
                                 <?php if (Auth::check()) : ?>
-                                @foreach ($komentar as $k)
-                                <input name="id_user" type="hidden" class="form-control" value= <?= $k->id_user ?>>
-                                {{-- {!! Form::hidden('id_user', '[Auth::user()->id]') !!} --}}
-                                @endforeach
+                                    @foreach ($komentar as $k)
+                                    <input name="id_user" type="hidden" class="form-control" value=<?= $k->id_user ?>>
+                                    {{-- {!! Form::hidden('id_user', '[Auth::user()->id]') !!} --}}
+                                    @endforeach
                                 <?php endif ?>
                                 @foreach ($topik as $t)
                                 <input name="id_topik" type="hidden" class="form-control" value="<?= $t->id ?>">

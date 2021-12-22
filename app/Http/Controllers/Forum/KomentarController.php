@@ -13,7 +13,7 @@ class KomentarController extends Controller
     public function show($id)
     {
         $data = Topik::all()->where('id', $id);
-        $data2 = Komentar::all()->where('id_topik', $id);
+        $data2 = Komentar::joinUser()->where('id_topik', $id);
         return view(
             "forum.komentar",
             [
