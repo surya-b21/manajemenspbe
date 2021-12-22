@@ -30,7 +30,7 @@ class Komentar extends Model
     {
         $joinUser = DB::table('komentar_forum')
             ->leftjoin('users', 'komentar_forum.id_user', '=', 'users.id')
-            ->select('*', 'users.*')
+            ->select('komentar_forum.*', 'users.name', 'users.foto_path')
             ->get('*');
         return $joinUser;
     }

@@ -61,7 +61,9 @@
                         <div class="card">
                         </div>
                     </div>
-
+                    <?php
+                    $h = auth()->user();
+                    ?>
                     @foreach ($komentar as $k)
                     <div class="card mb-3">
                         <div class="card-body">
@@ -74,14 +76,19 @@
                                         <h6 class="text-primary fw-bold mb-0">
                                             <span class="text-dark ms-2">{{$k->name}}</span>
                                             <p class="text-dark ms-2">{{$k->isi}}</p>
-                                            
+
                                         </h6>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex flex-row">
-                                                <a href="<?= url('/komentar/delete/' . $k->id) ?>" class=" reply"><i class="fas fa-trash"></i></a>
-                                                <a href="<?= url('/komentar/update/' . $k->id) ?>"><i class="fas fa-pen"></i></a>
+                                        <?php
+                                        if ($k->name == $h['name']) { ?>
+
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="d-flex flex-row">
+                                                    <a href="<?= url('/komentar/delete/' . $k->id) ?>" class=" reply"><i class="fas fa-trash"></i></a>
+                                                    <a href="<?= url('/komentar/update/' . $k->id) ?>"><i class="fas fa-pen"></i></a>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php }
+                                        ?>
                                     </div>
                                     <p class="mb-0">
                                         <time datetime="2020-01-01">{{$k->created_at}}</time>
