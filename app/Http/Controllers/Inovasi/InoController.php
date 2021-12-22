@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class InovasiController extends Controller
+class InoController extends Controller
 {
     public function index()
     {
@@ -71,7 +71,7 @@ class InovasiController extends Controller
         $ks2 = RefInovasiEsmart::all();
         $esmart2 = ElemenSmart::all();
         //
-        
+
         if ($jenis == 1) {
             $terkait = $inovasi2->where('id_ku', $id_jenis);
         }
@@ -87,7 +87,7 @@ class InovasiController extends Controller
             }
             $terkait = $inovasi2->where('layanan_spbe', $layanan);
         }
-        $self_url = "/inovasi/read/$jenis/$id_jenis/$id_inovasi";
+        $self_url = "/ino/read/$jenis/$id_jenis/$id_inovasi";
 
         return view("Inovasi.inovasi_read", [
             "active" => "inovasi",
