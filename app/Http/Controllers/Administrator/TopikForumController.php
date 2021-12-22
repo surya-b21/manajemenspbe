@@ -161,10 +161,10 @@ class TopikForumController extends Controller
 
         try {
             if ($request->file()) {
-                $fileName = $request->nama . '.' . $request->file('foto_path')->extension();
+                $fileName = $request->judul . '.' . $request->file('foto_path')->extension();
                 $filePath = Storage::putFileAs('public/forum', $request->file('foto_path'), $fileName);
 
-                $fileModel = new TopikForum;
+                $fileModel = TopikForum::findOrFail($id);
                 $fileModel->judul = $request->judul;
                 $fileModel->isi = $request->isi;
                 $fileModel->foto_path = $filePath;
