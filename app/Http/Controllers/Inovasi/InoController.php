@@ -66,12 +66,6 @@ class InoController extends Controller
         $opd = opd::all();
         $ks = RefInovasiEsmart::all();
 
-        //for tag
-        $ku2 = kategori_umum::all();
-        $ks2 = RefInovasiEsmart::all();
-        $esmart2 = ElemenSmart::all();
-        //
-
         if ($jenis == 1) {
             $terkait = $inovasi2->where('id_ku', $id_jenis);
         }
@@ -87,7 +81,7 @@ class InoController extends Controller
             }
             $terkait = $inovasi2->where('layanan_spbe', $layanan);
         }
-        $self_url = "/ino/read/$jenis/$id_jenis/$id_inovasi";
+        $self_url = "/inovasi/read/$jenis/$id_jenis/$id_inovasi";
 
         return view("Inovasi.inovasi_read", [
             "active" => "inovasi",
@@ -104,10 +98,7 @@ class InoController extends Controller
             "id_jenis" => $id_jenis,
             // "kategori" => $kategori,
             "self_url" => $self_url,
-            "terkait" => $terkait,
-            "ku2" => $ku2,
-            "esmart2" => $esmart2,
-            "ks2" => $ks2,
+            "terkait" => $terkait
         ]);
     }
 
