@@ -65,11 +65,14 @@ Ladmin::route(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     //route yang butuh login ditaruh disini
+
 });
 
 Route::middleware('guest')->group(function () {
     //route yang ga butuh login taruh disini
+
 });
+
 
 // FORUM
 Route::get('/forum', [KategoriController::class, 'allCategories']);

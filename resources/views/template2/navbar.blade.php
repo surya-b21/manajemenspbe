@@ -26,7 +26,7 @@
                                     <i class="bi bi-chevron-down"></i>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/dashboard">Profil</a></li>
+                                    <li><a class="dropdown-item" href="{{url('/dashboard')}}">Profil</a></li>
                                     <li>
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
