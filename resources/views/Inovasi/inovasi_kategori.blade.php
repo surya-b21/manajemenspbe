@@ -22,14 +22,12 @@
     @include('template2/navbar')
     <!-- ======= Breadcrumbs ======= -->
     
-      
     <!-- Page content-->
     <div class="container" >
         <!-- Page header with logo and tagline-->
-        <div class="row " style="padding-bottom:50px;">
+        <div class="row " style="padding-bottom:50px; padding-top:150px;">
                 <div class="col-lg-12 d-flex justify-content-center">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <!-- <h6>---</h6> -->
                         <h4><em>
                             <?php
                                 $id_jenis = 1;
@@ -40,9 +38,21 @@
                                     }
                                 }
                                 else if ($jenis == "2"){
+                                    $kosong = 1;
                                     foreach ($kategori as $kategori) {
-                                        echo $kategori['element'];
-                                        $id_jenis = $kategori['id'];
+                                        foreach ($esmart as $e_smart){
+                                            if ($kategori['id_esmart'] == $e_smart['id']){
+                                                $id_jenis = $kategori['id_esmart'];
+                                            }
+                                        }
+                                        foreach ($inovasi as $ada){
+                                            if ($ada['id'] == $kategori['id_inovasi']){
+                                                $kosong = 0;
+                                            }
+                                        } 
+                                    }
+                                    foreach ($esmart as $ezmart){
+                                        echo $ezmart['element'];
                                     }
                                 }
                                 else if ($jenis == "3"){
@@ -55,22 +65,104 @@
                     </div>
                 </div>
         </div>
+        
+        <div class="row justify-content-center mb-3 mt-3">
+            <div class="col-md-7">
+                <form action="/inovasi/kategori/search" method="post" enctype="multipart/form-data"> 
+                    @csrf
+                    <div class="input-group mb-3">
+                        <input type="hidden" name="jenis" value="{{$jenis}}">
+                        <input type="hidden" name="id_kategori" value="{{$id_jenis}}">
+                        <input type="text" class="form-control" placeholder="Masukkan keyword pencarian.." name="search" value="{{ request('search') }}">
+                        <button class="btn btn-outline-primary" type="submit" name="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="row">
-            @foreach ($inovasi as $data)
-            <div class="col-lg-3">
-                <div class="card mb-4" style="border-radius:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                    <a href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}"><img class="card-img-top" src="{{$data['poster_url']}}" alt="..."  style="border-top-left-radius:15px; border-top-right-radius:15px;"/></a>
-                    <div class="card-body">
-                        <div class="small text-muted">{{$data['tgl_upload']}}</div>
-                        <h2 class="card-title h4">{{ Str::limit($data['nama'], 10, '...') }}</h2>
-                        <p class="card-text">
-                            {!! Str::limit($data['deskripsi'], 80, '...') !!}
-                        </p>
-                        <a class="btn btn-primary w-100 mt-2" href="{{url('/inovasi/read/'.$jenis.'/'.$id_jenis.'/'.$data['id'])}}">Selengkapnya →</a>
+            @if ($jenis == "2")
+                @if ($kosong == 0)  
+                @foreach ($inovasi as $data)
+                    @if ($data['id'] == $kategori['id_inovasi'])
+                    <div class="col-lg-3">
+                        <div class="card mb-4" style="border-radius:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                            <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="input-group mb-3">
+                                    <input type="hidden" name="jenis" value="{{$jenis}}">
+                                    <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
+                                    <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
+                                    <button class="" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
+                                        <img class="card-img-top" src="{{$data['poster_url']}}" alt="..."  style="border-top-left-radius:15px; border-top-right-radius:15px;"/>
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="card-body">
+                                <div class="small text-muted">{{$data['tgl_upload']}}</div>
+                                <h2 class="card-title h4">{{ Str::limit($data['nama'], 10, '...') }}</h2>
+                                <p class="card-text">
+                                    {!! Str::limit($data['deskripsi'], 80, '...') !!}
+                                </p>
+                                <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="input-group mb-3">
+                                        <input type="hidden" name="jenis" value="{{$jenis}}">
+                                        <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
+                                        <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
+                                        <button class="btn btn-primary w-100 mt-2 rounded" type="submit" name="submit">
+                                            Selengkapnya →
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <?php $kosong = 1;?>
+                    @endif
+                @endforeach
+                @else
+                    <div style="text-align:center;"><p>Data Tidak Ditemukan</p></div>
+                @endif
+            @else
+                @forelse ($inovasi as $data)
+                <div class="col-lg-3">
+                    <div class="card mb-4" style="border-radius:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input type="hidden" name="jenis" value="{{$jenis}}">
+                                <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
+                                <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
+                                <button class="" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
+                                    <img class="card-img-top" src="{{$data['poster_url']}}" alt="..."  style="border-top-left-radius:15px; border-top-right-radius:15px;"/>
+                                </button>
+                            </div>
+                        </form>
+                        <div class="card-body">
+                            <div class="small text-muted">{{$data['tgl_upload']}}</div>
+                            <h2 class="card-title h4">{{ Str::limit($data['nama'], 10, '...') }}</h2>
+                            <p class="card-text">
+                                {!! Str::limit($data['deskripsi'], 80, '...') !!}
+                            </p>
+                            <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="input-group mb-3">
+                                    <input type="hidden" name="jenis" value="{{$jenis}}">
+                                    <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
+                                    <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
+                                    <button class="btn btn-primary w-100 mt-2 rounded" type="submit" name="submit">
+                                        Selengkapnya →
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @endforeach
+                @empty                
+                    <div style="text-align:center;"><p>Data Tidak Ditemukan</p></div>
+                @endforelse
+            @endif
         </div>
         <!-- Pagination-->
         <nav aria-label="Pagination">
