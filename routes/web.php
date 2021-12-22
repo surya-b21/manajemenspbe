@@ -78,10 +78,10 @@ Route::middleware('guest')->group(function () {
 Route::get('/forum', [KategoriController::class, 'allCategories']);
 Route::get('/forum/{id}', [TopikController::class, 'index']);
 Route::get('/topik', [TopikController::class, 'semua']); //tambahan
-// Route::post('/topik/add/', [TopikController::class, 'processAdd']);
-// Route::get('/topik/delete/{idtopik}', [TopikController::class, 'delete']);
-// Route::get('/topik/update/{idtopik}', [TopikController::class, 'update']);
-// Route::post('/topik/update/{idtopik}', [TopikController::class, 'processUpdate', "active" => "inovasi"]);
+Route::post('/topik/add/', [TopikController::class, 'processAdd']);
+Route::get('/topik/delete/{idtopik}', [TopikController::class, 'delete']);
+Route::get('/topik/update/{idtopik}', [TopikController::class, 'update']);
+Route::post('/topik/update/{idtopik}', [TopikController::class, 'processUpdate', "active" => "inovasi"]);
 
 Route::get('/topik/{id}', [KomentarController::class, 'show']);
 Route::post('/komentar/add/', [KomentarController::class, 'processAdd'])->middleware('auth');

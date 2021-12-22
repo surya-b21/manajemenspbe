@@ -19,63 +19,103 @@
 <br>
 <br>
 <br>
-    <div class="container">
-        <h1 class="mb-5 text-center">{{ $title }}</h1>
-        <div class="row justify-content-center mb-3 mt-3">
-            <div class="col-md-7">
-                <form action="/topiks" method="" enctype="multipart/form-data"> @csrf
-                    @if (request('kategori'))
-                        <input type="hidden" name="kategori" value="{{ request('kategori') }}">
-                    @endif
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Masukkan keyword pencarian.." name="search" value="{{ request('search') }}">
-                        <button class="btn btn-outline-primary" type="submit" name="submit">Search</button>
-                    </div>
-                </form>
-            </div>
+<div class="container">
+    <h1 class="mb-5 text-center">{{ $title }}</h1>
+    <div class="row justify-content-center mb-3 mt-3">
+        <div class="col-md-7">
+            <form action="/topiks" method="" enctype="multipart/form-data"> @csrf
+                @if (request('kategori'))
+                <input type="hidden" name="kategori" value="{{ request('kategori') }}">
+                @endif
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Masukkan keyword pencarian.." name="search" value="{{ request('search') }}">
+                    <button class="btn btn-outline-primary" type="submit" name="submit">Search</button>
+                </div>
+            </form>
         </div>
+    </div>
 
-        @if ($topiks->count())
+    @if ($topiks->count())
 
-        <div class="row">
-            {{-- <div class="col-md-9"> --}}
-                <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Judul Topik</th>
-                        <th scope="col">Kategori</th>
-                        {{-- <th scope="col">Aksi</th> --}}
-                    </tr>
-                </thead>
-                <tbody>                    
-                        <tr>
-                            @foreach ($topiks as $topik)
-                            <td>
-                                <a href="/topik/{{ $topik->id }}">{{ $topik->judul }}</a>
-                            </td>
-                            <td>
-                                <a href="/forum/{{ $topik->kategori->id }}">{{ $topik->kategori->kategori }}</a>
-                            </td>
-                            {{-- <td>
+    <div class="row">
+        {{-- <div class="col-md-9"> --}}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Judul Topik</th>
+                    <th scope="col">Kategori</th>
+                    {{-- <th scope="col">Aksi</th> --}}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach ($topiks as $topik)
+                    <td>
+                        <a href="/topik/{{ $topik->id }}">{{ $topik->judul }}</a>
+                    </td>
+                    <td>
+                        <a href="/forum/{{ $topik->kategori->id }}">{{ $topik->kategori->kategori }}</a>
+                    </td>
+                    {{-- <td>
                                 <a href="<?= url('/topik/delete/') ?>"><i class="fas fa-trash"></i></a>
                                 <a href="<?= url('/topik/update/') ?>"><i class="fas fa-pen"></i></a>
                             </td> --}}
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            </div>
-        </div>
-        @else
-    <p class="text-center fs-3">No topic found.</p>
-    @endif
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+</div>
+@else
+<p class="text-center fs-3">No topic found.</p>
+@endif
+</div>
 
-    <div class="d-flex justify-content-center mt-4">
-        {{ $topiks->links() }}  
-        <a href=""></a>
+<div class="d-flex justify-content-center mt-4">
+    {{ $topiks->links() }}
+    <a href=""></a>
+</div>
+{{-- Form tambah Topik --}}
+<div class="container mb-5">
+    <div class="container">
+        <form name="newtopik" method="post" action="{{url('topik/add')}}" enctype="multipart/form-data">
+            @csrf
+            <?php
+            // $ini = $tampil['id'];
+            // echo $ini 
+            ?>
+
+            <div class="row">
+                <div class="col-8">
+                    {{-- <label name="judul" class="form-label">Buat Topik Baru?</label> --}}
+                    <h3>Buat Topik Baru?</h3> <br>
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-2 col-form-label">Judul Topik</label>
+                        <div class="col-sm-10">
+                            <input name="judul" type="text" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-2 col-form-label">Isi</label>
+                        <div class="col-sm-10">
+                            {{-- <input name="isi" type="text" class="form-control" placeholder=""> --}}
+                            <textarea name="isi" class="form-control" rows="7" id="textarea" placeholder=""></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="" class="col-sm-2 col-form-label">Foto</label>
+                        <div class="col-sm-10">
+                            <input name="foto_url" id="foto_url" type="file" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <input name="id_user" type="hidden" class="form-control" value=1>
+                    <input name="id_kf" type="hidden" class="form-control" value="<?= $tampil['id'] ?>">
+
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                    <a href="/forum"><button type="button" class="btn btn-dark">Kembali</button></a>
+        </form>
     </div>
-
+</div>
 </body>
 
 <footer>
