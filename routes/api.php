@@ -27,7 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
     Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name("verification.verify");
     Route::post('/logout', [AuthController::class, 'deleteToken']);
-    Route::get('/profile', function (Request $request) {
+    Route::get('/profile', function () {
         return auth()->user();
     });
 });
