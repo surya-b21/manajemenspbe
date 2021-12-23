@@ -202,7 +202,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="left-text mb-4">
-                                                                    <h4>Kategori {{$ku['kategori']}} </h4>
+                                                                    <h4>Topik pada kategori "{{$ku['kategori']}}" diupayakan untuk pembangunan {{$ku['kategori']}} dengan pelayanan yang bermutu </h4>
                                                                     @foreach ($inovasi as $data)
                                                                     @if ($k <= 5) @if ($data['id_ku']==$ku['id']) <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
                                                                         @csrf
@@ -250,7 +250,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 align-self-center">
                                                                 <div class="left-text mb-4">
-                                                                    <h4>Kategori {{$ku['kategori']}}</h4>
+                                                                    <h4>Topik pada kategori "{{$ku['kategori']}}" diupayakan untuk pembangunan {{$ku['kategori']}} dengan pelayanan yang bermutu </h4>
                                                                     @foreach ($inovasi as $data)
                                                                     @if ($k <= 5) @if ($data['id_ku']==$ku['id']) <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
                                                                         @csrf
