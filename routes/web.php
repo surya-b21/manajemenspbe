@@ -85,7 +85,6 @@ Route::post('/profil/update/{id}', [ProfilController::class, 'update']);
 // FORUM
 Route::get('/forum', [KategoriController::class, 'allCategories']);
 Route::get('/forum/{id}', [TopikController::class, 'index']);
-Route::get('/topik', [TopikController::class, 'semua']); //tambahan
 Route::get('/topiks', [TopikController::class, 'semua']); //search
 
 Route::post('/topik/add/', [TopikController::class, 'processAdd']);
