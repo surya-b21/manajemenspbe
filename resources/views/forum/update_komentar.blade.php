@@ -19,17 +19,25 @@
 <br /><br />
 <div class="container mt-5">
     <div class="container">
+        <div class="col-md-7">
         <form name="newtopik" method="post" action="{{url('komentar/update/' . $komentar->id)}}">
             @csrf
             <div class=" mb-3">
                 <label for="exampleInputEmail1" class="form-label">Edit Komentar</label><br />
-                <label for="exampleInputEmail1" class="form-label">Topik : <?= $komentar->id_topik ?></label>
-                <input type="text" name="isi" class="form-control" placeholder="Komentar : <?= $komentar->isi ?>">
+                <label for="exampleInputEmail1" class="form-label">
+                    Topik : 
+                    @php
+                        $topik_forum = DB::table('topik_forum')->select('judul')->where('id',$komentar->id_topik)->first();
+                        echo $topik_forum->judul;
+                    @endphp
+                </label>
+                <input type="text" name="isi" class="form-control" placeholder="Komentar : <?= $komentar->isi ?>" value="{{ old('isi', $komentar->isi) }}">
                 <input name="id_topik" type="hidden" class="form-control" value="<?= $komentar->id_topik ?>">
             </div>
 
             <button type="submit" class="btn btn-primary">Kirim</button>
         </form>
+        </div>
     </div>
 </div>
 <div class="container mt-5">
