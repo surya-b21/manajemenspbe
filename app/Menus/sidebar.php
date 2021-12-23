@@ -323,10 +323,40 @@ return [
         ],
       ],
 
+      [
+        'gate' => 'administrator.kelola.kategori-forum.index',
+        'name' => 'Kategori Forum',
+        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+        'route' => ['administrator.kelola.kategori-forum.index', []],
+        'isActive' => 'kelola/kategori-forum*',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.kelola.kategori-forum.create',
+            'title' => 'Create kategori-forum',
+            'description' => 'User can create new kategori-forum'
+          ],
+          [
+            'gate' => 'administrator.kelola.kategori-forum.show',
+            'title' => 'Show kategori-forum',
+            'description' => 'User can show new kategori-forum'
+          ],
+          [
+            'gate' => 'administrator.kelola.kategori-forum.update',
+            'title' => 'Update kategori-forum',
+            'description' => 'User can update kategori-forum'
+          ],
+          [
+            'gate' => 'administrator.kelola.kategori-forum.destroy',
+            'title' => 'Delete kategori-forum',
+            'description' => 'User can delete kategori-forum'
+          ]
+        ],
+      ],
       // topik forum
       [
         'gate' => 'administrator.kelola.topik-forum.index',
-        'name' => 'Topik forum',
+        'name' => 'Topik Forum',
         'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
         'route' => ['administrator.kelola.topik-forum.index', []],
         'isActive' => 'kelola/topik-forum*',

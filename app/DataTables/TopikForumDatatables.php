@@ -57,7 +57,7 @@ class TopikForumDatatables extends Datatables implements DataTablesInterface
     // $kategori = DB::table('kategori_forum')->where('id', $id)->get()->first();
 
     return [
-      'title' => 'TopikForum',
+      'title' => 'Topik Forum',
       'title_page' => 'Topik Forum',
       'buttons' => view('vendor.ladmin.topik-forum._partials._topButton'), // e.g : view('user.actions.create')
       'fields' => [__('#'), __('Judul'), __('Kategori Forum'), __('Action')], // Table header

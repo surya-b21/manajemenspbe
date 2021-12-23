@@ -13,6 +13,7 @@ use App\Models\Opd;
 use App\Models\User;
 use App\Models\Versi;
 use App\Models\TopikForum;
+use App\Models\KategoriForum;
 
 class DashboardController extends Controller
 {
@@ -33,6 +34,7 @@ class DashboardController extends Controller
     $data['esmart'] = ElemenSmart::all()->count();
     $data['developer'] = Developer::all()->count();
     $data['versi'] = Versi::all()->count();
+    $data['kf'] = KategoriForum::all()->count();
     $data['topik'] = TopikForum::all()->count();
 
     return view('vendor.ladmin.dashboard.index', $data);
