@@ -102,14 +102,14 @@
                         @foreach ($dokumen as $dokumen)
                         <?php
                         if ($dokumen['id_inovasi'] == $data['id']) {
-                            $doc = $dokumen['file_url'];
+                            $doc = $dokumen['file_path'];
                         }
                         ?>
                         @endforeach
                         <a href="{{url($doc)}}"><img src="https://cdn.pixabay.com/photo/2017/03/08/21/19/file-2127825_960_720.png" class="rounded" alt="" width="30px" height="30px"></a>
                     </div>
                     <div style="display: inline-block; margin-left:5px;">
-                        <a href="{{url($doc)}}">Lihat Dokumen</a>
+                        <a href="{{Storage::url($dokumen->file_path)}}">Lihat Dokumen</a>
                     </div>
                 </div>
                 <div class="mt-4">

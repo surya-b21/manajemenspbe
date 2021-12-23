@@ -48,20 +48,22 @@ class DokumenController extends Controller
     {
         ladmin()->allow('administrator.kelola.dokumen.create');
 
-        $request->validate([
-            'judul' => 'required',
-            'file_path' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'
-        ],
-        [
-            'required' => ':attribute harus diisi!!',
-            'mimes' => 'format file harus csv,txt,xlx,xls,pdf',
-            'max' => 'ukuran file maksimal 2MB'
-        ]);
+        $request->validate(
+            [
+                'judul' => 'required',
+                'file_path' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'
+            ],
+            [
+                'required' => ':attribute harus diisi!!',
+                'mimes' => 'format file harus csv,txt,xlx,xls,pdf',
+                'max' => 'ukuran file maksimal 2MB'
+            ]
+        );
 
         try {
             if ($request->file()) {
-                $fileName = $request->judul.'.'.$request->file('file_path')->extension();
-                $filePath = Storage::putFileAs('public/dokumen',$request->file('file_path'),$fileName);
+                $fileName = $request->judul . '.' . $request->file('file_path')->extension();
+                $filePath = Storage::putFileAs('public/dokumen', $request->file('file_path'), $fileName);
 
                 $fileModel = new Dokumen;
                 $fileModel->judul = $request->judul;
@@ -112,7 +114,7 @@ class DokumenController extends Controller
         $dokumen = Dokumen::findOrFail($id);
         $inovasi = Inovasi::all();
 
-        return view('vendor.ladmin.dokumen.edit', compact(['dokumen','inovasi']));
+        return view('vendor.ladmin.dokumen.edit', compact(['dokumen', 'inovasi']));
     }
 
     /**
@@ -126,20 +128,22 @@ class DokumenController extends Controller
     {
         ladmin()->allow('administrator.kelola.dokumen.update');
 
-        $request->validate([
-            'judul' => 'required',
-            'file_path' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'
-        ],
-        [
-            'required' => ':attribute harus diisi!!',
-            'mimes' => 'format file harus csv,txt,xlx,xls,pdf',
-            'max' => 'ukuran file maksimal 2MB'
-        ]);
+        $request->validate(
+            [
+                'judul' => 'required',
+                'file_path' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'
+            ],
+            [
+                'required' => ':attribute harus diisi!!',
+                'mimes' => 'format file harus csv,txt,xlx,xls,pdf',
+                'max' => 'ukuran file maksimal 2MB'
+            ]
+        );
 
         try {
             if ($request->file()) {
-                $fileName = $request->judul.'.'.$request->file('file_path')->extension();
-                $filePath = Storage::putFileAs('public/dokumen',$request->file('file_path'),$fileName);
+                $fileName = $request->judul . '.' . $request->file('file_path')->extension();
+                $filePath = Storage::putFileAs('public/dokumen', $request->file('file_path'), $fileName);
 
                 $fileModel = Dokumen::findOrFail($id);
                 $fileModel->judul = $request->judul;
