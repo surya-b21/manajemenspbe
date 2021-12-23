@@ -39,8 +39,10 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h6>Selamat Datang</h6>
-                                        <h2>Sistem Manajemen Pengetahuan SPBE</h2>
-                                        <p>Thank you.</p>
+                                      <h3>Sistem Manajemen Pengetahuan SPBE</h3>
+                                      <p>Dengan adanya alat bantu Sistem Manajemen Pengetahuan SPBE dapat memaksimalkan sistem yang akan membantu pengguna untuk memperoleh informasi mengenai sistem SPBE yang digunakan 
+                                        pemerintah Surakarta, serta mengizinkan pengguna untuk berinteraksi melalui forum. 
+                                        Selain itu, sistem ini sekaligus sebagai penyedia konten terkait inovasi layanan yang  dapat dibuat oleh setiap koordinator OPD (Organisasi Perangkat Daerah) maupun super admin</p>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="border-first-button scroll-to-section">
@@ -75,13 +77,14 @@
                         <div class="col-lg-6 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
                             <div class="about-right-content">
                                 <div class="section-heading">
-                                    <h6>About Us</h6>
-                                    <h4>Manajemen Pengetahuan <em>SPBE?</em></h4>
-                                    <div class="line-dec"></div>
-                                </div>
-                                <p>merupakan
-                                    <a href="#" target="_blank">Diskominfo SP</a>
-                                    ....
+                                <h6>Tentang Kami</h6>
+                                <h4>Manajemen Pengetahuan <em>SPBE?</em></h4>
+                                <div class="line-dec"></div>
+                            </div>
+                            <p>Layanan SPBE terdiri atas layanan administrasi pemerintahan berbasis elektronik dan layanan publik berbasis elektronik. 
+                            Penerapan.  Sistem Manajemen Pengetahuan<a rel="nofollow" href="https://jurnal.uns.ac.id/wacana-publik/article/download/53143/32086" target="_blank"> SPBE</a> akan menyediakan berbagai layanan pengetahuan yang ada di 
+                            Kota Surakarta baik berupa informasi maupun forum digital, sehingga masyarakat dapat lebih mengenal dan memanfaatkan layanan yang ada.
+                            <a href="https://templatemo.com/contact" target="_blank"></a></p>
                                 </p>
                                 <!-- <div class="row">
                     <div class="col-lg-4 col-sm-4">
