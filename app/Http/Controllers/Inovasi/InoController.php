@@ -92,7 +92,7 @@ class InoController extends Controller
             "opd" => $opd,
             "dev" => $dev,
             "home" => "/home",
-            "inov" => "/inovasi",
+            "inov" => "/ino",
             "jenis" => $jenis,
             "dokumen" => $dokumen,
             "id_jenis" => $id_jenis,

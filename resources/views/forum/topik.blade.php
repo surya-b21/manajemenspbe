@@ -74,7 +74,7 @@
             @endforeach
         </tbody>
     </table>
-    <a href="/topik" class="btn btn-dark">Semua topik</a>
+    <a href="/topiks" class="btn btn-dark">Semua topik</a>
 </div>
 {{-- </div> --}}
 </div>
