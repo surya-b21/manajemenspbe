@@ -60,7 +60,7 @@
             <div class="m-5">
                 @foreach ($inovasi as $data)
                 <div class="w-50 h-50 mb-4 m-auto" style="">
-                    <img src="{{$data['poster_url']}}" class="rounded" alt="" width="100%" height="100%">
+                    <img src="{{Storgae::url($data['poster_path'])}}" class="rounded" alt="" width="100%" height="100%">
                 </div>
                 <div>
                     <h2>{{$data['nama']}}</h2>

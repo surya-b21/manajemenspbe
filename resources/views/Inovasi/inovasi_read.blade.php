@@ -76,7 +76,7 @@
             <div class="m-5">
                 @foreach ($inovasi as $data)
                 <div class="w-50 h-50 mb-4 m-auto" style="">
-                    <img src="{{$data['poster_url']}}" class="rounded" alt="" width="100%" height="100%">
+                    <img src="{{Storage::url($data['poster_path'])}}" class="rounded" alt="" width="100%" height="100%">
                 </div>
                 <div>
                     <h2>{{$data['nama']}}</h2>
@@ -191,7 +191,7 @@
                                     <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
                                     <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
                                     <button class="" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
-                                        <img class="card-img-top" src="{{$data['poster_url']}}" alt="..." style="border-top-left-radius:15px; border-top-right-radius:15px;" />
+                                        <img class="card-img-top" src="{{Storage::url($data['poster_path'])}}" alt="..." style="border-top-left-radius:15px; border-top-right-radius:15px;" />
                                     </button>
                                 </div>
                             </form>
@@ -231,7 +231,7 @@
                         <input type="hidden" name="id_jenis" value="{{$id_jenis}}">
                         <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
                         <button class="" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
-                            <img class="card-img-top" src="{{$data['poster_url']}}" alt="..." style="border-top-left-radius:15px; border-top-right-radius:15px;" />
+                            <img class="card-img-top" src="{{Storage::url($data['poster_path'])}}" alt="..." style="border-top-left-radius:15px; border-top-right-radius:15px;" />
                         </button>
                     </div>
                 </form>
