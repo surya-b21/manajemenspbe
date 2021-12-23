@@ -68,7 +68,10 @@ Ladmin::route(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     //route yang butuh login ditaruh disini
-
+    Route::post('/komentar/add/', [KomentarController::class, 'processAdd'])->middleware('auth');
+    Route::get('/komentar/delete/{idkomen}', [KomentarController::class, 'delete']);
+    Route::get('/komentar/update/{idkomen}', [KomentarController::class, 'update']);
+    Route::post('/komentar/update/{idkomen}', [KomentarController::class, 'processUpdate']);
 });
 
 Route::middleware('guest')->group(function () {
@@ -83,6 +86,7 @@ Route::post('/profil/update/{id}', [ProfilController::class, 'update']);
 Route::get('/forum', [KategoriController::class, 'allCategories']);
 Route::get('/forum/{id}', [TopikController::class, 'index']);
 Route::get('/topik', [TopikController::class, 'semua']); //tambahan
+Route::get('/topiks', [TopikController::class, 'semua']); //search
 
 Route::post('/topik/add/', [TopikController::class, 'processAdd']);
 Route::get('/topik/delete/{idtopik}', [TopikController::class, 'delete']);
@@ -91,19 +95,14 @@ Route::post('/topik/update/{idtopik}', [TopikController::class, 'processUpdate',
 
 Route::get('/topik/{id}', [KomentarController::class, 'show']);
 
-Route::post('/komentar/add/', [KomentarController::class, 'processAdd'])->middleware('auth');
-Route::get('/komentar/delete/{idkomen}', [KomentarController::class, 'delete']);
-Route::get('/komentar/update/{idkomen}', [KomentarController::class, 'update']);
-Route::post('/komentar/update/{idkomen}', [KomentarController::class, 'processUpdate']);
-
-Route::get('/kategori/{kategori:id}', function (Kategori $kategori) {
-    return view('forum/topiks', [
-        'title' => "Post by kategori : $kategori->name",
-        "active" => "topiks",
-        'topiks' => $kategori->topiks->load('kategori', 'id'),
-        // 'kategori' => $kategori->name
-    ]);
-});
+// Route::get('/kategori/{kategori:id}', function (Kategori $kategori) {
+//     return view('forum/topiks', [
+//         'title' => "Post by kategori : $kategori->name",
+//         "active" => "topiks",
+//         'topiks' => $kategori->topiks->load('kategori', 'id'),
+//         // 'kategori' => $kategori->name
+//     ]);
+// });
 
 // <=====================================================================================================================>
 // INOVASI

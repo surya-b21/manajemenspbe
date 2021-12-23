@@ -44,6 +44,7 @@
                 <tr>
                     <th scope="col">Judul Topik</th>
                     <th scope="col">Kategori</th>
+                    <th scope="col">Tanggal</th>
                     {{-- <th scope="col">Aksi</th> --}}
                 </tr>
             </thead>
@@ -55,6 +56,9 @@
                     </td>
                     <td>
                         <a href="/forum/{{ $topik->kategori->id }}">{{ $topik->kategori->kategori }}</a>
+                    </td>
+                    <td>
+                        <p class="text-dark">{{ $topik->created_at->isoFormat('DD MMMM YYYY') }}</p>
                     </td>
                     {{-- <td>
                                 <a href="<?= url('/topik/delete/') ?>"><i class="fas fa-trash"></i></a>
@@ -109,7 +113,7 @@
                         </div>
                     </div>
                     <input name="id_user" type="hidden" class="form-control" value=1>
-                    <input name="id_kf" type="hidden" class="form-control" value="<?= $tampil['id'] ?>">
+                    <input name="id_kf" type="hidden" class="form-control" value="<?= $topik['id'] ?>">
 
                     <button type="submit" class="btn btn-primary">Kirim</button>
                     <a href="/forum"><button type="button" class="btn btn-dark">Kembali</button></a>
