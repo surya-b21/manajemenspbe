@@ -103,27 +103,32 @@
                     </div>
                     @endforeach
                     <br />
-                    <div class="w-100">
-                        <form name=" newtopik" method="post" action="{{url('komentar/add')}}">
-                            @csrf
-                            <div class="row">
-                                <textarea class="form-control" id="isi" name="isi" rows="4" style="background: #fff;" placeholder="komentar baru"></textarea>
-                                <!-- <input type="text" name="isi" class="form-control" placeholder="Komentar"> -->
-                                <?php if (Auth::check()) : ?>
-                                    <input name="id_user" type="hidden" class="form-control" value="{{ Auth::user()->id }}" ?>
-                                <?php endif ?>
+                    <?php
+                    if ($h != null) { ?>
+                        <div class="w-100">
+                            <form name=" newtopik" method="post" action="{{url('komentar/add')}}">
+                                @csrf
+                                <div class="row">
+                                    <textarea class="form-control" id="isi" name="isi" rows="4" style="background: #fff;" placeholder="komentar baru"></textarea>
+                                    <!-- <input type="text" name="isi" class="form-control" placeholder="Komentar"> -->
+                                    <?php if (Auth::check()) : ?>
+                                        <input name="id_user" type="hidden" class="form-control" value="{{ Auth::user()->id }}" ?>
+                                    <?php endif ?>
 
-                                @foreach ($topik as $t)
-                                <input name="id_topik" type="hidden" class="form-control" value="<?= $t->id ?>">
-                                @endforeach
-                            </div>
-                            <!-- <button type="submit" class="btn btn-primary">Kirim</button> -->
-                            <div class="float-end mt-2 pt-1">
-                                <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
-                                <!-- <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button> -->
-                            </div>
-                        </form>
-                    </div>
+                                    @foreach ($topik as $t)
+                                    <input name="id_topik" type="hidden" class="form-control" value="<?= $t->id ?>">
+                                    @endforeach
+                                </div>
+                                <!-- <button type="submit" class="btn btn-primary">Kirim</button> -->
+                                <div class="float-end mt-2 pt-1">
+                                    <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
+                                    <!-- <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button> -->
+                                </div>
+                            </form>
+                        </div>
+                    <?php }
+                    ?>
+
                 </div>
             </div>
         </div>
