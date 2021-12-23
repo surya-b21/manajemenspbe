@@ -12,7 +12,7 @@
     <div class="button">
         <ul class="right">
             <a href="http://127.0.0.1:8000/home">Home</a>
-            <a href="http://127.0.0.1:8000/ino">Inovasi</a>
+            <a href="http://127.0.0.1:8000/inovasi">Inovasi</a>
             <a href="http://127.0.0.1:8000/forum">Forum</a>
             <style media="screen">
                 .right {
@@ -34,7 +34,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     You're logged in!
-
+                    <?php header("Location: /"); ?>
+                    <?php exit(); ?>
                 </div>
             </div>
         </div>
@@ -119,31 +120,29 @@
     </div>
     <div class="container">
         <h4>Ubah?</h2>
-            <form name="newprofil" method="post" action="{{url('profil/update/'.$h['id'])}}" enctype="multipart/form-data">
+            <form>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Nama</label>
-                    <input type="text" class="form-control" id="name" placeholder="Masukkan nama">
+                    <input type="" class="form-control" id="exampleInputPassword1" placeholder="Masukkan nama">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Masukkan username">
+                    <input type="" class="form-control" id="exampleInputPassword1" placeholder="Masukkan username">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Masukkan email">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Alamat</label>
-                    <input type="" class="form-control" id="alamat" placeholder="Masukkan alamat">
+                    <input type="" class="form-control" id="exampleInputPassword1" placeholder="Masukkan alamat">
                 </div>
-                <div class="row mb-3">
-                    <label for="" class="col-sm-2 col-form-label">Foto</label>
-                    <div class="col-sm-10">
-                        <input name="foto_path" id="foto_path" type="file" class="form-control" placeholder="">
-                    </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Kirim</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
     </div>
 

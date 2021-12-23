@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Forum\Topik;
 use App\Models\Forum\Kategori;
+use App\Models\User;
 use PhpParser\Node\Stmt\Catch_;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Storage;
 
 class TopikController extends Controller
 {
@@ -17,13 +19,16 @@ class TopikController extends Controller
     {
         $data = Topik::all()->where('id_kf', $id);
         $data2 = Kategori::all();
+        $data3 = User::all();
         $hitung = count($data2);
         $id = $id;
         $show = [
             'active' => 'forum',
             'topik' => $data,
             'kf' => $data2,
-            'id' => $id
+            'id' => $id,
+            'user' => $data3
+
         ];
         // return view("topik")->with(['topik' => $data]);
         // return view("topik", ['topik' => $data], ['kf' => $data2], ['id' => $id]);
@@ -43,12 +48,12 @@ class TopikController extends Controller
 
     function processAdd(Request $request)
     {
-        $name = $request->file('foto_url')->store('/', 'public', time() . '' . $request->file('foto_url')->getClientOriginalExtension());
+        $name = $request->file('foto_path')->store('/', 'public', time() . '' . $request->file('foto_path')->getClientOriginalExtension());
         topik::create([
             'judul' => $request->judul,
             'isi' => $request->isi,
             'id_user' => $request->id_user,
-            'foto_url' => $name,
+            'foto_path' => $name,
             'id_kf' => $request->id_kf,
         ]);
         return redirect()->back();

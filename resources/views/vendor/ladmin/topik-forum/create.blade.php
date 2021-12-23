@@ -5,7 +5,7 @@
     <form action="{{route('administrator.kelola.topik-forum.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        @include('vendor.ladmin.topik-forum._partials._form', ['topik-forum' => (new App\Models\TopikForum)])
+        @include('vendor.ladmin.topik-forum._partials._form', ['topik' => (new App\Models\TopikForum)])
 
         <div class="text-right">
             <button type="submit" class="btn btn-primary">

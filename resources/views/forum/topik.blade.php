@@ -20,7 +20,7 @@
 {{-- @if ($tampil->count()) --}}
 
 <div class="container mt-5">
-    
+
     {{-- <h1 class="mb-3"> Topik tentang {{ $tampil['kf']->katwgori }} </h1> --}}
 
     {{-- <div class="container"> --}}
@@ -38,7 +38,7 @@
             </form>
         </div>
     </div>
-    
+
     <table class="table">
         <thead>
             <tr>
@@ -49,8 +49,8 @@
         </thead>
         <tbody>
             <tr>
-        @foreach ($tampil['kf'] as $tampil['kf'])
-        @foreach ($tampil['topik'] as $tampil['t'])
+                @foreach ($tampil['kf'] as $tampil['kf'])
+                @foreach ($tampil['topik'] as $tampil['t'])
                 <?php if ($tampil['kf']->id == $tampil['t']->id_kf) { ?>
                     <td>
                         <a href="{{url('/topik/'.$tampil['t']->id)}}">
@@ -74,7 +74,7 @@
             @endforeach
         </tbody>
     </table>
-    <a href="/topik" class="btn btn-dark">Semua topik</a>
+    <a href="/topiks" class="btn btn-dark">Semua topik</a>
 </div>
 {{-- </div> --}}
 </div>

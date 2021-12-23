@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <p> Ini Footer
-                    <br>Link: <a href="/home" target="_parent" title="free css templates">Masukkan Link Anda</a>
+                <p> DISKOMINFO SP SURAKARTA 2021
+                    <!-- <br>Link: <a href="/home" target="_parent" title="free css templates">Masukkan Link Anda</a> -->
                 </p>
             </div>
         </div>
