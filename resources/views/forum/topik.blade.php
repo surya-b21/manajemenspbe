@@ -87,63 +87,6 @@
 <br>
 <br>
 
-<?php
-if (auth() != null)
-    $h = auth()->user();
-?>
-
-<div class="container">
-    <?php if ($h != null) { ?>
-        @foreach ($tampil['user'] as $tampil['user'])
-        <?php if (($tampil['user']->id) == $h['id']) { ?>
-            <?php if ($tampil['user']->id_opd != null) { ?>
-                <div>{{-- Form tambah Topik --}}
-                    <div class="container mb-5">
-                        <div class="container">
-                            <form name="newtopik" method="post" action="{{url('topik/add')}}" enctype="multipart/form-data">
-                                @csrf
-                                <?php
-                                // $ini = $tampil['id'];
-                                // echo $ini 
-                                ?>
-
-                                <div class="row">
-                                    <div class="col-8">
-                                        {{-- <label name="judul" class="form-label">Buat Topik Baru?</label> --}}
-                                        <h3>Buat Topik Baru?</h3> <br>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-2 col-form-label">Judul Topik</label>
-                                            <div class="col-sm-10">
-                                                <input name="judul" type="text" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-2 col-form-label">Isi</label>
-                                            <div class="col-sm-10">
-                                                {{-- <input name="isi" type="text" class="form-control" placeholder=""> --}}
-                                                <textarea name="isi" class="form-control" rows="7" id="textarea" placeholder=""></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-2 col-form-label">Foto</label>
-                                            <div class="col-sm-10">
-                                                <input name="foto_path" id="foto_path" type="file" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                        <input name="id_user" type="hidden" class="form-control" value=<?= $h['id'] ?>>
-                                        <input name="id_kf" type="hidden" class="form-control" value="<?= $tampil['id'] ?>">
-
-                                        <button type="submit" class="btn btn-primary">Kirim</button>
-                                        <a href="/forum"><button type="button" class="btn btn-dark">Kembali</button></a>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-        <?php } ?>
-        @endforeach
-    <?php } ?>
-</div>
 </div>
 </div>
 
