@@ -12,7 +12,7 @@
     <div class="button">
         <ul class="right">
             <a href="http://127.0.0.1:8000/home">Home</a>
-            <a href="http://127.0.0.1:8000/inovasi">Inovasi</a>
+            <a href="http://127.0.0.1:8000/ino">Inovasi</a>
             <a href="http://127.0.0.1:8000/forum">Forum</a>
             <style media="screen">
                 .right {
