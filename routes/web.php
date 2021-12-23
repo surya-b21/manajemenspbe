@@ -6,6 +6,7 @@ use App\Http\Controllers\Administrator\ElemenSmartController;
 use App\Http\Controllers\Administrator\KategoriUmumController;
 use App\Http\Controllers\Administrator\OpdController;
 use App\Http\Controllers\Administrator\InovasiController;
+use App\Http\Controllers\Administrator\KategoriForumController;
 use App\Http\Controllers\Administrator\TopikForumController;
 use App\Http\Controllers\Administrator\Verifikasi\InovasiController as VerifikasiInovasiController;
 use App\Http\Controllers\Administrator\Verifikasi\VersiController as VerifikasiVersiController;
@@ -45,6 +46,7 @@ Ladmin::route(function () {
         Route::resource('/developer', DeveloperController::class);
         Route::resource('/inovasi', InovasiController::class);
         Route::resource('/versi', VersiController::class);
+        Route::resource('/kategori-forum', KategoriForumController::class);
         Route::resource('/topik-forum', TopikForumController::class);
     });
     Route::prefix('verifikasi')->as('verifikasi.')->middleware(['verified'])->group(function () {
