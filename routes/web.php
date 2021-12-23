@@ -18,6 +18,7 @@ use App\Http\Controllers\Inovasi\InoController as InovasiC;
 use App\Http\Controllers\Forum\KategoriController;
 use App\Http\Controllers\Forum\TopikController;
 use App\Http\Controllers\Forum\KomentarController;
+use App\Http\Controllers\ProfilController;
 use App\Models\Forum\Kategori;
 /*
 |--------------------------------------------------------------------------
@@ -74,16 +75,20 @@ Route::middleware('guest')->group(function () {
 });
 
 
+Route::post('/profil/update/{id}', [ProfilController::class, 'update']);
+
 // FORUM
 Route::get('/forum', [KategoriController::class, 'allCategories']);
 Route::get('/forum/{id}', [TopikController::class, 'index']);
 Route::get('/topik', [TopikController::class, 'semua']); //tambahan
+
 Route::post('/topik/add/', [TopikController::class, 'processAdd']);
 Route::get('/topik/delete/{idtopik}', [TopikController::class, 'delete']);
 Route::get('/topik/update/{idtopik}', [TopikController::class, 'update']);
 Route::post('/topik/update/{idtopik}', [TopikController::class, 'processUpdate', "active" => "inovasi"]);
 
 Route::get('/topik/{id}', [KomentarController::class, 'show']);
+
 Route::post('/komentar/add/', [KomentarController::class, 'processAdd'])->middleware('auth');
 Route::get('/komentar/delete/{idkomen}', [KomentarController::class, 'delete']);
 Route::get('/komentar/update/{idkomen}', [KomentarController::class, 'update']);

@@ -119,29 +119,31 @@
     </div>
     <div class="container">
         <h4>Ubah?</h2>
-            <form>
+            <form name="newprofil" method="post" action="{{url('profil/update/'.$h['id'])}}" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="exampleInputPassword1">Nama</label>
-                    <input type="" class="form-control" id="exampleInputPassword1" placeholder="Masukkan nama">
+                    <input type="text" class="form-control" id="name" placeholder="Masukkan nama">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Username</label>
-                    <input type="" class="form-control" id="exampleInputPassword1" placeholder="Masukkan username">
+                    <input type="text" class="form-control" id="username" placeholder="Masukkan username">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Masukkan email">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Alamat</label>
-                    <input type="" class="form-control" id="exampleInputPassword1" placeholder="Masukkan alamat">
+                    <input type="" class="form-control" id="alamat" placeholder="Masukkan alamat">
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <div class="row mb-3">
+                    <label for="" class="col-sm-2 col-form-label">Foto</label>
+                    <div class="col-sm-10">
+                        <input name="foto_path" id="foto_path" type="file" class="form-control" placeholder="">
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <button type="submit" class="btn btn-primary">Kirim</button>
             </form>
     </div>
 
