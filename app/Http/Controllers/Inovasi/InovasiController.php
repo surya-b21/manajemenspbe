@@ -65,7 +65,7 @@ class InovasiController extends Controller
         $dokumen = dokumen::all();
         $opd = opd::all();
         $ks = RefInovasiEsmart::all();
-        
+
         if ($jenis == 1) {
             $terkait = $inovasi2->where('id_ku', $id_jenis);
         }
@@ -92,7 +92,7 @@ class InovasiController extends Controller
             "opd" => $opd,
             "dev" => $dev,
             "home" => "/home",
-            "inov" => "/inovasi",
+            "inov" => "/ino",
             "jenis" => $jenis,
             "dokumen" => $dokumen,
             "id_jenis" => $id_jenis,

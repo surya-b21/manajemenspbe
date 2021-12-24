@@ -63,11 +63,11 @@ Ladmin::route(function () {
     });
 });
 
-Route::middleware(['auth','verified'])->group(function (){
+Route::middleware(['auth', 'verified'])->group(function () {
     //route yang butuh login ditaruh disini
 });
 
-Route::middleware('guest')->group(function (){
+Route::middleware('guest')->group(function () {
     //route yang ga butuh login taruh disini
 });
 
@@ -97,7 +97,7 @@ Route::get('/kategori/{kategori:id}', function (Kategori $kategori) {
 
 // <=====================================================================================================================>
 // INOVASI
-Route::get('/inovasi', [InovasiC::class, 'inovasi']);
+Route::get('/ino', [InovasiC::class, 'inovasi']);
 Route::get('/', [InovasiC::class, 'index']);
 Route::get('/home', [InovasiC::class, 'index']);
 Route::post('/inovasi/kategori', [InovasiC::class, 'kategori']);

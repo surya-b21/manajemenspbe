@@ -12,7 +12,7 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="{{url('/home')}}" class="nav-link {{ ($active === "home") ? 'active' : '' }}">Home</a></li>
-                        <li class="scroll-to-section"><a href="{{url('/inovasi')}}" class="nav-link {{ ($active === "inovasi") ? 'active' : '' }}">Inovasi</a></li>
+                        <li class="scroll-to-section"><a href="{{url('/ino')}}" class="nav-link {{ ($active === "inovasi") ? 'active' : '' }}">Inovasi</a></li>
                         <li class="scroll-to-section"><a href="{{url('/forum')}}" class="nav-link {{ ($active === "forum") ? 'active' : '' }}">Forum</a></li>
                         {{-- <li class="scroll-to-section"><a href="{{url('/topiks')}}" class="nav-link {{ ($active === "topiks") ? 'active' : '' }}">Topiks</a></li> --}}
 
