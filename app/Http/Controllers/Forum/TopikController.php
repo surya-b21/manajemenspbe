@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Forum\Topik;
 use App\Models\Forum\Kategori;
+use App\Models\Forum\Komentar;
 use App\Models\User;
 use PhpParser\Node\Stmt\Catch_;
 use PhpParser\Node\Stmt\TryCatch;
@@ -20,14 +21,17 @@ class TopikController extends Controller
         $data = Topik::all()->where('id_kf', $id);
         $data2 = Kategori::all();
         $data3 = User::all();
+        $komen = Komentar::all();
         $hitung = count($data2);
+
         $id = $id;
         $show = [
             'active' => 'forum',
             'topik' => $data,
             'kf' => $data2,
             'id' => $id,
-            'user' => $data3
+            'user' => $data3,
+            'jumlahkomen' => $komen
 
         ];
         // return view("topik")->with(['topik' => $data]);

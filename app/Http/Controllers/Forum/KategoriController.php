@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Kategori;
+use App\Models\Forum\Topik;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +25,8 @@ class KategoriController extends Controller
     public function allCategories()
     {
         $categories = Kategori::with('children')->where('parent', 0)->get();
-
+        $penulis = User::all();
+        $post = Topik::all();
         // return response()->json(count($categories), 200);
         $keluarga = [
             'ibu' => [$categories[0]['kategori']], //0,1],
@@ -34,7 +37,9 @@ class KategoriController extends Controller
 
         return view("forum.kategori")->with([
             'active' => 'forum',
-            'kategori' => $categories
+            'kategori' => $categories,
+            'penulis' => $penulis,
+            'jumlahtopik' => $post
         ]);
         // return response()->json($keluarga, 200);
     }

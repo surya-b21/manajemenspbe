@@ -24,9 +24,9 @@ class KomentarController extends Controller
             "forum.komentar",
             [
                 'active' => 'forum',
-                'topik' => $data
+                'topik' => $data,
+                'komentar' => $data2
             ],
-            ['komentar' => $data2]
         );
     }
 

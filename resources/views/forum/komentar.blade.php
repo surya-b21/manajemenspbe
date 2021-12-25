@@ -76,7 +76,9 @@
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h6 class="text-primary fw-bold mb-0">
-                                            <span class="text-dark ms-2">{{$k->name}}</span>
+                                            <span class="text-dark ms-2">{{$k->name}}</span> <br /><span class="badge rounded-pill bg-light" style="font-size:10px;color:grey">
+                                                <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
+                                                {{ $k->created_at }}</span>
                                             <p class="text-dark ms-2">{{$k->isi}}</p>
 
                                         </h6>
@@ -93,10 +95,7 @@
                                             <?php } ?>
                                         <?php } ?>
                                     </div>
-                                    <p class="mb-0">
-                                        <time datetime="2020-01-01">{{$k->created_at}}</time>
-                                        {{-- <small class="text-muted">{{ $k->created_at->format('d-m-Y') }}</small> --}}
-                                    </p>
+
                                 </div>
                             </div>
                         </div>
