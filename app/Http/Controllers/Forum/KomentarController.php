@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Forum;
 use App\Models\Forum\Topik;
 use Illuminate\Http\Request;
 use App\Models\Forum\Komentar;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,13 +20,15 @@ class KomentarController extends Controller
     {
         $data = Topik::all()->where('id', $id);
         $data2 = $this->Komentar->joinUser()->where('id_topik', $id);
+        $data3 = User::all();
         // $data2 = Komentar::all()->where('id_topik', $id);
         return view(
             "forum.komentar",
             [
                 'active' => 'forum',
                 'topik' => $data,
-                'komentar' => $data2
+                'komentar' => $data2,
+                'user' => $data3
             ],
         );
     }

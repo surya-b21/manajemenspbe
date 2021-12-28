@@ -2,32 +2,37 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            <!-- {{ __('Dashboard') }} -->
             <?php
             $h = auth()->user();
             ?>
         </h2>
+        <nav class="navbar navbar-light bg-white">
+            <form class="container-fluid justify-content-start">
+                <div class="button">
+                    <ul class="right mr-3">
+                        <a href="http://127.0.0.1:8000/home">Home</a>
+                        <a href="http://127.0.0.1:8000/ino">Inovasi</a>
+                        <a href="http://127.0.0.1:8000/forum">Forum</a>
+                        <style media="screen">
+                            .right {
+                                float: right;
+                                display: block;
+                            }
+
+                            .button ul a {
+                                padding: 5px;
+                                background: black;
+                                color: white;
+                            }
+                        </style>
+                    </ul>
+                </div>
+
+            </form>
+        </nav>
     </x-slot>
-
-    <div class="button">
-        <ul class="right">
-            <a href="http://127.0.0.1:8000/home">Home</a>
-            <a href="http://127.0.0.1:8000/ino">Inovasi</a>
-            <a href="http://127.0.0.1:8000/forum">Forum</a>
-            <style media="screen">
-                .right {
-                    float: right;
-                    display: block;
-                }
-
-                .button ul a {
-                    padding: 5px;
-                    background: rgb(120, 150, 12);
-                    color: white;
-                }
-            </style>
-        </ul>
-    </div>
+    <br />
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -120,6 +125,8 @@
     <div class="container">
         <h4>Ubah?</h2>
             <form name="newprofil" method="post" action="{{url('profil/update/'.$h['id'])}}" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="exampleInputPassword1">Nama</label>
                     <input type="text" class="form-control" id="name" placeholder="Masukkan nama">

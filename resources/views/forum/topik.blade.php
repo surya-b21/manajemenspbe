@@ -74,9 +74,7 @@
                                         <input name="idtopik" type="hidden" class="form-control" value="<?= $tampil['t']['id'] ?>">
                                     </h5>
                                 </a>
-                                <span class="badge rounded-pill bg-light" style="font-size:11px;color:grey">
-                                    <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
-                                    {{ $tampil['t']->created_at->isoFormat('DD MMMM YYYY') }}</span>
+
                                 <?php
                                 for ($a = 0; $a < count($tampil['user']); $a++) {
                                     // echo $penulis[$i]["id"];
@@ -90,6 +88,9 @@
                                     }
                                 }
                                 ?>
+                                <span class="badge rounded-pill bg-light" style="font-size:11px;color:grey">
+                                    <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
+                                    {{ $tampil['t']->created_at->isoFormat('DD MMMM YYYY') }}</span>
                                 <?php
                                 $jumlahpost = 0;
                                 for ($b = 0; $b < count($tampil['jumlahkomen']); $b++) {
