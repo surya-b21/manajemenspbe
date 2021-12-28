@@ -20,11 +20,7 @@
 {{-- @if ($tampil->count()) --}}
 
 <div class="container mt-5">
-
-    {{-- <h1 class="mb-3"> Topik tentang {{ $tampil['kf']->katwgori }} </h1> --}}
-
-    {{-- <div class="container"> --}}
-    {{-- kalo belum ada isi tabel, navbar nutup konten. semakin banyak jumlah baris tabel, semakin kebawah padding(?) --}}
+    {{-- <h1 class="mb-3"> Topik tentang {{ $tampil['kf']->kategori }} </h1> --}}
     <div class="row justify-content-center mb-3 mt-3">
         <div class="col-md-7">
             <form action="/topiks" method="" enctype="multipart/form-data"> @csrf
@@ -38,9 +34,51 @@
             </form>
         </div>
     </div>
+    <br>
+    <br>
+    
+    <div class="row">
+    <div class="col-lg-3 mb-3 mt-3">
+        <?php for ($i = 0; $i < count($kategori); $i++) { ?>
+            {{-- <div class="container ml-5"> --}}
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-book" style="font-size:25px;color:rgba(56, 154, 255, 1);"></i>
+                        <b> <?= $kategori[$i]['kategori']; ?></b>
+                    </div>
+                    <?php for ($j = 0; $j < count($kategori[$i]['children']); $j++) { ?>
+                        <div class="card-body">
+                            <i class="fa fa-send" style="font-size:14px;color:rgba(56, 154, 255, 1);"></i>
+                            <span class="card-text">
+                                <small>
+                                    <a href="{{url('/forum/'.$kategori[$i]['children'][$j]['id'])}}">
+                                        <?= $kategori[$i]['children'][$j]['kategori']; ?>                                
+                                    </a>
 
-    <br />
-    <br />
+                                    {{-- <?php
+                                    $jumlahpost = 0;
+                                    for ($b = 0; $b < count($tampil['topik']); $b++) {
+                                        if ($tampil['topik'][$b]['id_kf'] == $kategori[$i]['children'][$j]['id']) {
+                                            $jumlahpost++;
+                                        }
+                                    } ?>
+                                    <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
+                                        (<?= $jumlahpost;?>)</span><?php
+                                      ?> --}}
+
+                                </small>
+                            </span>                        
+                        </div>
+                    <?php } ?>
+                </div>
+            {{-- </div> --}}
+            <br />
+        <?php } ?>    
+    <small><a href="/topiks" class="btn btn-dark">Semua topik</a></small>
+    </div>
+    
+    {{-- konten --}}
+    <div class="col-lg-9 mb-3 mt-3">
     <?php
     for ($z = 0; $z < count($tampil['kf']); $z++) {
         if ($tampil['kf'][$z]['id'] == $tampil['id']) { ?>
@@ -59,9 +97,9 @@
     <?php if ($tampil['kf']->id == $tampil['t']->id_kf) {
     ?>
         <div class="container">
-            <div class="card mb-5">
+            <div class="card mb-3">
                 <div class="row g-0">
-                    <div class="col-md-1 mt-3 mb-3">
+                    <div class="col-md-3 mt-3 mb-3">
                         <img src="{{Storage::url($tampil['t']->foto_path)}}" class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-8">
@@ -75,6 +113,13 @@
                                     </h5>
                                 </a>
 
+                                <small>{!! Str::limit($tampil['t']->isi, 100, '...') !!} 
+                                    <a href="{{url('/topik/'.$tampil['t']->id)}}">Selengkapnya</a>
+                                </small>
+                                <br>
+                                <span class="badge rounded-pill bg-light" style="font-size:11px;color:grey">
+                                    <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
+                                    {{ $tampil['t']->created_at->isoFormat('DD MMMM YYYY') }}</span>
                                 <?php
                                 for ($a = 0; $a < count($tampil['user']); $a++) {
                                     // echo $penulis[$i]["id"];
@@ -88,9 +133,6 @@
                                     }
                                 }
                                 ?>
-                                <span class="badge rounded-pill bg-light" style="font-size:11px;color:grey">
-                                    <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
-                                    {{ $tampil['t']->created_at->isoFormat('DD MMMM YYYY') }}</span>
                                 <?php
                                 $jumlahpost = 0;
                                 for ($b = 0; $b < count($tampil['jumlahkomen']); $b++) {
@@ -116,11 +158,9 @@
     @endforeach
     @endforeach
 
-    <a href="/topiks" class="btn btn-dark">Semua topik</a>
 </div>
 {{-- </div> --}}
 </div>
-
 
 {{-- @else
     <p class="text-center fs-4">No post found.</p>
@@ -130,7 +170,8 @@
 
 </div>
 </div>
-
+</div>
+</div>
 </body>
 
 <footer>

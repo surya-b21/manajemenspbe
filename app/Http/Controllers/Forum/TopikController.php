@@ -23,6 +23,7 @@ class TopikController extends Controller
         $data3 = User::all();
         $komen = Komentar::all();
         $hitung = count($data2);
+        $categories = Kategori::with('children')->where('parent', 0)->get();
 
         $id = $id;
         $show = [
@@ -42,7 +43,8 @@ class TopikController extends Controller
             [
                 'active' => 'forum',
                 'tampil' => $show,
-            ],
+                'kategori' => $categories
+            ]
             // [
             //     'topiks' => Topik::latest()->filter(request(['search']))->get()
             // ]

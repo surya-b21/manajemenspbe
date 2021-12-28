@@ -42,7 +42,6 @@
         <br>
         <br>
         <?php for ($i = 0; $i < count($kategori); $i++) { ?>
-
             <div class="container ml-5">
                 <div class="card">
                     <div class="card-header">
@@ -53,13 +52,13 @@
                     <?php for ($j = 0; $j < count($kategori[$i]['children']); $j++) { ?>
                         <div class="card-body">
                             <i class="fa fa-send" style="font-size:14px;color:rgba(56, 154, 255, 1);"></i>
-                            <h7 class="card-title">
+                            <span class="card-title">
                                 <a href="{{url('/forum/'.$kategori[$i]['children'][$j]['id'])}}">
                                     <b> <?= $kategori[$i]['children'][$j]['kategori'];
                                         ?></b>
                                 </a>
-                            </h7>
-                            <br />
+                            </span>
+                            <br>
 
                             <?php
                             for ($a = 0; $a < count($penulis); $a++) {
