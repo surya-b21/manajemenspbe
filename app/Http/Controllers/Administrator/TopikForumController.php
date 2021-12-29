@@ -73,7 +73,7 @@ class TopikForumController extends Controller
         try {
             if ($request->file()) {
                 $fileName = $request->judul . '.' . $request->file('foto_path')->extension();
-                $filePath = Storage::putFileAs('public/forum', $request->file('foto_path'), $fileName);
+                $filePath = Storage::putFileAs('forum', $request->file('foto_path'), $fileName);
 
                 $fileModel = new TopikForum;
                 $fileModel->judul = $request->judul;
