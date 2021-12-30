@@ -40,7 +40,7 @@ class ApiInovasi extends Controller
             if ($Inovasi[0][$i]['id'] == $id) {
                 //  return ($Inovasi[0][$i]['foto_path']);
                 return response()->file(public_path(
-                    'storage/' . $Inovasi[0][$i]['poster_path']
+                    'storage/' . substr($Inovasi[0][$i]['poster_path'], 7)
                 ));
             }
         }
