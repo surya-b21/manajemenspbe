@@ -45,6 +45,9 @@ Route::post('/komentar/add/{id?}', [ApiKomentar::class, 'add']);
 Route::delete('/komentar/delete/{id?}', [ApiKomentar::class, 'delete']);
 
 Route::get('/inovasi', [ApiInovasi::class, 'index']);
+Route::get('/inovasi/dokumenIno/', [ApiInovasi::class, 'dokumenIno']);
+Route::get('/inovasi/dokumenIno/showDokumen/{id?}', [ApiInovasi::class, 'showDokumen']);
+Route::get('/inovasi/versiIno', [ApiInovasi::class, 'versiIno']);
 // Route::get('/kategoriumum', [ApiKategoriUmum::class, 'index']);
 Route::get('/inovasi/showimage/{id?}', [ApiInovasi::class, 'showimage']);
 Route::get('/elemen', [ApiElemen::class, 'index']);

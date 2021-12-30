@@ -3,6 +3,7 @@
 namespace App\Models\Inovasi;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class inovasi extends Model
@@ -15,5 +16,23 @@ class inovasi extends Model
     public function children()
     {
         return $this->hasMany(inovasi::class, 'parent');
+    }
+
+    public static function dokumenIno()
+    {
+        $inoSmart = DB::table('inovasi')
+            ->rightJoin('dokumen', 'inovasi.id', '=', 'dokumen.id_inovasi')
+            ->select('inovasi.*', 'dokumen.id as id_dok', 'dokumen.judul', 'dokumen.file_path')
+            ->get('*');
+        return $inoSmart;
+    }
+    public static function versiIno()
+    {
+        $inoSmart = DB::table('inovasi')
+            ->rightJoin('versi', 'inovasi.id', '=', 'versi.id_inovasi')
+            ->rightJoin('developer', 'versi.id_dev', '=', 'developer.id')
+            ->select('inovasi.*', 'versi.nama as namaversi', 'versi.deskripsi as deskripsiversi', 'versi.tgl_versi', 'developer.nama_dev')
+            ->get('*');
+        return $inoSmart;
     }
 }
