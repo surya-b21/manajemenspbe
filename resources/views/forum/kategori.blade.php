@@ -13,15 +13,12 @@
 </head>
 @include('template2/main')
 @include('template2/navbar')
-<br>
-<br>
-<br>
-<br>
+
 <!-- ======= Breadcrumbs ======= -->
 
 @if ($kategori->count())
 
-<div class="container mt-5">
+<div class="container" style="padding-bottom:50px; padding-top:150px;">
 
     <div class="container">
         <div class="row justify-content-center mb-3 mt-3">
@@ -47,7 +44,6 @@
                     <div class="card-header">
                         <i class="fa fa-book" style="font-size:25px;color:rgba(56, 154, 255, 1);"></i>
                         <b> <?= $kategori[$i]['kategori']; ?></b>
-
                     </div>
                     <?php for ($j = 0; $j < count($kategori[$i]['children']); $j++) { ?>
                         <div class="card-body">

@@ -13,15 +13,13 @@
 </head>
 @include('template2/main')
 @include('template2/navbar')
-<br>
-<br>
-<br>
-<br>
+
 {{-- @if ($tampil->count()) --}}
 
-<div class="container mt-5">
+<div class="container" style="padding-bottom:50px; padding-top:150px;">
     {{-- <h1 class="mb-3"> Topik tentang {{ $tampil['kf']->kategori }} </h1> --}}
-    <div class="row justify-content-center mb-3 mt-3">
+
+    <div class="row justify-content-center mb-1 mt-3">
         <div class="col-md-7">
             <form action="/topiks" method="" enctype="multipart/form-data"> @csrf
                 {{-- @if (request('kategori'))
@@ -54,18 +52,15 @@
                                     <a href="{{url('/forum/'.$kategori[$i]['children'][$j]['id'])}}">
                                         <?= $kategori[$i]['children'][$j]['kategori']; ?>                                
                                     </a>
-
-                                    {{-- <?php
+                                    <?php
                                     $jumlahpost = 0;
-                                    for ($b = 0; $b < count($tampil['topik']); $b++) {
-                                        if ($tampil['topik'][$b]['id_kf'] == $kategori[$i]['children'][$j]['id']) {
+                                    for ($b = 0; $b < count($tampil['jumlahtopik']); $b++) {
+                                        if ($tampil['jumlahtopik'][$b]['id_kf'] == $kategori[$i]['children'][$j]['id']) {
                                             $jumlahpost++;
                                         }
                                     } ?>
-                                    <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
-                                        (<?= $jumlahpost;?>)</span><?php
-                                      ?> --}}
-
+                                    <span class="" style="font-size:12px;color:grey">
+                                        (<?= $jumlahpost;?>)</span>
                                 </small>
                             </span>                        
                         </div>
@@ -77,7 +72,7 @@
     <small><a href="/topiks" class="btn btn-dark">Semua topik</a></small>
     </div>
     
-    {{-- konten --}}
+    {{-- topik konten --}}
     <div class="col-lg-9 mb-3 mt-3">
     <?php
     for ($z = 0; $z < count($tampil['kf']); $z++) {
@@ -126,9 +121,9 @@
                                     if ($tampil['user'][$a]["id"] == $tampil['t']->id_user) {
 
                                 ?>
-                                        <span class="badge rounded-pill bg-light " style="font-size:11px;color:grey">
-                                            <i class="fa fa-user" style="font-size:10px;color:palevioletred"></i>
-                                            <?= $tampil['user'][$a]["name"]; ?></span>
+                                    <span class="badge rounded-pill bg-light " style="font-size:11px;color:grey">
+                                        <i class="fa fa-user" style="font-size:10px;color:palevioletred"></i>
+                                        <?= $tampil['user'][$a]["name"]; ?></span>
                                 <?php
                                     }
                                 }
@@ -145,9 +140,6 @@
                                     <?= $jumlahpost;
                                     ?> komentar</span>
                             </p>
-
-                            <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-
                         </div>
                     </div>
                 </div>
