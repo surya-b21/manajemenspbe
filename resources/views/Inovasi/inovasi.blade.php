@@ -64,12 +64,13 @@
         .kat_um.active button{
             color: white!important;
         }
-
-        .row {
-            text-align: center;
-            
+        .crop-thumb
+        {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: 50% 50%;
         }
-        
 
     </style>
 </head>
@@ -113,7 +114,7 @@
                         </div>                       
                         
                         @foreach ($esmart as $data) 
-                        <div class="col-lg-12 urusan shadow-sm" style="display:none; border-radius:10px;">
+                        <div class="col-lg-12 urusan " style="display:none;">
                             <div class='' style="margin-bottom:20px; text-align:center; margin-top:20px;">
                                 <h3>URUSAN</h3>
                             </div>     
@@ -158,8 +159,8 @@
                                                                 <div class="input-group mb-3">
                                                                     <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                     <input type="hidden" name="id_inovasi" value="{{$data1['id']}}">
-                                                                    <button class="" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
-                                                                        <img class="card-img-top" src="{{$data1['poster_path']}}" alt="..."  style="height:200px; width:100%; border-top-left-radius:15px; border-top-right-radius:15px;"/>
+                                                                    <button class="w-100" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
+                                                                        <img class="card-img-top crop-thumb" src="{{$data1['poster_path']}}" alt="..."  style="height:200px; width:100%; border-top-left-radius:15px; border-top-right-radius:15px;"/>
                                                                     </button>
                                                                 </div>
                                                             </form>
@@ -198,8 +199,8 @@
                                                                 <div class="input-group mb-3">
                                                                     <input type="hidden" name="jenis" value="{{$jenis}}">
                                                                     <input type="hidden" name="id_inovasi" value="{{$data1['id']}}">
-                                                                    <button class="" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
-                                                                        <img class="card-img-top" src="{{$data1['poster_path']}}" alt="..."  style="height:200px; width:100%; border-top-left-radius:15px; border-top-right-radius:15px;"/>
+                                                                    <button class="w-100" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
+                                                                        <img class="card-img-top crop-thumb" src="{{$data1['poster_path']}}" alt="..."  style="height:200px; width:100%; border-top-left-radius:15px; border-top-right-radius:15px;"/>
                                                                     </button>
                                                                 </div>
                                                             </form>
