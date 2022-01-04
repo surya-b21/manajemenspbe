@@ -13,14 +13,18 @@
 </head>
 @include('template2/main')
 @include('template2/navbar')
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 <div class="container">
-    <h1 class="mb-5 text-center">{{ $title }}</h1>
+
+    <div class="row " style="padding-bottom:50px; padding-top:150px;">
+        <div class="col-lg-12 d-flex justify-content-center">
+            <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                <h4><em> {{ $title }} </em></h4>
+                <div class="line-dec m-auto"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="row justify-content-center mb-3 mt-3">
         <div class="col-md-7">
             <form action="/topiks" method="" enctype="multipart/form-data"> @csrf
@@ -35,50 +39,78 @@
         </div>
     </div>
 
-    @if ($topiks->count())
+    {{-- @if ($topiks->count()) --}}
 
     <div class="row">
-        {{-- <div class="col-md-9"> --}}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Judul Topik</th>
-                    <th scope="col">Kategori</th>
-                    <th scope="col">Tanggal</th>
-                    {{-- <th scope="col">Aksi</th> --}}
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    @foreach ($topiks as $topik)
-                    <td>
-                        <a href="/topik/{{ $topik->id }}">{{ $topik->judul }}</a>
-                    </td>
-                    <td>
-                        <a href="/forum/{{ $topik->kategori->id }}">{{ $topik->kategori->kategori }}</a>
-                    </td>
-                    <td>
-                        <p class="text-dark">{{ $topik->created_at->isoFormat('DD MMMM YYYY') }}</p>
-                    </td>
-                    {{-- <td>
-                                <a href="<?= url('/topik/delete/') ?>"><i class="fas fa-trash"></i></a>
-                                <a href="<?= url('/topik/update/') ?>"><i class="fas fa-pen"></i></a>
-                            </td> --}}
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-@else
-<p class="text-center fs-3">No topic found.</p>
-@endif
-</div>
+        <div class="col-lg-10 mb-3 mt-3">
 
-<div class="d-flex justify-content-center mt-4">
-    {{ $topiks->links() }}
-    <a href=""></a>
+    @foreach ($tampil['kf'] as $tampil['kf'])
+    @foreach ($tampil['topik'] as $tampil['t'])
+
+        <div class="container">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-3 mt-3 mb-3">
+                        <img src="{{Storage::url($tampil['t']->foto_path)}}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <a href="{{url('/forum/'.$tampil['kf']->id)}}">
+                                    <small>{{ $tampil['kf']->kategori }}</small>
+                                </a>
+
+                                <a href="{{url('/topik/'.$tampil['t']->id)}}">
+                                    <h5 class="card-title">
+                                        <i class="fa fa-send" style="font-size:14px; color:blue"></i>
+                                        {{$tampil['t']->judul}}
+                                        <input name="idtopik" type="hidden" class="form-control" value="<?= $tampil['t']['id'] ?>">
+                                    </h5>
+                                </a>
+
+                                <small>{!! Str::limit($tampil['t']->isi, 100, '...') !!} 
+                                    <a href="{{url('/topik/'.$tampil['t']->id)}}">Selengkapnya</a>
+                                </small>
+                                <br>
+                                <span class="badge rounded-pill bg-light" style="font-size:11px;color:grey">
+                                    <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
+                                    {{ $tampil['t']->created_at->isoFormat('DD MMMM YYYY') }}</span>
+                                <?php
+                                for ($a = 0; $a < count($tampil['user']); $a++) {
+                                    // echo $penulis[$i]["id"];
+                                    if ($tampil['user'][$a]["id"] == $tampil['t']->id_user) {
+
+                                ?>
+                                    <span class="badge rounded-pill bg-light " style="font-size:11px;color:grey">
+                                        <i class="fa fa-user" style="font-size:10px;color:palevioletred"></i>
+                                        <?= $tampil['user'][$a]["name"]; ?></span>
+                                <?php
+                                    }
+                                }
+                                ?>
+                                <?php
+                                $jumlahpost = 0;
+                                for ($b = 0; $b < count($tampil['jumlahkomen']); $b++) {
+                                    if ($tampil['jumlahkomen'][$b]['id_topik'] == $tampil['t']->id) {
+                                        $jumlahpost++;
+                                    }
+                                } ?>
+                                <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
+                                    <i class="fa fa-book" style="font-size:10px; color:goldenrod"></i>
+                                    <?= $jumlahpost;
+                                    ?> komentar</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    @endforeach
+
 </div>
+{{-- </div> --}}
+
 </body>
 
 <footer>

@@ -51,28 +51,24 @@ class TopikController extends Controller
         // return response()->json($show['kf'][$id]['kategori']);
     }
 
-    public function semua($id)
+    public function semua()
     {
-        $data = Topik::all()->where('id_kf', $id);
         $topikpost = Topik::all();
         $data2 = Kategori::all();
         $data3 = User::all();
         $komen = Komentar::all();
         $categories = Kategori::with('children')->where('parent', 0)->get();
 
-        $id = $id;
+        $title = '';
         $show = [
             'active' => 'forum',
-            'topik' => $data,
+            'topik' => $topikpost,
             'kf' => $data2,
-            'id' => $id,
             'user' => $data3,
             'jumlahtopik' => $topikpost,
             'jumlahkomen' => $komen
 
         ];
-
-        $title = '';
 
         if (request('kategori')) {
             $kategori = Kategori::firstWhere('kategori', request('kategori'));
@@ -80,7 +76,7 @@ class TopikController extends Controller
         }
 
         return view(
-            'forum.topik',
+            'forum.topiks',
             [
                 'title' => 'Semua Topik' . $title,
                 'active' => 'forum',
