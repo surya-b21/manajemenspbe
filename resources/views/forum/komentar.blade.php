@@ -25,23 +25,38 @@
             <div class="col-md-8">
                 <!-- <div class=" card mb-3">
                 <div class="card-body"> -->
-                <h2 class="entry-title">
-                    @foreach ($topik as $t)
+                @foreach ($topik as $t)
+                <span style="font-size:28px;">
+                    <b>{{$t->judul}}</b>
+                </span>
+                <h2 class="card-title">
                 </h2>
+                <?php
+                for ($a = 0; $a < count($user); $a++) {
+                    // echo $penulis[$i]["id"];
+                    if ($user[$a]["id"] == $t->id_user) {
+
+                ?>
+                        <span class="badge rounded-pill bg-light " style="font-size:12px;color:grey">
+                            <i class="fa fa-user" style="font-size:10px;color:palevioletred"></i>
+                            <?= $user[$a]["name"]; ?></span>
+                <?php
+                    }
+                }
+                ?>
+                <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
+                    <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
+                    {{ $t->created_at->isoFormat('DD MMMM YYYY') }}</span>
+                <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
+                    <i class="fa fa-book" style="font-size:10px; color:forestgreen"></i>
+                    {{ $t->kategori->kategori }}</span>
+                <!-- <h5 class="card-title">Card title</h5> -->
                 <div class="mx-auto text-center">
                     <figure class="figure">
                         <img src="{{Storage::url($t->foto_path)}}" alt="">
                         {{-- <img src="{{Storage::url($t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
                     </figure>
                 </div>
-                <h2 class="lead">
-                    <h2 class="mb-3">{{$t->judul}}</h2>
-                </h2>
-                <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->kategori }}, </a>
-                {{-- <a href="/forum/{{ $t->kategori->id }}" class="text-decoration-none fs-6">{{ $t->kategori->parent }}, </a> --}}
-                {{-- <small class="text-muted">{{ $t->created_at->toDateString() }}</small> --}}
-                <small class="text-muted">{{ $t->created_at->isoFormat('DD MMMM YYYY') }}</small>
-                <!-- <h5 class="card-title">Card title</h5> -->
                 <p class="lead text-dark"> {!! $t->isi !!}</p>
                 <a href="/forum" class="btn btn-dark">Kembali ke Forum</a>
             </div>
@@ -74,9 +89,11 @@
                                     <img class="rounded-circle shadow-1-strong me-1" src="{{Storage::url($k->foto_path)}}" alt="avatar" width="40" height="40" />
                                 </figure>
                                 <div class="w-100">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
                                         <h6 class="text-primary fw-bold mb-0">
-                                            <span class="text-dark ms-2">{{$k->name}}</span>
+                                            <span class="text-dark ms-2">{{$k->name}}</span> <br /><span class="badge rounded-pill bg-light" style="font-size:10px;color:grey">
+                                                <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
+                                                {{ $k->created_at }}</span>
                                             <p class="text-dark ms-2">{{$k->isi}}</p>
 
                                         </h6>
@@ -93,10 +110,7 @@
                                             <?php } ?>
                                         <?php } ?>
                                     </div>
-                                    <p class="mb-0">
-                                        <time datetime="2020-01-01">{{$k->created_at}}</time>
-                                        {{-- <small class="text-muted">{{ $k->created_at->format('d-m-Y') }}</small> --}}
-                                    </p>
+
                                 </div>
                             </div>
                         </div>

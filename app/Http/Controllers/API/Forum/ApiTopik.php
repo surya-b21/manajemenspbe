@@ -27,9 +27,9 @@ class ApiTopik extends Controller
         $row = count($top);
         for ($i = 0; $i < $row; $i++) {
             if ($topik[0][$i]['id'] == $id) {
-                //  return ($topik[0][$i]['foto_path']);
+                // return ($topik[0][$i]['foto_path']);
                 return response()->file(public_path(
-                    'storage/' . $topik[0][$i]['foto_path']
+                    'storage/' . substr($topik[0][$i]['foto_path'], 7)
                 ));
             }
         }

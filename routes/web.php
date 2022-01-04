@@ -118,6 +118,7 @@ Route::get('/', [InovasiC::class, 'index']);
 Route::get('/home', [InovasiC::class, 'index']);
 Route::post('/inovasi/kategori', [InovasiC::class, 'kategori']);
 Route::post('/inovasi/read/{nama}', [InovasiC::class, 'read']);
+Route::get('/inovasi/read/{nama}', [InovasiC::class, 'read']);
 Route::post('/inovasi/kategori/search', [InovasiC::class, 'cari_kategori']);
 //
 // <=====================================================================================================================>

@@ -11,7 +11,7 @@ class ApiKategoriUmum extends Controller
 {
     public function index()
     {
-        $kategori_umum = kategori_umum::all();
+        $kategori_umum = kategori_umum::all('kategori');
         return response()->json([
             "status" => true,
             "message" => "Kategori_Umum",

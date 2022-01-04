@@ -11,7 +11,7 @@ class ApiForum extends Controller
 {
     public function index()
     {
-        $kategori = Kategori::all();
+        $kategori = Kategori::with('children')->where('parent', 0)->get();;
         return response()->json([
             "status" => true,
             "message" => "Kategori",
@@ -27,9 +27,9 @@ class ApiForum extends Controller
             'data' => $kategori
         ], 200);
     }
-    public function showchild($parent)
+    public function showchild()
     {
-        $kategori = Kategori::all()->where('parent', $parent);
+        $kategori = Kategori::all()->where('level', 2);
         return response()->json([
             'success' => true,
             'message' => 'Kategori',
