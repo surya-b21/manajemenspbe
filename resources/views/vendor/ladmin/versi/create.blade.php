@@ -2,7 +2,7 @@
     <x-slot name="title_page">Versi</x-slot>
     <x-slot name="title">Tambah Data Versi</x-slot>
 
-    <form action="{{route('administrator.kelola.versi.store')}}" method="POST">
+    <form action="{{route('administrator.kelola.inovasi.versi.store')}}" method="POST">
         @csrf
 
         @include('vendor.ladmin.versi._partials._form', ['versi' => (new App\Models\Versi)])

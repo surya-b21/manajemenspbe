@@ -51,6 +51,7 @@
       $data = self::$data;
 
       return [
+        'title_page' => 'Developer',
         'title' => 'Developer',
         'buttons' => view('vendor.ladmin.developer._partials._topButton'), // e.g : view('user.actions.create')
         'fields' => [ __('ID'),__('#'),__('Nama'),__('Alamat'),__('NPWP'),__('No. Telepon'),__('Action') ], // Table header

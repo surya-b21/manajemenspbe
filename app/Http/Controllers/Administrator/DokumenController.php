@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Administrator;
 
-use App\DataTables\DokumenDataTables;
 use App\Http\Controllers\Controller;
 use App\Models\Dokumen;
 use App\Models\Inovasi;
 use Illuminate\Http\Request;
 use Hexters\Ladmin\Exceptions\LadminException;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
+
 
 class DokumenController extends Controller
 {
@@ -17,11 +19,23 @@ class DokumenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        ladmin()->allow('administrator.kelola.dokumen.index');
+        // ladmin()->allow('administrator.kelola.dokumen');
 
-        return DokumenDataTables::view();
+        // return DokumenDataTables::view();
+        return view('vendor.ladmin.dokumen.index',['id' => $id]);
+    }
+
+    public function getDokumen($id)
+    {
+        return DataTables::of(DB::table('dokumen')->select('id','judul')->where('id_inovasi', $id))
+            ->addIndexColumn()
+            ->addColumn('aksi', function($docs) {
+                return '<a href="#" class="btn btn-link">'.ladmin()->icon('eye').'</a> <a href="#">'.ladmin()->icon('trash').'</a>';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
     }
 
     /**
@@ -29,13 +43,11 @@ class DokumenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        ladmin()->allow('administrator.kelola.dokumen.create');
+        // ladmin()->allow('administrator.kelola.dokumen.create');
 
-        $inovasi = Inovasi::all();
-
-        return view('vendor.ladmin.dokumen.create', compact('inovasi'));
+        return view('vendor.ladmin.dokumen.create', compact('id'));
     }
 
     /**

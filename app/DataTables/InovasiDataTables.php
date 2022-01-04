@@ -36,7 +36,14 @@
               ]
             ]);
           })
-        ->escapeColumns([])
+        ->addColumn('dokumen', function ($dokumen) {
+            return '<a href="'.route('administrator.kelola.inovasi.dokumen.index', $dokumen->id).'">Lihat Dokumen</a>';
+        })
+        ->addColumn('versi', function($versi) {
+            return '<a href="'.route('administrator.kelola.inovasi.versi.index', $versi->id).'">Kelola Versi</a>';
+        })
+        ->rawColumns(['dokumen','versi'])
+        ->escapeColumns()
         ->make(true);
     }
 
@@ -54,7 +61,7 @@
         'title' => 'Inovasi',
         'title_page' => 'Inovasi',
         'buttons' => view('vendor.ladmin.inovasi._partials._topButton'), // e.g : view('user.actions.create')
-        'fields' => [ __('#'),__('Nama'),__('Layanan SPBE'),__('Action')], // Table header
+        'fields' => [ __('#'),__('Nama'),__('Layanan SPBE'),__('Action'),__('Dokumen'),__('Versi')], // Table header
         /**
          * DataTables Options
          */
@@ -63,10 +70,12 @@
           'serverSide' => true,
           'ajax' => request()->fullurl(),
           'columns' => [
-              ['data' => 'DT_RowIndex', 'class' => 'text-center', 'orderable' => 'false'],
+              ['data' => 'DT_RowIndex', 'class' => 'text-center', 'orderable' => false],
               ['data' => 'nama'],
               ['data' => 'layanan_spbe'],
-              ['data' => 'action', 'class' => 'text-center', 'orderable' => false]
+              ['data' => 'action', 'class' => 'text-center', 'orderable' => false],
+              ['data' => 'dokumen', 'class' => 'text-center', 'orderable' => false],
+              ['data' => 'versi', 'class' => 'text-center', 'orderable' => false]
           ]
         ],
       ];

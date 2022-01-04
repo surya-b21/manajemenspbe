@@ -43,10 +43,18 @@ Ladmin::route(function () {
     Route::prefix('kelola')->as('kelola.')->middleware(['verified'])->group(function () {
         Route::resource('/kategori-umum', KategoriUmumController::class);
         Route::resource('/elemen-smart', ElemenSmartController::class);
-        Route::resource('/dokumen', DokumenController::class);
         Route::resource('/developer', DeveloperController::class);
         Route::resource('/inovasi', InovasiController::class);
-        Route::resource('/versi', VersiController::class);
+        Route::prefix('inovasi')->as('inovasi.')->group(function() {
+            Route::get('/dokumen/index/{id}', [DokumenController::class, 'index'])->name('dokumen.index');
+            Route::get('/dokumen/get/{id}', [DokumenController::class, 'getDokumen'])->name('dokumen.get');
+            Route::get('/dokumen/create/{id}', [DokumenController::class, 'create'])->name('dokumen.create');
+            Route::resource('/dokumen', DokumenController::class)->except(['index','create']);
+            Route::get('/versi/index/{id}', [VersiController::class, 'index'])->name('versi.index');
+            Route::get('/versi/get/{id}', [VersiController::class, 'getVersi'])->name('versi.get');
+            Route::get('/versi/create/{id}', [VersiController::class, 'create'])->name('versi.create');
+            Route::resource('/versi', VersiController::class)->except(['index','create']);
+        });
         Route::resource('/kategori-forum', KategoriForumController::class);
         Route::resource('/topik-forum', TopikForumController::class);
     });
@@ -111,7 +119,7 @@ Route::get('/home', [InovasiC::class, 'index']);
 Route::post('/inovasi/kategori', [InovasiC::class, 'kategori']);
 Route::post('/inovasi/read/{nama}', [InovasiC::class, 'read']);
 Route::post('/inovasi/kategori/search', [InovasiC::class, 'cari_kategori']);
-// 
+//
 // <=====================================================================================================================>
 
 require __DIR__ . '/auth.php';

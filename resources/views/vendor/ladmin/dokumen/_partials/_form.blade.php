@@ -16,16 +16,4 @@
 
 </x-ladmin-form-group>
 
-@if (isset($inovasi))
-<x-ladmin-form-group name="id_inovasi" label="Inovasi *">
-    <x-slot name="prepend">
-        {!! ladmin()->icon('fas fa-list') !!}
-    </x-slot>
-
-    <select name="id_inovasi" id="id_inovasi" class="form-control border-0">
-        @foreach ($inovasi as $data )
-            <option value="{{$data->id}}" {{isset($dokumen->id_inovasi) ? 'selected' : ''}}>{{$data->nama}}</option>
-        @endforeach
-    </select>
-</x-ladmin-form-group>
-@endif
+<input type="hidden" value="{{$id}}">

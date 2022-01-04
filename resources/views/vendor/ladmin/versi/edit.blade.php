@@ -1,7 +1,7 @@
 <x-ladmin-layout>
     <x-slot name="title">Edit Versi</x-slot>
 
-    <form action="{{route('administrator.kelola.versi.update', $versi->id)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('administrator.kelola.inovasi.versi.update', $versi->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

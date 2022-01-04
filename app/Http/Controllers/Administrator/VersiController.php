@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Administrator;
 
-use App\DataTables\VersiDataTables;
 use App\Http\Controllers\Controller;
 use App\Models\Developer;
 use App\Models\Versi;
 use App\Models\Inovasi;
 use Hexters\Ladmin\Exceptions\LadminException;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
 
 class VersiController extends Controller
 {
@@ -17,11 +18,35 @@ class VersiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        ladmin()->allow('administrator.kelola.versi.index');
+        // ladmin()->allow('administrator.kelola.versi.index');
 
-        return VersiDataTables::view();
+        return view('vendor.ladmin.versi.index', ['id' => $id]);
+    }
+
+    public function getVersi($id)
+    {
+        return DataTables::of(DB::table('versi')->select('id','nama')->where('id_inovasi',$id))
+        ->addIndexColumn()
+        ->addColumn('aksi', function($item) {
+            return view('ladmin::table.action', [
+                'show' => [
+                    'gate' => 'administrator.kelola.inovasi.versi.show',
+                    'url' => route('administrator.kelola.inovasi.versi.show', [$item->id])
+                  ],
+                'edit' => [
+                    'gate' => 'administrator.kelola.inovasi.versi.update',
+                    'url' => route('administrator.kelola.inovasi.versi.edit', [$item->id])
+                ],
+                'destroy' => [
+                    'gate' => 'administrator.kelola.inovasi.versi.destroy',
+                    'url' => route('administrator.kelola.inovasi.versi.destroy', [$item->id]),
+                ]
+                ]);
+        })
+        ->rawColumns(['aksi'])
+        ->make(true);
     }
 
     /**
@@ -29,13 +54,11 @@ class VersiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        ladmin()->allow('administrator.kelola.versi.create');
+        // ladmin()->allow('administrator.kelola.inovasi.versi.create');
 
-        $data['developer'] = Developer::all();
-        $data['inovasi'] = Inovasi::all();
-        return view('vendor.ladmin.versi.create', $data);
+        return view('vendor.ladmin.versi.create', ['developer' => Developer::all(), 'id' => $id]);
     }
 
     /**
@@ -46,7 +69,7 @@ class VersiController extends Controller
      */
     public function store(Request $request)
     {
-        ladmin()->allow('administrator.kelola.versi.create');
+        // ladmin()->allow('administrator.kelola.inovasi.versi.create');
 
         $request->validate([
             'nama' => 'required',
@@ -75,7 +98,7 @@ class VersiController extends Controller
                 'Versi berhasil ditambahkan'
             ]);
 
-            return redirect('/administrator/kelola/versi');
+            return redirect('/administrator/kelola/inovasi/versi/index/'.$request->id_inovasi);
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
@@ -91,7 +114,7 @@ class VersiController extends Controller
      */
     public function show($id)
     {
-        ladmin()->allow('administrator.kelola.versi.show');
+        // ladmin()->allow('administrator.kelola.inovasi.versi.show');
 
         $data['versi'] = Versi::findOrFail($id);
         return view('vendor.ladmin.versi.show',$data);
@@ -105,11 +128,11 @@ class VersiController extends Controller
      */
     public function edit($id)
     {
-        ladmin()->allow('administrator.kelola.versi.update');
+        // ladmin()->allow('administrator.kelola.inovasi.versi.update');
 
         $data['developer'] = Developer::all();
-        $data['inovasi'] = Inovasi::findOrFail($id);
         $data['versi'] = Versi::findOrFail($id);
+        $data['id'] = $id;
         return view('vendor.ladmin.versi.edit', $data);
     }
 
@@ -122,7 +145,7 @@ class VersiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ladmin()->allow('administrator.kelola.versi.update');
+        // ladmin()->allow('administrator.kelola.inovasi.versi.update');
 
         $request->validate([
             'nama' => 'required',
@@ -148,7 +171,7 @@ class VersiController extends Controller
                 'Versi berhasil diperbarui'
             ]);
 
-            return redirect('/administrator/kelola/versi');
+            return redirect('/administrator/kelola/inovasi/versi/index/'.$request->id_inovasi);
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
@@ -164,7 +187,7 @@ class VersiController extends Controller
      */
     public function destroy($id)
     {
-        ladmin()->allow('admnistrator.kelola.versi.destroy');
+        // ladmin()->allow('admnistrator.kelola.inovasi.versi.destroy');
 
         try {
             $versi = Versi::findOrFail($id);
@@ -174,7 +197,7 @@ class VersiController extends Controller
                 'Versi berhasil dihapus'
             ]);
 
-            return redirect('/administrator/kelola/versi');
+            return redirect()->back();
         } catch (LadminException $e) {
             return redirect()->back()->withErrors([
                 $e->getMessage()
