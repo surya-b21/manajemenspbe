@@ -1,7 +1,7 @@
 <x-ladmin-layout>
     <x-slot name="title">Edit Dokumen</x-slot>
 
-    <form action="{{route('administrator.kelola.dokumen.update', $dokumen->id)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('administrator.kelola.inovasi.dokumen.update', $dokumen->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
