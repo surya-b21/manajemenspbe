@@ -16,6 +16,13 @@
     <link rel="stylesheet" href="{{asset('template2/assets/css/animated.css')}}">
     <link rel=" stylesheet" href="{{asset('template2/assets/css/owl.css')}}">
     <style>
+        .crop-thumb
+        {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            object-position: 50% 50%;
+        }
     </style>
 </head>
 
@@ -185,36 +192,49 @@
             </div>
         </div>
         <div class="row">
-            @foreach ($ref_tag as $reff)
-                @foreach ($inovasi as $ino_reff)
-                    @if ($reff['id_inovasi'] == $ino_reff['id'])
-                        <div class="col-lg-3">
-                            <div class="card mb-4" style="border-radius:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                                <form action="/inovasi/read/#" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="input-group mb-3">
-                                        <button class="" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
-                                            <img class="card-img-top" src="{{$ino_reff['poster_path']}}" alt="..."  style="border-top-left-radius:15px; border-top-right-radius:15px;"/>
-                                        </button>
-                                    </div>
-                                </form>
-                                <div class="card-body">
-                                    <div class="small text-muted">{{$ino_reff['tgl_upload']}}</div>
-                                    <h2 class="card-title h4">{{$ino_reff['nama']}}</h2>
-                                    <p class="card-text">
-                                        {!! Str::limit($ino_reff['deskripsi'], 80, '...') !!}
-                                    </p>
-                                    <form action="/inovasi/read/#" method="post" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="input-group mb-3">
-                                            <button class="btn w-100 mt-2 rounded" style="background-color: #189ad3; color:white;" type="submit" name="submit">
-                                                Selengkapnya →
-                                            </button>
+            @foreach ($esmart as $esmart_tag)
+                @foreach ($ref_tag as $ref_tag1)        
+                    @if ($esmart_tag['id'] == $ref_tag1['id_esmart'])
+                        <?php $saring = App\Http\Controllers\Inovasi\InovasiController::saring($ref_tag1['id_esmart']);?>
+                        @foreach ($saring as $saring1)
+                            @foreach ($inovasi2 as $ino1)
+                                @if ($ino1['id'] == $saring1['id_inovasi'])
+                                    <div class="col-lg-3">
+                                        <div class="card mb-4" style="border-radius:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                            <form action="/inovasi/read/{{$ino1['nama']}}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="input-group mb-3">
+                                                        <input type="hidden" name="id_smart" value="{{$id_smart}}">
+                                                        <input type="hidden" name="id_kat_um" value="{{$id_ku}}">
+                                                        <input type="hidden" name="id_inovasi" value="{{$ino1['id']}}">
+                                                    <button class="w-100" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
+                                                        <img class="card-img-top crop-thumb" src="{{$ino1['poster_path']}}" alt="..."  style="border-top-left-radius:15px; border-top-right-radius:15px;"/>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <div class="card-body">
+                                                <div class="small text-muted">{{$ino1['tgl_upload']}}</div>
+                                                <h2 class="card-title h4">{{$ino1['nama']}}</h2>
+                                                <p class="card-text">
+                                                    {!! Str::limit($ino1['deskripsi'], 80, '...') !!}
+                                                </p>
+                                                <form action="/inovasi/read/{{$ino1['nama']}}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="input-group mb-3">
+                                                        <input type="hidden" name="id_smart" value="{{$id_smart}}">
+                                                        <input type="hidden" name="id_kat_um" value="{{$id_ku}}">
+                                                        <input type="hidden" name="id_inovasi" value="{{$ino1['id']}}">
+                                                        <button class="btn w-100 mt-2 rounded" style=" background-color:#189ad3; color:white;" type="submit" name="submit">
+                                                            Selengkapnya →
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endforeach
                     @endif
                 @endforeach
             @endforeach
