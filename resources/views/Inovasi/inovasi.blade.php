@@ -64,6 +64,9 @@
         .kat_um.active button{
             color: white!important;
         }
+        .kat_um button:hover{
+            color: white!important;
+        }
         .crop-thumb
         {
             width: 100%;
