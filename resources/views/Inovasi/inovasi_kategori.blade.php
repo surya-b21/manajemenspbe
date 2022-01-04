@@ -9,13 +9,20 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="">
-    </style>
+
     <!-- <title>Hello, world!</title> -->
     <link rel="stylesheet" href="{{asset('template2/assets/css/fontawesome.css')}}">
     <link rel="stylesheet" href="{{asset('template2/assets/css/templatemo-digimedia-v1.css')}}">
     <link rel="stylesheet" href="{{asset('template2/assets/css/animated.css')}}">
     <link rel=" stylesheet" href="{{asset('template2/assets/css/owl.css')}}">
-
+    <style>
+        .crop-thumb
+        {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            object-position: 50% 50%;
+        }
     </style>
 </head>
 
@@ -107,17 +114,14 @@
                                         <input type="hidden" name="id_smart" value="{{$id_smart_0}}">
                                         <input type="hidden" name="id_kat_um" value="{{$id_ku_0}}">
                                         <input type="hidden" name="id_inovasi" value="{{$data['id']}}">
-                                        <button class="" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
-                                            <img class="card-img-top" src="{{$data['poster_path']}}" alt="..."  style="border-top-left-radius:15px; border-top-right-radius:15px;"/>
+                                        <button class="w-100" style="border:none; background:none; border-top-left-radius:15px; border-top-right-radius:15px;" type="submit" name="submit">
+                                            <img class="card-img-top crop-thumb" src="{{$data['poster_path']}}" alt="..."  style="border-top-left-radius:15px; border-top-right-radius:15px;"/>
                                         </button>
                                     </div>
                                 </form>
                                 <div class="card-body">
                                     <div class="small text-muted">{{$data['tgl_upload']}}</div>
                                     <h2 class="card-title h4">{{ Str::limit($data['nama'], 10, '...') }}</h2>
-                                    <p class="card-text">
-                                        {!! Str::limit($data['deskripsi'], 80, '...') !!}
-                                    </p>
                                     <form action="/inovasi/read/{{$data['nama']}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="input-group mb-3">
