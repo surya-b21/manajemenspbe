@@ -97,12 +97,12 @@ Route::get('/kategori/{kategori:id}', function (Kategori $kategori) {
 
 // <=====================================================================================================================>
 // INOVASI
-Route::get('/ino', [InovasiC::class, 'inovasi']);
+Route::get('/inovasi', [InovasiC::class, 'inovasi']);
 Route::get('/', [InovasiC::class, 'index']);
 Route::get('/home', [InovasiC::class, 'index']);
-Route::post('/inovasi/kategori', [InovasiC::class, 'kategori']);
+Route::get('/inovasi/kategori/{id_esmart}/{id_ku}', [InovasiC::class, 'kategori']);
 Route::post('/inovasi/read/{nama}', [InovasiC::class, 'read']);
-Route::post('/inovasi/kategori/search', [InovasiC::class, 'cari_kategori']);
+Route::get('/inovasi/kategori/search/{id_esmart}/{id_ku}', [InovasiC::class, 'cari_kategori']);
 // 
 // <=====================================================================================================================>
 
