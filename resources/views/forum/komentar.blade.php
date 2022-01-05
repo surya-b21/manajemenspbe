@@ -62,7 +62,7 @@
                     <a href="{{ url('/forum/'.$t->kategori->id) }}">{{ $t->kategori->kategori }}</a></span>
                 <!-- <h5 class="card-title">Card title</h5> -->
 
-                <p class="lead text-dark"> {!! $t->isi !!}</p>
+                <p class=""> {!! $t->isi !!}</p>
             </div>
             @endforeach
         </div>

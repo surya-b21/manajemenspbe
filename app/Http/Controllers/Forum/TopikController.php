@@ -18,7 +18,7 @@ class TopikController extends Controller
 
     public function index($id)
     {
-        $data = Topik::where('id_kf', $id)->paginate(5);
+        $data = Topik::where('id_kf', $id)->paginate(4);
         $topikpost = Topik::all();
         $data2 = Kategori::all();
         $data3 = User::all();
