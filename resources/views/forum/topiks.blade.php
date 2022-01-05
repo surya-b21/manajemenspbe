@@ -43,73 +43,94 @@
 
     <div class="row">
         <div class="col-lg-10 mb-3 mt-3">
-
-    @foreach ($tampil['kf'] as $tampil['kf'])
-    @foreach ($tampil['topik'] as $tampil['t'])
-
-        <div class="container">
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-md-3 mt-3 mb-3">
-                        <img src="{{Storage::url($tampil['t']->foto_path)}}" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <p class="card-text">
-                                <a href="{{url('/forum/'.$tampil['kf']->id)}}">
-                                    <small>{{ $tampil['kf']->kategori }}</small>
-                                </a>
-
-                                <a href="{{url('/topik/'.$tampil['t']->id)}}">
-                                    <h5 class="card-title">
-                                        <i class="fa fa-send" style="font-size:14px; color:blue"></i>
-                                        {{$tampil['t']->judul}}
-                                        <input name="idtopik" type="hidden" class="form-control" value="<?= $tampil['t']['id'] ?>">
-                                    </h5>
-                                </a>
-
-                                <small>{!! Str::limit($tampil['t']->isi, 100, '...') !!} 
-                                    <a href="{{url('/topik/'.$tampil['t']->id)}}">Selengkapnya</a>
-                                </small>
-                                <br>
-                                <span class="badge rounded-pill bg-light" style="font-size:11px;color:grey">
-                                    <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
-                                    {{ $tampil['t']->created_at->isoFormat('DD MMMM YYYY') }}</span>
-                                <?php
-                                for ($a = 0; $a < count($tampil['user']); $a++) {
-                                    // echo $penulis[$i]["id"];
-                                    if ($tampil['user'][$a]["id"] == $tampil['t']->id_user) {
-
-                                ?>
-                                    <span class="badge rounded-pill bg-light " style="font-size:11px;color:grey">
-                                        <i class="fa fa-user" style="font-size:10px;color:palevioletred"></i>
-                                        <?= $tampil['user'][$a]["name"]; ?></span>
-                                <?php
-                                    }
-                                }
-                                ?>
-                                <?php
-                                $jumlahpost = 0;
-                                for ($b = 0; $b < count($tampil['jumlahkomen']); $b++) {
-                                    if ($tampil['jumlahkomen'][$b]['id_topik'] == $tampil['t']->id) {
-                                        $jumlahpost++;
-                                    }
-                                } ?>
-                                <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
-                                    <i class="fa fa-book" style="font-size:10px; color:goldenrod"></i>
-                                    <?= $jumlahpost;
-                                    ?> komentar</span>
-                            </p>
+    
+            {{-- @foreach ($tampil['kf'] as $tampil['kf']) --}}
+            @foreach ($tampil['topik'] as $tampil['t'])
+        
+                <div class="container">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-3 mt-3 mb-3">
+                                <img src="{{Storage::url($tampil['t']->foto_path)}}" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        {{-- <a href="{{url('/forum/'.$tampil['kf']->id)}}">
+                                            <small>{{ $tampil['kf']->kategori }}</small>
+                                        </a> --}}
+                                        <?php
+                                        for ($a = 0; $a < count($tampil['kf']); $a++) {
+                                            if ($tampil['kf'][$a]["id"] == $tampil['t']->id_kf) {
+                                        ?>
+                                        {{-- <small><?= $tampil['kf'][$a]["kategori"]; ?></small> --}}
+                                            <a href="{{url('/forum/'.$tampil['kf'][$a]["id"])}}">
+                                                <span class="badge rounded-pill bg-light " style="font-size:11px;color:grey">
+                                                <?= $tampil['kf'][$a]["kategori"]; ?></span>
+                                            </a>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                        
+                                        <a href="{{url('/topik/'.$tampil['t']->id)}}">
+                                            <h5 class="card-title">
+                                                <i class="fa fa-send" style="font-size:14px; color:blue"></i>
+                                                {{$tampil['t']->judul}}
+                                                <input name="idtopik" type="hidden" class="form-control" value="<?= $tampil['t']['id'] ?>">
+                                            </h5>
+                                        </a>
+        
+                                        <small>{!! Str::limit($tampil['t']->isi, 100, '...') !!} 
+                                            <a href="{{url('/topik/'.$tampil['t']->id)}}">Selengkapnya</a>
+                                        </small>
+                                        <br>
+                                        <span class="badge rounded-pill bg-light" style="font-size:11px;color:grey">
+                                            <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
+                                            {{ $tampil['t']->created_at->isoFormat('DD MMMM YYYY') }}</span>
+                                        <?php
+                                        for ($a = 0; $a < count($tampil['user']); $a++) {
+                                            // echo $penulis[$i]["id"];
+                                            if ($tampil['user'][$a]["id"] == $tampil['t']->id_user) {
+        
+                                        ?>
+                                            <span class="badge rounded-pill bg-light " style="font-size:11px;color:grey">
+                                                <i class="fa fa-user" style="font-size:10px;color:palevioletred"></i>
+                                                <?= $tampil['user'][$a]["name"]; ?></span>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                        <?php
+                                        $jumlahpost = 0;
+                                        for ($b = 0; $b < count($tampil['jumlahkomen']); $b++) {
+                                            if ($tampil['jumlahkomen'][$b]['id_topik'] == $tampil['t']->id) {
+                                                $jumlahpost++;
+                                            }
+                                        } ?>
+                                        <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
+                                            <i class="fa fa-book" style="font-size:10px; color:goldenrod"></i>
+                                            <?= $jumlahpost;
+                                            ?> komentar</span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    @endforeach
-    @endforeach
-
+            @endforeach
+            {{-- @endforeach --}}
+    
+    <nav aria-label="Pagination">
+        <hr class="my-0" />
+        <ul class="pagination justify-content-center my-4">
+            {{ $tampil['topik']->links()}}
+            {{-- {{ $$tampil['kf']->links()}} --}}
+        </ul>
+    </nav>
 </div>
-{{-- </div> --}}
+</div>
+</div>
 
 </body>
 

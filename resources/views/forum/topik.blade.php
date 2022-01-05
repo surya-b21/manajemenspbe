@@ -16,15 +16,15 @@
 
 {{-- @if ($tampil->count()) --}}
 
-<div class="container" style="padding-bottom:50px; padding-top:150px;">
+<div class="container" style="padding-bottom:0px; padding-top:150px;">
     {{-- <h1 class="mb-3"> Topik tentang {{ $tampil['kf']->kategori }} </h1> --}}
 
     <div class="row justify-content-center mb-1 mt-3">
         <div class="col-md-7">
             <form action="/topiks" method="" enctype="multipart/form-data"> @csrf
-                {{-- @if (request('kategori'))
+                @if (request('kategori'))
                     <input type="hidden" name="kategori" value="{{ request('kategori') }}">
-                @endif --}}
+                @endif
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Masukkan keyword pencarian.." name="search" value="{{ request('search') }}">
                     <button class="btn btn-outline-primary" type="submit" name="submit">Search</button>
@@ -154,11 +154,16 @@
 {{-- </div> --}}
 </div>
 
+
 {{-- @else
     <p class="text-center fs-4">No post found.</p>
 @endif --}}
-<br>
-<br>
+<nav aria-label="Pagination">
+    <hr class="my-0" />
+    <ul class="pagination justify-content-center my-4">
+        {{ $tampil['topik']->links()}}
+    </ul>
+</nav>
 
 </div>
 </div>
