@@ -14,7 +14,10 @@ use App\Http\Controllers\Administrator\VersiController;
 use Illuminate\Support\Facades\Route;
 use Hexters\Ladmin\Routes\Ladmin;
 
-use App\Http\Controllers\Inovasi\InoController as InovasiC;
+use App\Http\Controllers\Inovasi\InoController;
+use App\Http\Controllers\Inovasi\SmartController;
+use App\Http\Controllers\Inovasi\UrusanController;
+use App\Http\Controllers\Inovasi\KontenInovasiController;
 
 use App\Http\Controllers\Forum\KategoriController;
 use App\Http\Controllers\Forum\TopikController;
@@ -45,15 +48,15 @@ Ladmin::route(function () {
         Route::resource('/elemen-smart', ElemenSmartController::class);
         Route::resource('/developer', DeveloperController::class);
         Route::resource('/inovasi', InovasiController::class);
-        Route::prefix('inovasi')->as('inovasi.')->group(function() {
+        Route::prefix('inovasi')->as('inovasi.')->group(function () {
             Route::get('/dokumen/index/{id}', [DokumenController::class, 'index'])->name('dokumen.index');
             Route::get('/dokumen/get/{id}', [DokumenController::class, 'getDokumen'])->name('dokumen.get');
             Route::get('/dokumen/create/{id}', [DokumenController::class, 'create'])->name('dokumen.create');
-            Route::resource('/dokumen', DokumenController::class)->except(['index','create']);
+            Route::resource('/dokumen', DokumenController::class)->except(['index', 'create']);
             Route::get('/versi/index/{id}', [VersiController::class, 'index'])->name('versi.index');
             Route::get('/versi/get/{id}', [VersiController::class, 'getVersi'])->name('versi.get');
             Route::get('/versi/create/{id}', [VersiController::class, 'create'])->name('versi.create');
-            Route::resource('/versi', VersiController::class)->except(['index','create']);
+            Route::resource('/versi', VersiController::class)->except(['index', 'create']);
         });
         Route::resource('/kategori-forum', KategoriForumController::class);
         Route::resource('/topik-forum', TopikForumController::class);
@@ -86,7 +89,6 @@ Route::middleware('guest')->group(function () {
     //route yang ga butuh login taruh disini
 
 });
-
 
 Route::post('/profil/update/{id}', [ProfilController::class, 'update']);
 
@@ -121,12 +123,24 @@ Route::get('/topik/{id}', [KomentarController::class, 'show']);
 // Route::get('/inovasi/read/{nama}', [InovasiC::class, 'read']);
 // Route::post('/inovasi/kategori/search', [InovasiC::class, 'cari_kategori']);
 
-Route::get('/inovasi', [InovasiC::class, 'inovasi']);
-Route::get('/', [InovasiC::class, 'index']);
-Route::get('/home', [InovasiC::class, 'index']);
-Route::get('/inovasi/kategori/{id_esmart}/{id_ku}', [InovasiC::class, 'kategori']);
-Route::post('/inovasi/read/{nama}', [InovasiC::class, 'read']);
-Route::get('/inovasi/kategori/search/{id_esmart}/{id_ku}', [InovasiC::class, 'cari_kategori']);
+Route::get('/inov', [SmartController::class, 'allCategories']);
+Route::get('/inov/isismart/{id}', [
+    SmartController::class, 'select'
+]);
+Route::get('/inov/urusan/{id}', [
+    SmartController::class, 'urusan'
+]);
+Route::get('/inov/tahun/{id}', [
+    SmartController::class, 'tahun'
+]);
+Route::get('/inov/konten/{id}', [KontenInovasiController::class, 'show']);
+
+// Route::get('/ino', [InoController::class, 'inovasi']);
+Route::get('/', [InoController::class, 'index']);
+// Route::get('/home', [InoController::class, 'index']);
+// Route::get('/ino/kategori/{id_esmart}/{id_ku}', [InoController::class, 'kategori']);
+// Route::post('/ino/read/{nama}', [InoController::class, 'read']);
+// Route::get('/ino/kategori/search/{id_esmart}/{id_ku}', [InoController::class, 'cari_kategori']);
 
 //
 // <=====================================================================================================================>

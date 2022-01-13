@@ -15,22 +15,29 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class InovasiController extends Controller
+class InoController extends Controller
 {
+    public function __construct()
+    {
+        $this->kategori_umum = new kategori_umum();
+        $this->inovasi = new inovasi();
+    }
     public function index()
     {
         $topik = Topik::all();
         $ku = kategori_umum::paginate(5);
         $esmart = ElemenSmart::paginate(6);
-        $inovasi = inovasi::all();
+        $inovasi =  $this->inovasi->joinSmart();
         $ks = RefInovasiEsmart::all();
+        $joinUrusan = $this->kategori_umum->joinUrusan();
         return view("template2.homepage", [
             "active" => "home",
             "inovasi" => $inovasi,
             "ku" => $ku,
             "ks" => $ks,
             'topik' => $topik,
-            "esmart" => $esmart
+            "esmart" => $esmart,
+            'joinUrusan' => $joinUrusan
         ]);
     }
 

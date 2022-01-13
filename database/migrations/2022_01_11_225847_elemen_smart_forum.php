@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKategoriUmumTable extends Migration
+class ElemenSmartForum extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateKategoriUmumTable extends Migration
      */
     public function up()
     {
-        Schema::create('kategori_umum', function (Blueprint $table) {
+        //
+        Schema::create('elemen_smart_forum', function (Blueprint $table) {
             $table->id();
-            $table->string('kategori');
-            // $table->unsignedBigInteger('id_smart')->after("kategori");
-            // $table->foreign('id_smart')->references('id')->on('elemen_smart_forum')->onDelete('cascade')->onUpdate('cascade');;
+            $table->string('element');
+            $table->text('deskripsi');
             $table->integer('create_by')->nullable();
             $table->integer('update_by')->nullable();
             $table->timestamps();
@@ -31,6 +31,7 @@ class CreateKategoriUmumTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategori_umum_');
+        //
+        Schema::dropIfExists('elemen_smart');
     }
 }
