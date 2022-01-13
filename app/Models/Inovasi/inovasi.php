@@ -22,8 +22,9 @@ class inovasi extends Model
     { //join inovasi, smart, urusan/kkategori umum
         $joinSmart = DB::table('inovasi')
             ->leftJoin('kategori_umum', 'inovasi.id_ku', '=', 'kategori_umum.id')
+            ->leftJoin('opd', 'inovasi.id_opd', '=', 'opd.id')
             ->leftJoin('elemen_smart_forum', 'kategori_umum.id_smart', '=', 'elemen_smart_forum.id')
-            ->select('inovasi.*', 'inovasi.id as id_ino', 'kategori_umum.id as idku', 'kategori_umum.kategori', 'elemen_smart_forum.element', 'elemen_smart_forum.id as id_smart')
+            ->select('inovasi.*', 'inovasi.id as id_ino', 'kategori_umum.id as idku', 'kategori_umum.kategori', 'elemen_smart_forum.element', 'elemen_smart_forum.id as id_smart', 'opd.nama_opd')
             ->get('*');
         return $joinSmart;
     }

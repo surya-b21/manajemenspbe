@@ -5,6 +5,12 @@ namespace App\Models\Inovasi;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+/*
+----------------------------------------------------------------------------------------------
+                                        TABEL INI TIDAK DIPAKAI
+----------------------------------------------------------------------------------------------
+
+*/
 
 class ref_inovasi_esmart extends Model
 {

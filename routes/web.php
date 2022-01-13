@@ -90,7 +90,7 @@ Route::middleware('guest')->group(function () {
 
 });
 
-Route::post('/profil/update/{id}', [ProfilController::class, 'update']);
+Route::post('/profil/halamanupdate/{id}', [ProfilController::class, 'update']);
 
 // FORUM
 Route::get('/forum', [KategoriController::class, 'allCategories']);
