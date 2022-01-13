@@ -18,7 +18,7 @@ class TopikController extends Controller
 
     public function index($id)
     {
-        $data = Topik::all()->where('id_kf', $id);
+        $data = Topik::where('id_kf', $id)->paginate(4);
         $topikpost = Topik::all();
         $data2 = Kategori::all();
         $data3 = User::all();
@@ -28,7 +28,6 @@ class TopikController extends Controller
 
         $id = $id;
         $show = [
-            'active' => 'forum',
             'topik' => $data,
             'kf' => $data2,
             'id' => $id,
@@ -51,17 +50,18 @@ class TopikController extends Controller
         // return response()->json($show['kf'][$id]['kategori']);
     }
 
-    public function semua()
+    public function semua(Request $request)
     {
-        $topikpost = Topik::all();
+        $topikpost = Topik::paginate(5);
         $data2 = Kategori::all();
+        // $data2 = $this->Kategori->joinTopik()->where('id_topik', $id);
+        // ->where('id_ku', $id_jenis);
         $data3 = User::all();
         $komen = Komentar::all();
         $categories = Kategori::with('children')->where('parent', 0)->get();
 
         $title = '';
         $show = [
-            'active' => 'forum',
             'topik' => $topikpost,
             'kf' => $data2,
             'user' => $data3,
@@ -72,7 +72,7 @@ class TopikController extends Controller
 
         if (request('kategori')) {
             $kategori = Kategori::firstWhere('kategori', request('kategori'));
-            $title = ' by ' . $kategori->name;
+            $title = ' by ' . $kategori->kategori;
         }
 
         return view(
@@ -82,7 +82,7 @@ class TopikController extends Controller
                 'active' => 'forum',
                 'tampil' => $show,
                 'kategori' => $categories,
-                'topiks' => Topik::latest()->filter(request(['search', 'kategori']))->paginate(20)->withQueryString()
+                'topiks' => Topik::latest()->filter(request(['search', 'kategori']))->paginate(6)->withQueryString()
                 // ->get()
             ]
         );

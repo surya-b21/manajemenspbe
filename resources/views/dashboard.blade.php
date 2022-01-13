@@ -9,25 +9,24 @@
         </h2>
         <nav class="navbar navbar-light bg-white">
             <form class="container-fluid justify-content-start">
-                <div class="button">
-                    <ul class="right mr-3">
-                        <a href="http://127.0.0.1:8000/home">Home</a>
-                        <a href="http://127.0.0.1:8000/ino">Inovasi</a>
-                        <a href="http://127.0.0.1:8000/forum">Forum</a>
-                        <style media="screen">
-                            .right {
-                                float: right;
-                                display: block;
-                            }
-
-                            .button ul a {
-                                padding: 5px;
-                                background: black;
-                                color: white;
-                            }
-                        </style>
-                    </ul>
-                </div>
+            <div class="button">
+      <ul class="right">
+        <a href="http://127.0.0.1:8000/home">Home</a>
+        <a href="http://127.0.0.1:8000/ino">Inovasi</a>
+        <a href="http://127.0.0.1:8000/forum">Forum</a>
+        <style media="screen">
+        .right{
+          float: right;
+          display: block;
+        }
+          .button ul a{
+        padding: 5px;
+        background: rgb(120, 150, 12);
+          color: white;
+    }
+    </style>
+      </ul>
+    </div>
 
             </form>
         </nav>
@@ -122,41 +121,23 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <h4>Ubah?</h2>
-            <form name="newprofil" method="post" action="{{url('profil/update/'.$h['id'])}}" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Nama</label>
-                    <input type="text" class="form-control" id="name" placeholder="Masukkan nama">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Masukkan username">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Masukkan email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Alamat</label>
-                    <input type="" class="form-control" id="alamat" placeholder="Masukkan alamat">
-                </div>
-                <div class="row mb-3">
-                    <label for="" class="col-sm-2 col-form-label">Foto</label>
-                    <div class="col-sm-10">
-                        <input name="foto_path" id="foto_path" type="file" class="form-control" placeholder="">
-                    </div>
-                </div>
+               
+    <ul class="right mr-3">
+                        <a href=" {{ route('profile.edit') }}">Edit Profil</a>
+                        <style media="screen">
+                            .right {
+                                float: right;
+                                display: block;
+                            }
 
-                <button type="submit" class="btn btn-primary">Kirim</button>
-            </form>
+                            .button ul a {
+                                padding: 5px;
+                                background: black;
+                                color: white;
+                            }
+                        </style>
+                    </ul>
     </div>
-
-
-
-
     </div>
     <br />
     <br />

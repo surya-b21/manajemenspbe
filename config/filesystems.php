@@ -71,7 +71,8 @@ return [
         public_path('developer') => storage_path('app/public/developer'),
         public_path('inovasi') => storage_path('app/public/inovasi'),
         public_path('dokumen') => storage_path('app/public/dokumen'),
-        public_path('topik') => storage_path('app/public/forum'),
+        // public_path('topik') => storage_path('app/public/forum'),
+        public_path('topik') => storage_path('app/public/topik'),
         public_path('logo') => storage_path('app/public/logo')
     ],
 

@@ -1,5 +1,3 @@
-@include('template2/main')
-@include('template2/navbar')
 <!doctype html>
 <html lang="en">
 
@@ -13,24 +11,36 @@
 
     <!-- <title>Hello, world!</title> -->
 </head>
+@include('template2/main')
+@include('template2/navbar')
 
-<body>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <div class="container mt-6 shadow-sm p-3 mb-5 bg-body rounded">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+<div class="container" style="padding-bottom:25px; padding-top:150px;">
+<div>
+    {{-- <p> --}}
+        <a href="/home" style=""> Home</a> > <a href="/forum" style="">Forum</a> > 
+    {{-- </p> --}}
+</div>
+</div>
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-9 md-8">
+            <div class="card mb-4" style="border-radius:10px; ">
+                <div class="justify-content-center mt-6 p-5 mb-5" >
                 <!-- <div class=" card mb-3">
                 <div class="card-body"> -->
                 @foreach ($topik as $t)
+                {{-- <h2 class="card-title"> --}}
+                    <div class="mx-auto text-center">
+                        <figure class="figure mt-6 mb-3">
+                            {{-- <img src="{{Storage::url($t->foto_path)}}" alt=""> --}}
+                            <img src="{{Storage::url($t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300">
+                        </figure>
+                    </div>                    
                 <span style="font-size:28px;">
                     <b>{{$t->judul}}</b>
                 </span>
-                <h2 class="card-title">
-                </h2>
+                {{-- </h2> --}}
+                <br>
                 <?php
                 for ($a = 0; $a < count($user); $a++) {
                     // echo $penulis[$i]["id"];
@@ -49,28 +59,21 @@
                     {{ $t->created_at->isoFormat('DD MMMM YYYY') }}</span>
                 <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
                     <i class="fa fa-book" style="font-size:10px; color:forestgreen"></i>
-                    {{ $t->kategori->kategori }}</span>
+                    <a href="{{ url('/forum/'.$t->kategori->id) }}">{{ $t->kategori->kategori }}</a></span>
                 <!-- <h5 class="card-title">Card title</h5> -->
-                <div class="mx-auto text-center">
-                    <figure class="figure">
-                        <img src="{{Storage::url($t->foto_path)}}" alt="">
-                        {{-- <img src="{{Storage::url($t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300"> --}}
-                    </figure>
-                </div>
-                <p class="lead text-dark"> {!! $t->isi !!}</p>
-                <a href="/forum" class="btn btn-dark">Kembali ke Forum</a>
+
+                <p class=""> {!! $t->isi !!}</p>
             </div>
             @endforeach
         </div>
-    </div>
-    </div>
-    </div>
+    
 
 
-    <section>
-        <div class="container my-5 py-5 text-dark">
+
+    {{-- <section>
+        <div class="container my-5 py-5 text-dark"> --}}
             <div class="row d-flex justify-content-center">
-                <div class="col-md-12 col-lg-10 col-xl-8">
+                <div class="col-md-12 col-lg-10 col-xl-10">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h4 class="text-dark mb-0">Komentar</h4>
                         <div class="card">
@@ -90,12 +93,13 @@
                                 </figure>
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <h6 class="text-primary fw-bold mb-0">
+                                        {{-- <h6 class="text-primary fw-bold mb-0"> --}}
+                                        <h6 class="text-primary mb-0">
                                             <span class="text-dark ms-2">{{$k->name}}</span> <br /><span class="badge rounded-pill bg-light" style="font-size:10px;color:grey">
                                                 <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
                                                 {{ $k->created_at }}</span>
+                                                {{-- {{ $k->created_at->isoFormat('DD MMMM YYYY') }}</span> --}}
                                             <p class="text-dark ms-2">{{$k->isi}}</p>
-
                                         </h6>
                                         <?php
                                         if ($h != null) {
@@ -116,13 +120,14 @@
                         </div>
                     </div>
                     @endforeach
-                    <br />
+                    
                     <?php
                     if ($h != null) { ?>
                         <div class="w-100">
                             <form name=" newtopik" method="post" action="{{url('komentar/add')}}">
                                 @csrf
-                                <div class="row">
+                                {{-- <div class="row"> --}}
+                                <div class="card mb-3">
                                     <textarea class="form-control" id="isi" name="isi" rows="4" style="background: #fff;" placeholder="komentar baru"></textarea>
                                     <!-- <input type="text" name="isi" class="form-control" placeholder="Komentar"> -->
                                     <?php if (Auth::check()) : ?>
@@ -146,12 +151,12 @@
                 </div>
             </div>
         </div>
-        </div>
-    </section>
+        {{-- </div>
+    </section> --}}
+    </div>
     </div>
     <!-- End blog comments -->
     </div>
-    </section>
 </body>
 <footer>
     @include('template2/footer')
