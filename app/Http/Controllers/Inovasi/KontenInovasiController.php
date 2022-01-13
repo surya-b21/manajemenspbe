@@ -25,20 +25,22 @@ class KontenInovasiController extends Controller
     {
         $data = Inovasi::all()->where('id', $id);
         $data3 = User::all();
-        $categories = kategori_smart::all();
+        $smart = kategori_smart::all();
         $versi = $this->Inovasi->versiIno()->where('id', $id);
         $dokumen = $this->Inovasi->dokumenIno()->where('id', $id);
         $joinUrusan = $this->kategori_umum->joinUrusan();
+        $ku = $this->kategori_umum->all();
         return view(
             "inovasi.konteninovasi",
             [
                 'active' => 'forum',
-                'smart' => $categories,
+                'smart' => $smart,
                 'inovasi' => $data,
                 'user' => $data3,
                 'versi' => $versi,
                 'dokumen' => $dokumen,
-                'joinUrusan' => $joinUrusan
+                'joinUrusan' => $joinUrusan,
+                'ku' => $ku,
             ],
         );
         // return $versi;

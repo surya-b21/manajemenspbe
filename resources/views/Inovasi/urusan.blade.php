@@ -69,13 +69,9 @@
                             <img src="{{Storage::url($inoSmart[$d]->poster_path)}}" class="w-100" alt="<?= $inoSmart[$d]->poster_path ?>">
                         </div>
                         <div class=" card-body">
-                            <?php for ($e = 0; $e < count($inoSmart); $e++) {
-                                if ($inoSmart[$e]->id_ino == $inovasi[$d]->id) {
-                            ?>
-                                    <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$e]->kategori ?></span>
-                                <?php } ?>
-                            <?php
-                            } ?>
+                            <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$d]->element ?></span>
+                            <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$d]->kategori ?></span>
+
                             <h5 class="card-title"><?= $inoSmart[$d]->nama ?></h5>
                             <p class="card-text"><?= substr($inoSmart[$d]->deskripsi, 0, 50) . "..." ?></p>
                         </div>

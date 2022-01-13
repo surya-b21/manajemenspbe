@@ -71,6 +71,7 @@
                             <img src="{{Storage::url($inovasi[$d]->poster_path)}}" class="w-100" alt="<?= $inovasi[$d]->poster_path ?>">
                         </div>
                         <div class=" card-body">
+                            <span class="badge rounded-pill bg-info text-dark"><?= $inovasi[$d]->element ?></span>
                             <span class="badge rounded-pill bg-info text-dark"><?= $inovasi[$d]->kategori ?></span>
                             <h5 class="card-title"><?= $inovasi[$d]->nama ?></h5>
                             <p class="card-text"><?= substr($inovasi[$d]->deskripsi, 0, 50) . "..." ?></p>

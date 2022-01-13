@@ -138,6 +138,7 @@
                                         <div class="card bg-image hover-zoom">
                                             <img src="{{Storage::url($inovasi[$i]->poster_path)}}" class="card-img-top" alt="...">
                                             <div class="card-body">
+                                                <span class="badge rounded-pill bg-info text-dark"><?= $inovasi[$i]->element ?></span>
                                                 <span class="badge rounded-pill bg-info text-dark"><?= $inovasi[$i]->kategori ?></span>
 
                                                 <h5 class="" style="font-family:sans-serif;letter-spacing: 1px;

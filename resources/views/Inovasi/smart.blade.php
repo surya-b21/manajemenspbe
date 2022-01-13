@@ -119,6 +119,7 @@ $h = "\n\n";
                     <?php for ($e = 0; $e < count($inoSmart); $e++) {
                         if ($inoSmart[$e]->id_ino == $inovasi[$d]->id) {
                     ?>
+                            <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$d]->element ?></span>
                             <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$e]->kategori ?></span>
                     <?php }
                     } ?>

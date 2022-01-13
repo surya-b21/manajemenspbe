@@ -38,6 +38,12 @@
                             <img src="{{Storage::url($t->poster_path)}}" class="figure-img rounded text-center" alt="" width="600" height="300">
                         </figure>
                     </div>
+                    <?php for ($b = 0; $b < count($joinUrusan); $b++) { ?>
+                        <?php if ($joinUrusan[$b]->id_ku == $t->id_ku) { ?>
+                            <span class="badge rounded-pill bg-info text-dark"><?= $joinUrusan[$b]->element ?></span>
+                            <span class="badge rounded-pill bg-info text-dark"><?= $joinUrusan[$b]->kategori ?></span><br />
+                        <?php } ?>
+                    <?php } ?>
                     <span style="font-size:28px;">
                         <b>{{$t->nama}}</b>
                     </span>
