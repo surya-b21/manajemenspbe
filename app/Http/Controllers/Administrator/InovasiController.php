@@ -135,8 +135,11 @@ class InovasiController extends Controller
         ladmin()->allow('administrator.kelola.inovasi.show');
 
         $inovasi = DB::table('inovasi')->where('id', $id)->get()->first();
+        $kategori = DB::table('kategori_umum')->where('id', $inovasi->id_ku)->get()->first();
+        $id_smart = DB::table('kategori_umum')->select('id_smart')->where('id', $inovasi->id_ku)->first();
+        $smart = DB::table('elemen_smart_forum')->get()->toArray();
         // $esmart = DB::table('ref_inovasi_esmart')->where('id_inovasi', $id)->get()->toArray();
-        return view('vendor.ladmin.inovasi.show', compact(['inovasi']));
+        return view('vendor.ladmin.inovasi.show', compact(['inovasi'], ['kategori'], ['smart'], ['id_smart']));
     }
 
     /**
