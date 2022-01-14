@@ -29,8 +29,8 @@
                         <td><strong>Kategori Umum</strong></td>
                         <td>
                             @php
-                                $kategori_umum = DB::table('kategori_umum')->select('kategori')->where('id',$inovasi->id_ku)->first();
-                                echo $kategori_umum->kategori;
+                            $kategori_umum = DB::table('kategori_umum')->select('kategori')->where('id',$inovasi->id_ku)->first();
+                            echo $kategori_umum->kategori;
                             @endphp
                         </td>
                     </tr>
@@ -38,10 +38,8 @@
                         <td><strong>Elemen Smart</strong></td>
                         <td>
                             @php
-                                foreach($esmart as $data) {
-                                    $elemen = DB::table('elemen_smart')->select('element')->where('id',$data->id_esmart)->first();
-                                    echo '<span class="badge bg-info">'.$elemen->element.'</span> ';
-                                }
+                            $elemen = DB::table('elemen_smart_forum')->select('element')->where('id',$kategori->id_smart)->first();
+                            echo '<span class="badge bg-info">'.$elemen->element.'</span> ';
                             @endphp
                         </td>
                     </tr>
