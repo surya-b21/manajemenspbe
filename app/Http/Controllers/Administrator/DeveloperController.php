@@ -8,6 +8,9 @@ use Hexters\Ladmin\Exceptions\LadminException;
 use Illuminate\Http\Request;
 use App\Models\Developer;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Versi;
+use Illuminate\Support\Facades\DB;
+use App\Models\Inovasi\inovasi;
 
 class DeveloperController extends Controller
 {
@@ -45,24 +48,25 @@ class DeveloperController extends Controller
     {
         ladmin()->allow('administrator.kelola.developer.create');
 
-        $request->validate([
-            'nama_dev' => 'required',
-            'alamat_dev' => 'required',
-            'npwp_dev' => 'required',
-            'telepon_dev' => 'required',
-            'foto_dev_path' => 'required|mimes:png,jpg,jpeg|max:2048'
-        ],
-        [
-            'required' => ':attribute harus diisi!!',
-            'mimes' => 'format file harus png,jpg,jpeg',
-            'max' => 'ukuran file maksimal 2MB'
-        ]);
+        $request->validate(
+            [
+                'nama_dev' => 'required',
+                'alamat_dev' => 'required',
+                'npwp_dev' => 'required',
+                'telepon_dev' => 'required',
+                'foto_dev_path' => 'required|mimes:png,jpg,jpeg|max:2048'
+            ],
+            [
+                'required' => ':attribute harus diisi!!',
+                'mimes' => 'format file harus png,jpg,jpeg',
+                'max' => 'ukuran file maksimal 2MB'
+            ]
+        );
 
         try {
-            if ($request->file())
-            {
-                $fileName = $request->nama_dev.'_'.$request->npwp_dev.'.'.$request->file('foto_dev_path')->extension();
-                $filePath = Storage::putFileAs('public/developer',$request->file('foto_dev_path'),$fileName);
+            if ($request->file()) {
+                $fileName = $request->nama_dev . '_' . $request->npwp_dev . '.' . $request->file('foto_dev_path')->extension();
+                $filePath = Storage::putFileAs('public/developer', $request->file('foto_dev_path'), $fileName);
 
                 $fileModel = new Developer;
                 $fileModel->nama_dev = $request->nama_dev;
@@ -98,7 +102,15 @@ class DeveloperController extends Controller
         ladmin()->allow('administrator.kelola.developer.show');
 
         $data['developer'] = Developer::findOrFail($id);
-        return view('vendor.ladmin.developer.show',$data);
+
+        // menampilkan aplikasi" yg dibuat developer
+        $data['idversi'] = DB::table('versi')->where('id_dev', $id)->get()->first();
+        $data['versi'] = DB::table('versi')->where('id_dev', $id)->get()->toArray();
+        $data['inovasi'] = Inovasi::all();
+        $data['id'] = $id;
+        // $data['inovasidev'] = DB::table('inovasi')->where('id', $data['idversi']->id_inovasi)->get()->toArray();
+
+        return view('vendor.ladmin.developer.show', $data);
     }
 
     /**
@@ -126,24 +138,25 @@ class DeveloperController extends Controller
     {
         ladmin()->allow('administrator.kelola.developer.update');
 
-        $request->validate([
-            'nama_dev' => 'required',
-            'alamat_dev' => 'required',
-            'npwp_dev' => 'required',
-            'telepon_dev' => 'required',
-            'foto_dev_path' => 'required|mimes:png,jpg,jpeg|max:2048'
-        ],
-        [
-            'required' => ':attribute harus diisi!!',
-            'mimes' => 'format file harus png,jpg,jpeg',
-            'max' => 'ukuran file maksimal 2MB'
-        ]);
+        $request->validate(
+            [
+                'nama_dev' => 'required',
+                'alamat_dev' => 'required',
+                'npwp_dev' => 'required',
+                'telepon_dev' => 'required',
+                'foto_dev_path' => 'required|mimes:png,jpg,jpeg|max:2048'
+            ],
+            [
+                'required' => ':attribute harus diisi!!',
+                'mimes' => 'format file harus png,jpg,jpeg',
+                'max' => 'ukuran file maksimal 2MB'
+            ]
+        );
 
         try {
-            if ($request->file())
-            {
-                $fileName = $request->nama_dev.'_'.$request->npwp_dev.'.'.$request->file('foto_dev_path')->extension();
-                $filePath = Storage::putFileAs('public/developer',$request->file('foto_dev_path'),$fileName);
+            if ($request->file()) {
+                $fileName = $request->nama_dev . '_' . $request->npwp_dev . '.' . $request->file('foto_dev_path')->extension();
+                $filePath = Storage::putFileAs('public/developer', $request->file('foto_dev_path'), $fileName);
 
                 $fileModel = Developer::findOrFail($id);
                 $fileModel->nama_dev = $request->nama_dev;
@@ -193,6 +206,5 @@ class DeveloperController extends Controller
                 $e->getMessage()
             ]);
         }
-
     }
 }

@@ -24,6 +24,29 @@
                         <td><strong>Foto</strong></td>
                         <td><img src="{{Storage::url($developer->foto_dev_path)}}" alt="foto {{$developer->nama_dev}}" width="50%" height="50%"></td>
                     </tr>
+                    <tr>
+                        <td><strong>Aplikasi</strong></td>
+                        <td>
+                            <?php foreach ($versi as $versi) {
+                                if ($versi->id_dev == $id) {
+
+                            ?>
+
+                                    <?php for ($i = 0; $i < count($inovasi); $i++) {
+                                        if ($versi->id_inovasi == $inovasi[$i]->id) {
+                                    ?>
+                                            {{$inovasi[$i]->nama}} ->
+                                    <?php }
+                                    } ?>
+                                    {{$versi->nama}}
+                                    <br />
+
+                            <?php
+                                }
+                            }
+                            ?>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
