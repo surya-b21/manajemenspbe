@@ -16,6 +16,7 @@ class CreateKategoriUmumTable extends Migration
         Schema::create('kategori_umum', function (Blueprint $table) {
             $table->id();
             $table->string('kategori');
+            $table->string('jenis_urusan');
             // $table->unsignedBigInteger('id_smart')->after("kategori");
             // $table->foreign('id_smart')->references('id')->on('elemen_smart_forum')->onDelete('cascade')->onUpdate('cascade');;
             $table->integer('create_by')->nullable();

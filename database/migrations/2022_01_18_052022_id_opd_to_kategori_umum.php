@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIdDevToVersiTable extends Migration
+class IdOpdToKategoriUmum extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AddIdDevToVersiTable extends Migration
      */
     public function up()
     {
-        Schema::table('versi', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_dev')->after('status');
-            $table->foreign('id_dev')->references('id')->on('developer')->onDelete('cascade')->onUpdate('cascade');
+        Schema::table('kategori_umum', function (Blueprint $table) {
+            //
+            $table->unsignedBigInteger('id_opd')->after("kategori");
+            $table->foreign('id_opd')->references('id')->on('opd')->onDelete('cascade')->onUpdate('cascade');;
         });
     }
 
@@ -26,7 +27,7 @@ class AddIdDevToVersiTable extends Migration
      */
     public function down()
     {
-        Schema::table('versi', function (Blueprint $table) {
+        Schema::table('kategori_umum', function (Blueprint $table) {
             //
         });
     }

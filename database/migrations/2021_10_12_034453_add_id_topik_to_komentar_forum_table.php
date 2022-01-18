@@ -15,9 +15,9 @@ class AddIdTopikToKomentarForumTable extends Migration
     {
         Schema::table('komentar_forum', function (Blueprint $table) {
             $table->unsignedBigInteger('id_user')->after('isi');
-            $table->foreign('id_user')->references('id')->on('users')->on('opd')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('id_topik')->after('id_user');
-            $table->foreign('id_topik')->references('id')->on('topik_forum')->on('opd')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_topik')->references('id')->on('topik_forum')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
