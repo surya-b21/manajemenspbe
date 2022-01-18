@@ -64,7 +64,7 @@
 </x-ladmin-form-group>
 @endif
 
-@if (isset($opd))
+<!-- @if (isset($opd))
 <x-ladmin-form-group name="id_ku" label="OPD *">
     <x-slot name="prepend">
         {!! ladmin()->icon('user-group') !!}
@@ -76,4 +76,4 @@
         @endforeach
     </select>
 </x-ladmin-form-group>
-@endif
+@endif -->

@@ -55,37 +55,58 @@
                 ?>
             </h5>
         </div>
+
     </div>
     <br />
+    <?php
+    $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
+    for ($i = 0; $i < count($tahun); $i++) { ?>
+        <a href="{{url('/inov/tahun/'.$tahun[$i])}}">
+            <button type="button" class="btn btn-dark"><?= $tahun[$i] ?></button></a>
+    <?php } ?>
+    <br /><br />
     <!-- <div class="col-md-4"><img src="https://mdbootstrap.com/img/logo/mdb-transparent-250px.png" class="animated fadeInDown infinite" alt="Transparent MDB Logo" id="animated-img1"> <br> <code>.fadeInDown</code> </div> -->
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <?php
-        for ($d = 0; $d < count($inovasi); $d++) {
-            if ($inovasi[$d]->id_smart == $idsmart) {
-                // echo $inovasi[$d]->nama;
+        for ($c = 0; $c < count($smart); $c++) {
+            if ($smart[$c]->id == $idsmart) {
+                // echo "id smart : " . $smart[$c]->id . "<br>";
+                for ($d = 0; $d < count($urusan); $d++) {
+                    if ($urusan[$d]->id_smart == $smart[$c]->id) {
+                        // echo "id kategori : " . $urusan[$d]->id . " : " . $urusan[$d]->kategori . "<br>";
+                        for ($e = 0; $e < count($inovasi); $e++) {
+                            if ($inovasi[$e]->id_ku ==  $urusan[$d]->id) {
+                                // echo  $urusan[$d]->kategori . " : " . $inovasi[$e]->id . " : " . $inovasi[$e]->nama . "<br>";
         ?>
-                <div class="col">
-                    <div class="card h-70">
+                                <div class="col">
+                                    <div class="card h-70">
 
-                        <div class="bg-image hover-zoom">
-                            <img src="{{Storage::url($inovasi[$d]->poster_path)}}" class="w-100" alt="<?= $inovasi[$d]->poster_path ?>">
-                        </div>
-                        <div class=" card-body">
-                            <span class="badge rounded-pill bg-info text-dark"><?= $inovasi[$d]->element ?></span>
-                            <span class="badge rounded-pill bg-info text-dark"><?= $inovasi[$d]->kategori ?></span>
-                            <h5 class="card-title"><?= $inovasi[$d]->nama ?></h5>
-                            <p class="card-text"><?= substr($inovasi[$d]->deskripsi, 0, 50) . "..." ?></p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="{{url('/inov/konten/'.$inovasi[$d]->id)}}"><small class="text-muted">Selengkapnya</small></a>
-                        </div>
-                    </div>
-                </div>
+                                        <div class="bg-image hover-zoom">
+                                            <img src="{{Storage::url($inovasi[$e]->poster_path)}}" class="w-100" alt="<?= $inovasi[$e]->poster_path ?>">
+                                        </div>
+                                        <div class=" card-body">
+                                            <span class="badge rounded-pill bg-info text-dark"><?= $smart[$c]->element ?></span>
+                                            <span class="badge rounded-pill bg-info text-dark"><?= $urusan[$d]->kategori ?></span>
+                                            <h5 class="card-title"><?= $inovasi[$e]->nama ?></h5>
+                                            <p class="card-text"><?= substr($inovasi[$e]->deskripsi, 0, 50) . "..." ?></p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="{{url('/inov/konten/'.$inovasi[$e]->id)}}"><small class="text-muted">Selengkapnya</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+
         <?php
+                            }
+                        }
+                    }
+                }
             }
         }
         ?>
     </div>
+    <br />
+
     <br />
     <small><a href="/inov" class="btn btn-dark">Semua Inovasi</a></small>
     {{-- topik konten --}}

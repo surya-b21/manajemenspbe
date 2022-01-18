@@ -71,7 +71,7 @@ class InovasiController extends Controller
                 'tgl_upload' => 'required',
                 'poster_path' => 'required|mimes:png,jpg,jpeg|max:2048',
                 // 'esmart' => 'required',
-                'id_opd' => 'required',
+                // 'id_opd' => 'required',
                 'id_ku' => 'required',
             ],
             [
@@ -95,7 +95,7 @@ class InovasiController extends Controller
                 $fileModel->poster_path = $filePath;
                 $fileModel->status = 0;
                 $fileModel->id_ku = $request->id_ku;
-                $fileModel->id_opd = $request->id_opd;
+                $fileModel->id_opd = 2; //ini field tidak dipakai, dan seharusnya opd tidak disini
                 $fileModel->create_by = $request->user()->id;
                 $fileModel->update_by = $request->user()->id;
                 $fileModel->save();
@@ -136,10 +136,11 @@ class InovasiController extends Controller
 
         $inovasi = DB::table('inovasi')->where('id', $id)->get()->first();
         $kategori = DB::table('kategori_umum')->where('id', $inovasi->id_ku)->get()->first();
+        $opd = DB::table('opd')->where('id', $kategori->id_opd)->get()->first();
         $id_smart = DB::table('kategori_umum')->select('id_smart')->where('id', $inovasi->id_ku)->first();
         $smart = DB::table('elemen_smart_forum')->get()->toArray();
         // $esmart = DB::table('ref_inovasi_esmart')->where('id_inovasi', $id)->get()->toArray();
-        return view('vendor.ladmin.inovasi.show', compact(['inovasi'], ['kategori'], ['smart'], ['id_smart']));
+        return view('vendor.ladmin.inovasi.show', compact(['inovasi'], ['kategori'], ['smart'], ['id_smart'], ['opd']));
     }
 
     /**

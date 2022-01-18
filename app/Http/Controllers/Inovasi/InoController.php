@@ -27,7 +27,7 @@ class InoController extends Controller
         $topik = Topik::all();
         $ku = kategori_umum::paginate(5);
         $esmart = ElemenSmart::paginate(6);
-        $inovasi =  $this->inovasi->joinSmart();
+        $inovasi =  $this->inovasi->inovasiKomplit();
         $ks = RefInovasiEsmart::all();
         $joinUrusan = $this->kategori_umum->joinUrusan();
         return view("template2.homepage", [

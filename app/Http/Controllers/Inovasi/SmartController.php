@@ -34,7 +34,7 @@ class SmartController extends Controller
         $penulis = User::all();
         $inovasi =  $this->inovasi->paginate(4);
         $urusan = kategori_umum::all();
-        $inoSmart =  $this->inovasi->joinSmart();
+        $inoSmart =  $this->inovasi->inovasiKomplit();
         $joinUrusan = $this->kategori_umum->joinUrusan();
         return view("inovasi.smart")->with([
             'active' => 'inovasi',
@@ -53,7 +53,7 @@ class SmartController extends Controller
         $topik = Topik::all();
         $penulis = User::all();
         $urusan = kategori_umum::all();
-        $inovasi =  $this->inovasi->joinSmart();
+        $inovasi =  $this->inovasi->inovasiKomplit();
         $joinUrusan = $this->kategori_umum->joinUrusan();
         return view("template2.homepage")->with([
             'active' => 'inovasi',
@@ -70,22 +70,27 @@ class SmartController extends Controller
     {
         $smart = kategori_smart::all();
         $idku = kategori_umum::all()->where('id_smart', $id);
-        $inovasi =  $this->inovasi->joinSmart();
-        $inoSmart =  $this->inovasi->joinSmart();
+        $idurusanSesuai = DB::table('kategori_umum')->select('id')->where('id_smart', $id)->get()->toArray();
+        $urusanSesuai = DB::table('kategori_umum')->select('kategori')->where('id_smart', $id)->get()->toArray();
+        $urusan = kategori_umum::all();
+        $inovasi =  Inovasi::all();
+        $inoSmart =  $this->inovasi->inovasiKomplit();
 
         return view("inovasi.isismart")->with([
             'active' => 'inovasi',
             'idsmart' => $id,
             'inovasi' => $inovasi,
+            'urusan' => $urusan,
             'smart' => $smart,
         ]);
         // return $smart[($id - 1)]['element'];
+        // return $idurusanSesuai;
     }
     public function tahun($idtahun)
     {
         $inovasi = inovasi::paginate(4);
         $tgl = inovasi::all('tgl_launching');
-        $inoSmart =  $this->inovasi->joinSmart();
+        $inoSmart =  $this->inovasi->inovasiKomplit();
         return view("inovasi.tahun")->with([
             'active' => 'inovasi',
             'inovasi' => $inovasi,
@@ -98,8 +103,8 @@ class SmartController extends Controller
     public function urusan($id_urusan)
     {
         $inovasi = inovasi::paginate(4);
-        $inoSmart =  $this->inovasi->joinSmart();
-        $urusan =  $this->inovasi->joinSmart();
+        $inoSmart =  $this->inovasi->inovasiKomplit();
+        $urusan =  $this->inovasi->inovasiKomplit();
         return view("inovasi.urusan")->with([
             'active' => 'inovasi',
             'inovasi' => $inovasi,

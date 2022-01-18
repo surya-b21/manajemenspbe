@@ -13,7 +13,7 @@ class ApiElemen extends Controller
     public function index()
     {
         // $ino = ref_inovasi_esmart::joinin();
-        $inosmart = inovasi::joinSmart();
+        $inosmart = inovasi::inovasiKomplit();
         return response()->json([
             "status" => true,
             "message" => "ref_inovasi_esmart",

@@ -50,8 +50,8 @@
 <?php
 $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
 for ($i = 0; $i < count($tahun); $i++) { ?>
-    <a href="{{url('/inov/tahun/'.$tahun[$i])}}">
-        <button type="button" class="btn btn-dark"><?= $tahun[$i] ?></button></a>
+    <!-- <a href="{{url('/inov/tahun/'.$tahun[$i])}}">
+        <button type="button" class="btn btn-dark"><?= $tahun[$i] ?></button></a> -->
 <?php } ?>
 <br /><br />
 <!-- <button type="button" class="btn btn-dark">Semua</button> -->
@@ -119,7 +119,7 @@ $h = "\n\n";
                     <?php for ($e = 0; $e < count($inoSmart); $e++) {
                         if ($inoSmart[$e]->id_ino == $inovasi[$d]->id) {
                     ?>
-                            <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$d]->element ?></span>
+                            <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$e]->element ?></span>
                             <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$e]->kategori ?></span>
                     <?php }
                     } ?>

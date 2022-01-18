@@ -64,6 +64,7 @@ class ApiInovasi extends Controller
             "message" => "elemen",
             "data" => $elemen
         ], 200);
+        // return response()->json($elemen[0]['element']);
     }
     public function showimage($id)
     {
