@@ -14,10 +14,10 @@ class ESmartSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('elemen_smart_forum')->insert([
+        DB::table('elemen_smart')->insert([
             [
                 'element' => 'Smart Environment',
-                'deskripsi' => 'Smart Environment adalah pembangunan kota yang memperhatikan keseimbangan pembangunan infrastruktur 
+                'deskripsi' => 'Smart Environment adalah pembangunan kota yang memperhatikan keseimbangan pembangunan infrastruktur
                 fisik maupun sarana prasarana berwawasan lingkungan dan berkelanjutan.'
             ],
             [
@@ -26,7 +26,7 @@ class ESmartSeeder extends Seeder
             ],
             [
                 'element' => 'Smart Economy',
-                'deskripsi' => 'Smart Economy adalah tata kelola perekonomian untuk mewujudkan perekonomian daerah yang mampu memenuhi 
+                'deskripsi' => 'Smart Economy adalah tata kelola perekonomian untuk mewujudkan perekonomian daerah yang mampu memenuhi
                 tantangan di era informasi yang berkembang dan menuntut tingkat adaptasi yang cepat.'
             ],
             [
@@ -36,12 +36,12 @@ class ESmartSeeder extends Seeder
             ],
             [
                 'element' => 'Smart Branding',
-                'deskripsi' => 'Smart Branding adalah inovasi dalam memasarkan daerah, sehingga mampu meningkatkan daya saing dan nilai 
+                'deskripsi' => 'Smart Branding adalah inovasi dalam memasarkan daerah, sehingga mampu meningkatkan daya saing dan nilai
                 jual daerah dengan mengembangkan tiga elemen yaitu pariwisata, bisnis, dan wajah kota.'
             ],
             [
                 'element' => 'Smart Living',
-                'deskripsi' => 'Smart Living adalah kelayakan taraf hidup masyarakat yang dinilai dari tiga elemen yaitu kelayakan 
+                'deskripsi' => 'Smart Living adalah kelayakan taraf hidup masyarakat yang dinilai dari tiga elemen yaitu kelayakan
                 pola hidup, kualitas kesehatan, dan moda transportasi untuk mendukung mobilitas orang dan barang.'
             ],
         ]);

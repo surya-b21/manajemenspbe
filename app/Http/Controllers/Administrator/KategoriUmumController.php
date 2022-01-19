@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Hexters\Ladmin\Exceptions\LadminException;
 use App\DataTables\KategoriUmumDataTables;
+use App\Models\ElemenSmart;
 use App\Models\KategoriUmum;
 
 class KategoriUmumController extends Controller
@@ -31,7 +32,9 @@ class KategoriUmumController extends Controller
     {
         ladmin()->allow('administrator.kelola.kategori-umum.create');
 
-        return view('vendor.ladmin.kategori-umum.create');
+        $data['esmart'] = ElemenSmart::all();
+
+        return view('vendor.ladmin.kategori-umum.create', $data);
     }
 
     /**

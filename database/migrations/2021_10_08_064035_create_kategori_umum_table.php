@@ -17,8 +17,6 @@ class CreateKategoriUmumTable extends Migration
             $table->id();
             $table->string('kategori');
             $table->string('jenis_urusan');
-            // $table->unsignedBigInteger('id_smart')->after("kategori");
-            // $table->foreign('id_smart')->references('id')->on('elemen_smart_forum')->onDelete('cascade')->onUpdate('cascade');;
             $table->integer('create_by')->nullable();
             $table->integer('update_by')->nullable();
             $table->timestamps();

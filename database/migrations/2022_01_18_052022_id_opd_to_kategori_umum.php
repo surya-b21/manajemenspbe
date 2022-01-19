@@ -15,7 +15,7 @@ class IdOpdToKategoriUmum extends Migration
     {
         Schema::table('kategori_umum', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('id_opd')->after("kategori");
+            $table->unsignedBigInteger('id_opd')->after("jenis_urusan");
             $table->foreign('id_opd')->references('id')->on('opd')->onDelete('cascade')->onUpdate('cascade');;
         });
     }
