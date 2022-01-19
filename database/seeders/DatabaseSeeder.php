@@ -18,14 +18,13 @@ class DatabaseSeeder extends Seeder
             OpdSeeder::class,
             UserSeeder::class,
             KategoriForumSeeder::class,
-            KategoriUmumSeeder::class,
+            // KategoriUmumSeeder::class,
             ESmartSeeder::class,
-
             TopikForumSeeder::class,
             KomentarForumSeeder::class,
-            KontenInovasiSeeder::class,
-            DokumenSeeder::class,
-            VersiSeeder::class,
+            // KontenInovasiSeeder::class,
+            // DokumenSeeder::class,
+            // VersiSeeder::class,
             // TopikSeeder::class,
         ]);
     }

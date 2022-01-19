@@ -22,7 +22,6 @@
         ->addIndexColumn()
         ->addColumn('action', function($item) {
             return view('ladmin::table.action', [
-            'show' => null,
             'edit' => [
                 'gate' => 'administrator.kelola.kategori-umum.update',
                 'url' => route('administrator.kelola.kategori-umum.edit', [$item->id, 'back' => request()->fullUrl()])
@@ -50,7 +49,7 @@
       return [
         'title' => 'Kategori Umum',
         'buttons' => view('vendor.ladmin.kategori-umum._partials._topButton'),
-        'fields' => [ __('#'),__('Kategori'),__('Action') ], // Table header
+        'fields' => [ __('#'),__('Kategori'),__('Jenis Urusan'),__('Action') ], // Table header
         /**
          * DataTables Options
          */
@@ -60,7 +59,8 @@
           'ajax' => request()->fullurl(),
           'columns' => [
               ['data' => 'DT_RowIndex', 'class' => 'text-center', 'orderable' => false],
-              ['data' => 'kategori'],
+              ['data' => 'kategori', 'class' => 'text-center'],
+              ['data' => 'jenis_urusan'],
               ['data' => 'action', 'class' => 'text-center', 'orderable' => false]
           ]
         ]
