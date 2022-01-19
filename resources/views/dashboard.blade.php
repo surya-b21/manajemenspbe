@@ -9,24 +9,25 @@
         </h2>
         <nav class="navbar navbar-light bg-white">
             <form class="container-fluid justify-content-start">
-            <div class="button">
-      <ul class="right">
-        <a href="http://127.0.0.1:8000/home">Home</a>
-        <a href="http://127.0.0.1:8000/ino">Inovasi</a>
-        <a href="http://127.0.0.1:8000/forum">Forum</a>
-        <style media="screen">
-        .right{
-          float: right;
-          display: block;
-        }
-          .button ul a{
-        padding: 5px;
-        background: rgb(120, 150, 12);
-          color: white;
-    }
-    </style>
-      </ul>
-    </div>
+                <div class="button">
+                    <ul class="right">
+                        <a href="http://127.0.0.1:8000/home">Home</a>
+                        <a href="http://127.0.0.1:8000/ino">Inovasi</a>
+                        <a href="http://127.0.0.1:8000/forum">Forum</a>
+                        <style media="screen">
+                            .right {
+                                float: right;
+                                display: block;
+                            }
+
+                            .button ul a {
+                                padding: 5px;
+                                background: rgb(120, 150, 12);
+                                color: white;
+                            }
+                        </style>
+                    </ul>
+                </div>
 
             </form>
         </nav>
@@ -118,26 +119,26 @@
                         </div>
                     </div>
                 </div>
+                <ul class="right mr-3">
+                    <a href="{{url('/profil/halamanupdate/'.$h['id'])}}">Edit Profil</a>
+
+                </ul>
             </div>
         </div>
     </div>
-               
-    <ul class="right mr-3">
-                        <a href=" {{ route('profile.edit') }}">Edit Profil</a>
-                        <style media="screen">
-                            .right {
-                                float: right;
-                                display: block;
-                            }
+    <div class="container ml-15">
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
 
-                            .button ul a {
-                                padding: 5px;
-                                background: black;
-                                color: white;
-                            }
-                        </style>
-                    </ul>
-    </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
     <br />
     <br />

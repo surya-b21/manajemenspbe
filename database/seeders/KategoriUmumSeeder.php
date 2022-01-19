@@ -17,19 +17,32 @@ class KategoriUmumSeeder extends Seeder
     {
         DB::table('kategori_umum')->insert([
             [
-                'kategori' => 'Kesehatan'
+                'kategori' => 'Green Buildings',
+                'id_smart' => '1' //cuma buat testing, jd data dummy
             ],
             [
-                'kategori' => 'Pendidikan'
+                'kategori' => 'Community',
+                'id_smart' => '2'
             ],
             [
-                'kategori' => 'Budaya'
+                'kategori' => 'Industry',
+                'id_smart' => '3'
             ],
             [
-                'kategori' => 'Sosial'
+                'kategori' => 'E-Government',
+                'id_smart' => '4'
             ],
             [
-                'kategori' => 'Pariwisata'
+                'kategori' => 'Tourism',
+                'id_smart' => '5'
+            ],
+            [
+                'kategori' => 'Health',
+                'id_smart' => '6'
+            ],
+            [
+                'kategori' => 'Protection',
+                'id_smart' => '6'
             ],
         ]);
     }

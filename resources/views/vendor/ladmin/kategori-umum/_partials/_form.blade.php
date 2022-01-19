@@ -4,4 +4,5 @@
     </x-slot>
 
     <input type="text" placeholder="Nama Kategori" class="form-control" name="kategori" id="kategori" value="{{ old('kategori', $kategori->kategori) }}">
+
 </x-ladmin-form-group>

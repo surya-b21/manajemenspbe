@@ -4,10 +4,10 @@ namespace App\Http\Controllers\API\Inovasi;
 
 use App\Models\Inovasi\inovasi;
 use App\Http\Controllers\Controller;
-use App\Models\ElemenSmart;
 use App\Models\Inovasi\kategori_layanan;
 use App\Models\KategoriUmum;
 use App\Models\Dokumen;
+use App\Models\Inovasi\kategori_smart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -58,12 +58,13 @@ class ApiInovasi extends Controller
     public function varian()
     {
         // $KU = KategoriUmum::all('kategori');
-        $elemen = ElemenSmart::all('element');
+        $elemen = kategori_smart::all('element');
         return response()->json([
             "status" => true,
             "message" => "elemen",
             "data" => $elemen
         ], 200);
+        // return response()->json($elemen[0]['element']);
     }
     public function showimage($id)
     {

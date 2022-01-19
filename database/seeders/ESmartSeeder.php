@@ -14,7 +14,7 @@ class ESmartSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('elemen_smart')->insert([
+        DB::table('elemen_smart_forum')->insert([
             [
                 'element' => 'Smart Environment',
                 'deskripsi' => 'Smart Environment adalah pembangunan kota yang memperhatikan keseimbangan pembangunan infrastruktur 

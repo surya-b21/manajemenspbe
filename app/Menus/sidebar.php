@@ -199,36 +199,36 @@ return [
         ],
       ],
 
-      [
-        'gate' => 'administrator.kelola.dokumen',
-        'name' => 'Dokumen',
-        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-        'route' => ['administrator.kelola.dokumen.index', []],
-        'isActive' => 'kelola/dokumen*',
-        'id' => '',
-        'gates' => [
-          [
-            'gate' => 'administrator.kelola.dokumen.create',
-            'title' => 'Create dokumen',
-            'description' => 'User can create new dokumen'
-          ],
-          [
-            'gate' => 'administrator.kelola.dokumen.show',
-            'title' => 'Show dokumen',
-            'description' => 'User can show new dokumen'
-          ],
-          [
-            'gate' => 'administrator.kelola.dokumen.update',
-            'title' => 'Update dokumen',
-            'description' => 'User can update dokumen'
-          ],
-          [
-            'gate' => 'administrator.kelola.dokumen.destroy',
-            'title' => 'Delete dokumen',
-            'description' => 'User can delete dokumen'
-          ]
-        ],
-      ],
+      // [
+      //   'gate' => 'administrator.kelola.dokumen',
+      //   'name' => 'Dokumen',
+      //   'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+      //   'route' => ['administrator.kelola.dokumen.index', []],
+      //   'isActive' => 'kelola/dokumen*',
+      //   'id' => '',
+      //   'gates' => [
+      //     [
+      //       'gate' => 'administrator.kelola.dokumen.create',
+      //       'title' => 'Create dokumen',
+      //       'description' => 'User can create new dokumen'
+      //     ],
+      //     [
+      //       'gate' => 'administrator.kelola.dokumen.show',
+      //       'title' => 'Show dokumen',
+      //       'description' => 'User can show new dokumen'
+      //     ],
+      //     [
+      //       'gate' => 'administrator.kelola.dokumen.update',
+      //       'title' => 'Update dokumen',
+      //       'description' => 'User can update dokumen'
+      //     ],
+      //     [
+      //       'gate' => 'administrator.kelola.dokumen.destroy',
+      //       'title' => 'Delete dokumen',
+      //       'description' => 'User can delete dokumen'
+      //     ]
+      //   ],
+      // ],
 
       [
         'gate' => 'administrator.kelola.developer.index',

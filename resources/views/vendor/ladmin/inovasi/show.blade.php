@@ -26,25 +26,34 @@
                         <td>{{date('d-m-Y',strtotime($inovasi->tgl_upload))}}</td>
                     </tr>
                     <tr>
-                        <td><strong>Kategori Umum</strong></td>
+                        <td><strong>Elemen Smart</strong></td>
                         <td>
                             @php
-                                $kategori_umum = DB::table('kategori_umum')->select('kategori')->where('id',$inovasi->id_ku)->first();
-                                echo $kategori_umum->kategori;
+                            $elemen = DB::table('elemen_smart_forum')->select('element')->where('id',$kategori->id_smart)->first();
+                            echo '<span class="badge bg-info">'.$elemen->element.'</span> ';
                             @endphp
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Elemen Smart</strong></td>
+                        <td><strong>Kategori Umum</strong></td>
                         <td>
                             @php
-                                foreach($esmart as $data) {
-                                    $elemen = DB::table('elemen_smart')->select('element')->where('id',$data->id_esmart)->first();
-                                    echo '<span class="badge bg-info">'.$elemen->element.'</span> ';
-                                }
+                            $kategori_umum = DB::table('kategori_umum')->select('kategori')->where('id',$inovasi->id_ku)->first();
+                            echo '<span class="badge bg-success">'.$kategori_umum->kategori.'</span> ';
                             @endphp
                         </td>
                     </tr>
+                    <tr>
+                        <td><strong>OPD</strong></td>
+                        <td>
+                            @php
+                            $elemen = DB::table('opd')->select('nama_opd')->where('id',$kategori->id_opd)->first();
+                            echo '<span class="badge bg-success">'.$elemen->nama_opd.'</span> ';
+                            @endphp
+                        </td>
+                    </tr>
+                    <tr>
+
                     <tr>
                         <td><strong>Status</strong></td>
                         <td>{!! $inovasi->status == 1 ? '<span class="badge bg-success">Diverifikasi</span>' : '<span class="badge bg-warning">Belum Diverifikasi</span>' !!}</td>

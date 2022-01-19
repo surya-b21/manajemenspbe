@@ -20,6 +20,12 @@ class DatabaseSeeder extends Seeder
             KategoriForumSeeder::class,
             KategoriUmumSeeder::class,
             ESmartSeeder::class,
+
+            TopikForumSeeder::class,
+            KomentarForumSeeder::class,
+            KontenInovasiSeeder::class,
+            DokumenSeeder::class,
+            VersiSeeder::class,
             // TopikSeeder::class,
         ]);
     }

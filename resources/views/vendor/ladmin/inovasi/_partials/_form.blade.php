@@ -49,32 +49,6 @@
     <input type="file" placeholder="Poster" class="form-control" name="poster_path" id="poster_path" value="{{ old('poster_path', $inovasi->poster_path) }}">
 </x-ladmin-form-group>
 
-<x-ladmin-form-group name="esmart" label="Elemen Smart *">
-    <x-slot name="prepend">
-        {!! ladmin()->icon('fas fa-brain') !!}
-    </x-slot>
-
-    <input type="text" placeholder="Elemen Smart" class="form-control" name="esmart" id="esmart" value="{{old('esmart', json_encode($value_esmart))}}">
-</x-ladmin-form-group>
-<x-slot name="scripts">
-    <script>
-        var whiteList = {!! json_encode($arrEM) !!};
-
-        var input = document.querySelector('#esmart');
-
-        var tagify = new Tagify(input,{
-            enforceWhitelist: true,
-            whitelist: whiteList,
-            maxTags: 3,
-            dropdown: {
-                maxItems: 20,           // <- mixumum allowed rendered suggestions
-                classname: "", // <- custom classname for this dropdown, so it could be targeted
-                enabled: 0,             // <- show suggestions on focus
-                closeOnSelect: false    // <- do not hide the suggestions dropdown once an item has been selected
-            }
-        })
-    </script>
-</x-slot>
 
 @if (isset($kategori_umum))
 <x-ladmin-form-group name="id_ku" label="Kategori *">
@@ -84,13 +58,13 @@
 
     <select name="id_ku" id="id_ku" class="form-control border-0">
         @foreach ($kategori_umum as $data )
-            <option value="{{$data->id}}" {{isset($inovasi->id_ku) ? 'selected' : ''}}>{{$data->kategori}}</option>
+        <option value="{{$data->id}}" {{isset($inovasi->id_ku) ? 'selected' : ''}}>{{$data->kategori}}</option>
         @endforeach
     </select>
 </x-ladmin-form-group>
 @endif
 
-@if (isset($opd))
+<!-- @if (isset($opd))
 <x-ladmin-form-group name="id_ku" label="OPD *">
     <x-slot name="prepend">
         {!! ladmin()->icon('user-group') !!}
@@ -98,8 +72,8 @@
 
     <select name="id_opd" id="id_opd" class="form-control border-0">
         @foreach ($opd as $data )
-            <option value="{{$data->id}}" {{isset($inovasi->id_opd) ? 'selected' : ''}}>{{$data->nama_opd}}</option>
+        <option value="{{$data->id}}" {{isset($inovasi->id_opd) ? 'selected' : ''}}>{{$data->nama_opd}}</option>
         @endforeach
     </select>
 </x-ladmin-form-group>
-@endif
+@endif -->

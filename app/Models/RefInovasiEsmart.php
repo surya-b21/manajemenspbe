@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+/*
+----------------------------------------------------------------------------------------------
+                                        TABEL INI TIDAK DIPAKAI
+----------------------------------------------------------------------------------------------
+
+*/
 
 class RefInovasiEsmart extends Model
 {

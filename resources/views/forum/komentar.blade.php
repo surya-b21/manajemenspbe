@@ -15,62 +15,62 @@
 @include('template2/navbar')
 
 <div class="container" style="padding-bottom:25px; padding-top:150px;">
-<div>
-    {{-- <p> --}}
-        <a href="/home" style=""> Home</a> > <a href="/forum" style="">Forum</a> > 
-    {{-- </p> --}}
+    <div>
+        {{-- <p> --}}
+        <a href="/home" style=""> Home</a> > <a href="/forum" style="">Forum</a> >
+        {{-- </p> --}}
+    </div>
 </div>
-</div>
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
         <div class="col-lg-9 md-8">
             <div class="card mb-4" style="border-radius:10px; ">
-                <div class="justify-content-center mt-6 p-5 mb-5" >
-                <!-- <div class=" card mb-3">
+                <div class="justify-content-center mt-6 p-5 mb-5">
+                    <!-- <div class=" card mb-3">
                 <div class="card-body"> -->
-                @foreach ($topik as $t)
-                {{-- <h2 class="card-title"> --}}
+                    @foreach ($topik as $t)
+                    {{-- <h2 class="card-title"> --}}
                     <div class="mx-auto text-center">
                         <figure class="figure mt-6 mb-3">
                             {{-- <img src="{{Storage::url($t->foto_path)}}" alt=""> --}}
                             <img src="{{Storage::url($t->foto_path)}}" class="figure-img rounded text-center" alt="<?= $t->foto_path ?>" width="600" height="300">
                         </figure>
-                    </div>                    
-                <span style="font-size:28px;">
-                    <b>{{$t->judul}}</b>
-                </span>
-                {{-- </h2> --}}
-                <br>
-                <?php
-                for ($a = 0; $a < count($user); $a++) {
-                    // echo $penulis[$i]["id"];
-                    if ($user[$a]["id"] == $t->id_user) {
+                    </div>
+                    <span style="font-size:28px;">
+                        <b>{{$t->judul}}</b>
+                    </span>
+                    {{-- </h2> --}}
+                    <br>
+                    <?php
+                    for ($a = 0; $a < count($user); $a++) {
+                        // echo $penulis[$i]["id"];
+                        if ($user[$a]["id"] == $t->id_user) {
 
-                ?>
-                        <span class="badge rounded-pill bg-light " style="font-size:12px;color:grey">
-                            <i class="fa fa-user" style="font-size:10px;color:palevioletred"></i>
-                            <?= $user[$a]["name"]; ?></span>
-                <?php
+                    ?>
+                            <span class="badge rounded-pill bg-light " style="font-size:12px;color:grey">
+                                <i class="fa fa-user" style="font-size:10px;color:palevioletred"></i>
+                                <?= $user[$a]["name"]; ?></span>
+                    <?php
+                        }
                     }
-                }
-                ?>
-                <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
-                    <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
-                    {{ $t->created_at->isoFormat('DD MMMM YYYY') }}</span>
-                <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
-                    <i class="fa fa-book" style="font-size:10px; color:forestgreen"></i>
-                    <a href="{{ url('/forum/'.$t->kategori->id) }}">{{ $t->kategori->kategori }}</a></span>
-                <!-- <h5 class="card-title">Card title</h5> -->
+                    ?>
+                    <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
+                        <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
+                        {{ $t->created_at->isoFormat('DD MMMM YYYY') }}</span>
+                    <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
+                        <i class="fa fa-book" style="font-size:10px; color:forestgreen"></i>
+                        <a href="{{ url('/forum/'.$t->kategori->id) }}">{{ $t->kategori->kategori }}</a></span>
+                    <!-- <h5 class="card-title">Card title</h5> -->
 
-                <p class=""> {!! $t->isi !!}</p>
+                    <p class=""> {!! $t->isi !!}</p>
+                </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
-    
 
 
 
-    {{-- <section>
+
+            {{-- <section>
         <div class="container my-5 py-5 text-dark"> --}}
             <div class="row d-flex justify-content-center">
                 <div class="col-md-12 col-lg-10 col-xl-10">
@@ -98,7 +98,7 @@
                                             <span class="text-dark ms-2">{{$k->name}}</span> <br /><span class="badge rounded-pill bg-light" style="font-size:10px;color:grey">
                                                 <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
                                                 {{ $k->created_at }}</span>
-                                                {{-- {{ $k->created_at->isoFormat('DD MMMM YYYY') }}</span> --}}
+                                            {{-- {{ $k->created_at->isoFormat('DD MMMM YYYY') }}</span> --}}
                                             <p class="text-dark ms-2">{{$k->isi}}</p>
                                         </h6>
                                         <?php
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                     @endforeach
-                    
+
                     <?php
                     if ($h != null) { ?>
                         <div class="w-100">
@@ -154,9 +154,9 @@
         {{-- </div>
     </section> --}}
     </div>
-    </div>
-    <!-- End blog comments -->
-    </div>
+</div>
+<!-- End blog comments -->
+</div>
 </body>
 <footer>
     @include('template2/footer')

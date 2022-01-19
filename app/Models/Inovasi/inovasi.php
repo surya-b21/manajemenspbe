@@ -13,11 +13,22 @@ class inovasi extends Model
     public $keyType = 'string';
     protected $table = 'inovasi';
     protected $guarded = ['id'];
-    public function children()
-    {
-        return $this->hasMany(inovasi::class, 'parent');
-    }
+    // public function children()
+    // {
+    //     return $this->hasMany(inovasi::class, 'parent');
+    // }
 
+    public static function inovasiKomplit()
+    { //join inovasi, smart, urusan/kkategori umum
+        $joinSmart = DB::table('inovasi')
+            ->leftJoin('kategori_umum', 'inovasi.id_ku', '=', 'kategori_umum.id')
+            // kategori - opd iki kudune ditambahi
+            ->leftJoin('opd', 'kategori_umum.id_opd', '=', 'opd.id') // iki kudune dihapus wul
+            ->leftJoin('elemen_smart_forum', 'kategori_umum.id_smart', '=', 'elemen_smart_forum.id')
+            ->select('inovasi.id', 'inovasi.nama', 'inovasi.deskripsi', 'inovasi.layanan_spbe', 'inovasi.tgl_launching', 'inovasi.tgl_upload', 'inovasi.poster_path', 'inovasi.status', 'inovasi.id_ku', 'inovasi.create_by', 'inovasi.update_by', 'inovasi.created_at', 'inovasi.updated_at', 'inovasi.id as id_ino', 'kategori_umum.id as idku', 'kategori_umum.kategori', 'elemen_smart_forum.element', 'elemen_smart_forum.id as id_smart', 'opd.nama_opd', 'opd.id as id_opd')
+            ->get();
+        return $joinSmart;
+    }
     public static function dokumenIno()
     {
         $inoSmart = DB::table('inovasi')
