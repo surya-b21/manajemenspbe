@@ -27,7 +27,7 @@
         {!! ladmin()->icon('fas fa-brain') !!}
     </x-slot>
 
-    <select name="jenis_jurusan" id="jenis_jurusan" class="form-control border-0">
+    <select name="element_smart" id="element_smart" class="form-control border-0">
         @foreach ($esmart as $data)
             <option value="{{$data->id}}" {{isset($kategori->id_smart) ? 'selected' : ''}}>{{$data->element}}</option>
         @endforeach
@@ -36,3 +36,16 @@
 </x-ladmin-form-group>
 @endif
 
+@if ($opd)
+<x-ladmin-form-group name="opd" label="OPD *">
+    <x-slot name="prepend">
+        {!! ladmin()->icon('fas fa-users') !!}
+    </x-slot>
+
+    <select name="opd" id="opd" class="form-control border-0">
+        @foreach ($opd as $data)
+            <option value="{{$data->id}}" {{isset($kategori->id_opd) ? 'selected' : ''}}>{{$data->nama_opd}}</option>
+        @endforeach
+    </select>
+</x-ladmin-form-group>
+@endif
