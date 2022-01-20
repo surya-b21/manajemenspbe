@@ -8,6 +8,7 @@ use Hexters\Ladmin\Exceptions\LadminException;
 use App\DataTables\KategoriUmumDataTables;
 use App\Models\ElemenSmart;
 use App\Models\KategoriUmum;
+use App\Models\Opd;
 
 class KategoriUmumController extends Controller
 {
@@ -33,6 +34,7 @@ class KategoriUmumController extends Controller
         ladmin()->allow('administrator.kelola.kategori-umum.create');
 
         $data['esmart'] = ElemenSmart::all();
+        $data['opd'] = Opd::all();
 
         return view('vendor.ladmin.kategori-umum.create', $data);
     }
@@ -48,7 +50,10 @@ class KategoriUmumController extends Controller
         ladmin()->allow('administrator.kelola.kategori-umum.create');
 
         $request->validate([
-            'kategori' => ['required']
+            'kategori' => 'required',
+            'jenis_urusan' => 'required',
+            'opd' => 'required',
+            'element_smart' => 'required'
         ],
         [
             'required' => ':attribute harus diisi!!'
@@ -57,6 +62,9 @@ class KategoriUmumController extends Controller
         try {
             KategoriUmum::create([
                 'kategori' => $request->kategori,
+                'jenis_urusan' => $request->jenis_urusan,
+                'element_smart' => $request->element_smart,
+                'opd' => $request->opd,
                 'create_by' => $request->user()->id,
                 'update_by' => $request->user()->id,
             ]);
@@ -110,7 +118,10 @@ class KategoriUmumController extends Controller
         ladmin()->allow('administrator.kelola.kategori-umum.update');
 
         $request->validate([
-            'kategori' => ['required']
+            'kategori' => 'required',
+            'jenis_urusan' => 'required',
+            'opd' => 'required',
+            'element_smart' => 'required'
         ],
         [
             'required' => ':attribute harus diisi!!'
@@ -119,6 +130,9 @@ class KategoriUmumController extends Controller
         try {
             $kategori = KategoriUmum::findOrFail($id);
             $kategori->kategori = $request->kategori;
+            $kategori->jenis_urusan = $request->jenis_urusan;
+            $kategori->id_smart = $request->element_smart;
+            $kategori->id_opd = $request->opd;
             $kategori->update_by = $request->user()->id;
             $kategori->save();
 

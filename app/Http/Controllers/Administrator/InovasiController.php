@@ -38,18 +38,9 @@ class InovasiController extends Controller
         ladmin()->allow('administrator.kelola.inovasi.create');
 
         $kategori_umum = KategoriUmum::all();
-        $esmart = DB::table('elemen_smart_forum')->select('element')->get()->toArray();
         $opd = Opd::all();
 
-        $value_esmart = [];
-        $arrEM = [];
-        $index = 0;
-        foreach ($esmart as $data) {
-            $arrEM[$index] = $data->element;
-            $index++;
-        }
-
-        return view('vendor.ladmin.inovasi.create', compact(['kategori_umum', 'opd', 'arrEM', 'value_esmart']));
+        return view('vendor.ladmin.inovasi.create', compact(['kategori_umum', 'opd']));
     }
 
     /**
@@ -71,7 +62,7 @@ class InovasiController extends Controller
                 'tgl_upload' => 'required',
                 'poster_path' => 'required|mimes:png,jpg,jpeg|max:2048',
                 // 'esmart' => 'required',
-                // 'id_opd' => 'required',
+                'id_opd' => 'required',
                 'id_ku' => 'required',
             ],
             [
@@ -95,23 +86,11 @@ class InovasiController extends Controller
                 $fileModel->poster_path = $filePath;
                 $fileModel->status = 0;
                 $fileModel->id_ku = $request->id_ku;
-                $fileModel->id_opd = 2; //ini field tidak dipakai, dan seharusnya opd tidak disini
+                $fileModel->id_opd = $request->id_opd; //ini field tidak dipakai, dan seharusnya opd tidak disini
                 $fileModel->create_by = $request->user()->id;
                 $fileModel->update_by = $request->user()->id;
                 $fileModel->save();
             }
-
-            $temp = json_decode($request->esmart);
-            $inovasi = DB::table('inovasi')->whereRaw('inovasi.id = (SELECT MAX(inovasi.id) FROM inovasi)')->first();
-            // foreach ($temp as $data) {
-            //     $esmart = new RefInovasiEsmart;
-            //     is_null($inovasi) ? $esmart->id_inovasi = 1 : $esmart->id_inovasi = $inovasi->id;
-            //     $esmart_id = DB::table('elemen_smart')->select('id')->where('element', $data->value)->first();
-            //     // $esmart->id_esmart = $esmart_id->id;
-            //     $esmart->create_by = $request->user()->id;
-            //     $esmart->update_by = $request->user()->id;
-            //     $esmart->save();
-            // }
             session()->flash('success', [
                 'Data Inovasi berhasil ditambahkan'
             ]);
@@ -138,7 +117,7 @@ class InovasiController extends Controller
         $kategori = DB::table('kategori_umum')->where('id', $inovasi->id_ku)->get()->first();
         $opd = DB::table('opd')->where('id', $kategori->id_opd)->get()->first();
         $id_smart = DB::table('kategori_umum')->select('id_smart')->where('id', $inovasi->id_ku)->first();
-        $smart = DB::table('elemen_smart_forum')->get()->toArray();
+        $smart = DB::table('elemen_smart')->get()->toArray();
         // $esmart = DB::table('ref_inovasi_esmart')->where('id_inovasi', $id)->get()->toArray();
         return view('vendor.ladmin.inovasi.show', compact(['inovasi'], ['kategori'], ['smart'], ['id_smart'], ['opd']));
     }
@@ -155,29 +134,7 @@ class InovasiController extends Controller
 
         $kategori_umum = KategoriUmum::all();
         $inovasi = Inovasi::findOrFail($id);
-        $esmart = DB::table('elemen_smart_forum')->select('element')->get()->toArray();
-        // $ref_esmart = DB::table('ref_inovasi_esmart')->select('id_esmart')->where('id_inovasi', $id)->get();
         $opd = Opd::all();
-
-        // $value_esmart = [];
-        // $index = 0;
-        // foreach ($ref_esmart as $data) {
-        //     $value_esmart[$index] = DB::table('elemen_smart')->select('element')->where('id', $data->id_esmart)->first();
-        //     $index++;
-        // }
-
-        // $index = 0;
-        // foreach ($value_esmart as $data) {
-        //     $value_esmart[$index] = $data->element;
-        //     $index++;
-        // }
-
-        $arrEM = [];
-        $index = 0;
-        foreach ($esmart as $data) {
-            $arrEM[$index] = $data->element;
-            $index++;
-        }
 
         return view('vendor.ladmin.inovasi.edit', compact(['kategori_umum', 'opd', 'arrEM', 'inovasi']));
     }
@@ -230,17 +187,6 @@ class InovasiController extends Controller
                 $fileModel->save();
             }
 
-            // $temp = json_decode($request->esmart);
-            // $inovasi = DB::table('inovasi')->whereRaw('inovasi.id = (SELECT MAX(inovasi.id) FROM inovasi)')->first();
-            // foreach ($temp as $data) {
-            //     $esmart = RefInovasiEsmart::findOrFail($id);
-            //     is_null($inovasi) ? $esmart->id_inovasi = 1 : $esmart->id_inovasi = $inovasi->id;
-            //     $esmart_id = DB::table('elemen_smart')->select('id')->where('element', $data->value)->first();
-            //     $esmart->id_esmart = $esmart_id->id;
-            //     $esmart->update_by = $request->user()->id;
-            //     $esmart->save();
-            // }
-
             session()->flash('success', [
                 'Data Inovasi berhasil diperbarui'
             ]);
@@ -268,9 +214,6 @@ class InovasiController extends Controller
             $inovasi->delete();
 
             Storage::delete($inovasi->poster_path);
-
-            // DB::table('ref_inovasi_esmart')->select('*')->where('id_inovasi', $inovasi->id)->delete();
-
             session()->flash('success', [
                 'Data Inovasi berhasil dihapus'
             ]);
