@@ -49,10 +49,7 @@
 <br>
 <?php
 $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
-for ($i = 0; $i < count($tahun); $i++) { ?>
-    <!-- <a href="{{url('/inov/tahun/'.$tahun[$i])}}">
-        <button type="button" class="btn btn-dark"><?= $tahun[$i] ?></button></a> -->
-<?php } ?>
+?>
 <br /><br />
 <!-- <button type="button" class="btn btn-dark">Semua</button> -->
 <div class="overflow-auto">
@@ -109,7 +106,14 @@ $h = "\n\n";
 <br>
 <br>
 <div class="row row-cols-1 row-cols-md-4 g-4">
-    <?php for ($d = 0; $d < count($inovasi); $d++) { ?>
+    <?php for ($d = 0; $d < count($inovasi); $d++) {
+
+        // echo ((substr($inovasi[$d]->tgl_launching, 0, 4)));
+        // echo "<br>" . (($tahunpilih));
+        // if (substr($inovasi[$d]->tgl_launching, 0, 4) == $tahunnow) {
+        // echo "yes";
+
+    ?>
         <div class="col">
             <div class="card h-70">
                 <div class="bg-image hover-zoom">
@@ -131,7 +135,10 @@ $h = "\n\n";
                 </div>
             </div>
         </div>
-    <?php } ?>
+    <?php
+    }
+    // }
+    ?>
 </div><br>
 {{$inovasi->links()}}
 <!-- Tabs content -->

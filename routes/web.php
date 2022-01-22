@@ -125,6 +125,9 @@ Route::get('/topik/{id}', [KomentarController::class, 'show']);
 
 Route::get('/inov', [SmartController::class, 'allCategories']);
 Route::get('/inov/isismart/{id}', [
+    SmartController::class, 'selectsmart'
+]);
+Route::get('/inov/isismart/{id}/{tahun}', [
     SmartController::class, 'select'
 ]);
 Route::get('/inov/urusan/{id}', [

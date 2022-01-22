@@ -64,7 +64,7 @@
                     ?>
                     <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey">
                         <i class="fa fa-calendar" style="font-size:10px; color:coral"></i>
-                        {{ $t->created_at->isoFormat('DD MMMM YYYY') }}</span>
+                        {{ $t->tgl_launching }}</span>
                     <span class="badge rounded-pill bg-light" style="font-size:12px;color:grey"></span>
                     <p class=""> {{$t->deskripsi}}</p>
 

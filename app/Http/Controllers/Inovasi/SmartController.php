@@ -32,7 +32,8 @@ class SmartController extends Controller
     {
         $categories = kategori_smart::all();
         $penulis = User::all();
-        $inovasi =  $this->inovasi->paginate(4);
+        $inovasi = Inovasi::orderBy('tgl_launching', 'desc')->paginate(4);
+        // $inovasi =  Inovasi::where('tgl_launching', date('Y'))->paginate(2);
         $urusan = kategori_umum::all();
         $inoSmart =  $this->inovasi->inovasiKomplit();
         $joinUrusan = $this->kategori_umum->joinUrusan();
@@ -40,8 +41,10 @@ class SmartController extends Controller
             'active' => 'inovasi',
             'smart' => $categories,
             'penulis' => $penulis,
+            'tahunnow' => date("Y"),
             'urusan' => $urusan,
             'inovasi' => $inovasi,
+            // 'inovasipaginate' => $inovasipaginate,
             'inoSmart' => $inoSmart,
             'joinUrusan' => $joinUrusan
         ]);
@@ -66,7 +69,26 @@ class SmartController extends Controller
         ]);
         // return $joinUrusan;
     }
-    public function select($id) //select inovasii berdasarkan smart
+    public function selectsmart($id) //select inovasii berdasarkan smart
+    {
+        $smart = kategori_smart::all();
+        $idku = kategori_umum::all()->where('id_smart', $id);
+        $idurusanSesuai = DB::table('kategori_umum')->select('id')->where('id_smart', $id)->get()->toArray();
+        $urusanSesuai = DB::table('kategori_umum')->select('kategori')->where('id_smart', $id)->get()->toArray();
+        $urusan = kategori_umum::all();
+        $inovasi =  Inovasi::orderBy('tgl_launching', 'desc')->paginate(3);
+        $inoSmart =  $this->inovasi->inovasiKomplit();
+
+        return view("inovasi.isismart")->with([
+            'active' => 'inovasi',
+            'idsmart' => $id,
+            'tahunpilih' => date("Y"),
+            'inovasi' => $inovasi,
+            'urusan' => $urusan,
+            'smart' => $smart,
+        ]);
+    }
+    public function select($id, $tahun) //select inovasii berdasarkan smart
     {
         $smart = kategori_smart::all();
         $idku = kategori_umum::all()->where('id_smart', $id);
@@ -76,9 +98,10 @@ class SmartController extends Controller
         $inovasi =  Inovasi::all();
         $inoSmart =  $this->inovasi->inovasiKomplit();
 
-        return view("inovasi.isismart")->with([
+        return view("inovasi.isismart2")->with([
             'active' => 'inovasi',
             'idsmart' => $id,
+            'tahunpilih' => $tahun,
             'inovasi' => $inovasi,
             'urusan' => $urusan,
             'smart' => $smart,

@@ -90,7 +90,7 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]; ?>
                                         if ($inovasi[$e]->id_ku ==  $urusan[$d]->id) {
                                             // echo  $urusan[$d]->kategori . " : " . $inovasi[$e]->id . " : " . $inovasi[$e]->nama . "<br>";
                     ?>
-                                            <?php $tahunsesuai = substr($inovasi[$e]->created_at, 0, 4);
+                                            <?php $tahunsesuai = substr($inovasi[$e]->tgl_launching, 0, 4);
                                             if (substr($inovasi[$e]->tgl_launching, 0, 4) == $tahunpilih) {
                                             ?>
                                                 <div class="col">
@@ -120,9 +120,7 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]; ?>
             </div>
         </div>
     </div>
-    <br>
-    {{$inovasi->links()}}
-    <br />
+
     {{-- @else
     <p class="text-center fs-4">No post found.</p>
 @endif --}}
