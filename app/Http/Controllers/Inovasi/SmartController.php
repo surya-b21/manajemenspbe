@@ -32,7 +32,7 @@ class SmartController extends Controller
     {
         $categories = kategori_smart::all();
         $penulis = User::all();
-        $inovasi = Inovasi::orderBy('tgl_launching', 'desc')->paginate(4);
+        $inovasi = Inovasi::simplePaginate(3);;
         // $inovasi =  Inovasi::where('tgl_launching', date('Y'))->paginate(2);
         $urusan = kategori_umum::all();
         $inoSmart =  $this->inovasi->inovasiKomplit();
@@ -125,9 +125,9 @@ class SmartController extends Controller
     }
     public function urusan($id_urusan)
     {
-        $inovasi = inovasi::paginate(4);
+        $inovasi =  Inovasi::orderBy('tgl_launching', 'desc')->paginate(3);
         $inoSmart =  $this->inovasi->inovasiKomplit();
-        $urusan =  $this->inovasi->inovasiKomplit();
+        $urusan =  kategori_umum::all();
         return view("inovasi.urusan")->with([
             'active' => 'inovasi',
             'inovasi' => $inovasi,

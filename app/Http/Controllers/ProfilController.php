@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\Auth;
 class ProfilController extends Controller
 {
 
+
     public function update(Request $request, $id)
     {
         $request->validate([]);
 
-        $process = User::findOrFail($id)->update($request->except('_token'));
+        $process = User::findOrFail($id)->update(['foto_path' => $request->foto_path]);
         if ($process) {
             return redirect()->back()->with("success", "Data berhasil diperbarui");
         } else {

@@ -90,12 +90,23 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]; ?>
                                         if ($inovasi[$e]->id_ku ==  $urusan[$d]->id) {
                                             // echo  $urusan[$d]->kategori . " : " . $inovasi[$e]->id . " : " . $inovasi[$e]->nama . "<br>";
                     ?>
-                                            <?php $tahunsesuai = substr($inovasi[$e]->tgl_launching, 0, 4);
-                                            if (substr($inovasi[$e]->tgl_launching, 0, 4) == $tahunpilih) {
-                                            ?>
-                                                <div class="col">
+                                            <?php $tahunsesuai = substr($inovasi[$e]->tgl_launching, 0, 4); ?>
+
+                                            <!-- <div class="card">
+                                                    <img src="{{Storage::url($inovasi[$e]->poster_path)}}" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title"><?= $inovasi[$e]->nama ?></h5>
+                                                        <span class="badge rounded-pill bg-info text-dark"><?= $smart[$c]->element ?></span>
+                                                        <span class="badge rounded-pill bg-info text-dark"><?= substr($urusan[$d]->kategori, 0, 30)  ?></span>
+                                                            <p class="card-text"><?= substr($inovasi[$e]->deskripsi, 0, 50) . "..." ?></p>
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <a href="{{url('/inov/konten/'.$inovasi[$e]->id)}}"><small class="text-muted">Selengkapnya</small></a>
+                                                        </div>
+                                                    </div> -->
+                                            <div class="list-group">
+                                                <?php if (substr($inovasi[$e]->tgl_launching, 0, 4) == $tahunpilih) { ?>
                                                     <div class="card">
-                                                        <img src="{{Storage::url($inovasi[$e]->poster_path)}}" class="card-img-top" alt="...">
                                                         <div class="card-body">
                                                             <h5 class="card-title"><?= $inovasi[$e]->nama ?></h5>
                                                             <span class="badge rounded-pill bg-info text-dark"><?= $smart[$c]->element ?></span>
@@ -106,10 +117,10 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]; ?>
                                                             <a href="{{url('/inov/konten/'.$inovasi[$e]->id)}}"><small class="text-muted">Selengkapnya</small></a>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                <?php } ?>
+                                            </div>
 
                     <?php }
-                                        }
                                     }
                                 }
                             }

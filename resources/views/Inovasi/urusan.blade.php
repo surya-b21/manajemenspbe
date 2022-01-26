@@ -48,7 +48,7 @@
                 <i class="fa fa-book" style="font-size:25px;color:rgba(56, 154, 255, 1);"></i>
                 <?php
                 for ($x = 0; $x < count($urusan); $x++)
-                    if ($urusan[$x]->idku == $id_urusan) {
+                    if ($urusan[$x]->id == $id_urusan) {
                         echo $urusan[$x]->kategori . "<br>";
                     }
                 ?>
@@ -59,8 +59,8 @@
 
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <?php
-        for ($d = 0; $d < count($inoSmart); $d++) {
-            if (($inoSmart[$d]->idku) == $id_urusan) {
+        for ($d = 0; $d < count($inovasi); $d++) {
+            if (($inovasi[$d]->id) == $id_urusan) {
         ?>
                 <div class="col">
                     <div class="card h-70">

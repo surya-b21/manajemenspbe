@@ -49,22 +49,24 @@ class KategoriUmumController extends Controller
     {
         ladmin()->allow('administrator.kelola.kategori-umum.create');
 
-        $request->validate([
-            'kategori' => 'required',
-            'jenis_urusan' => 'required',
-            'opd' => 'required',
-            'element_smart' => 'required'
-        ],
-        [
-            'required' => ':attribute harus diisi!!'
-        ]);
+        $request->validate(
+            [
+                'kategori' => 'required',
+                'jenis_urusan' => 'required',
+                'id_opd' => 'required',
+                'id_smart' => 'required'
+            ],
+            [
+                'required' => ':attribute harus diisi!!'
+            ]
+        );
 
         try {
             KategoriUmum::create([
                 'kategori' => $request->kategori,
                 'jenis_urusan' => $request->jenis_urusan,
-                'element_smart' => $request->element_smart,
-                'opd' => $request->opd,
+                'id_smart' => $request->id_smart,
+                'id_opd' => $request->id_opd,
                 'create_by' => $request->user()->id,
                 'update_by' => $request->user()->id,
             ]);
@@ -78,7 +80,6 @@ class KategoriUmumController extends Controller
                 $e->getMessage()
             ]);
         }
-
     }
 
     /**
@@ -101,9 +102,10 @@ class KategoriUmumController extends Controller
     public function edit($id)
     {
         ladmin()->allow('administrator.kelola.kategori-umum.update');
-
+        $data['esmart'] = ElemenSmart::all();
+        $data['opd'] = Opd::all();
         $data['kategori'] = KategoriUmum::findOrFail($id);
-        return view('vendor.ladmin.kategori-umum.edit',$data);
+        return view('vendor.ladmin.kategori-umum.edit', $data);
     }
 
     /**
@@ -117,22 +119,24 @@ class KategoriUmumController extends Controller
     {
         ladmin()->allow('administrator.kelola.kategori-umum.update');
 
-        $request->validate([
-            'kategori' => 'required',
-            'jenis_urusan' => 'required',
-            'opd' => 'required',
-            'element_smart' => 'required'
-        ],
-        [
-            'required' => ':attribute harus diisi!!'
-        ]);
+        $request->validate(
+            [
+                'kategori' => 'required',
+                'jenis_urusan' => 'required',
+                'id_opd' => 'required',
+                'id_smart' => 'required'
+            ],
+            [
+                'required' => ':attribute harus diisi!!'
+            ]
+        );
 
         try {
             $kategori = KategoriUmum::findOrFail($id);
             $kategori->kategori = $request->kategori;
             $kategori->jenis_urusan = $request->jenis_urusan;
-            $kategori->id_smart = $request->element_smart;
-            $kategori->id_opd = $request->opd;
+            $kategori->id_smart = $request->id_smart;
+            $kategori->id_opd = $request->id_opd;
             $kategori->update_by = $request->user()->id;
             $kategori->save();
 
@@ -166,7 +170,6 @@ class KategoriUmumController extends Controller
             ]);
             return redirect('/administrator/kelola/kategori-umum');
         } catch (LadminException $e) {
-
         }
     }
 }

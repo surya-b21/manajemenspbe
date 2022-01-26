@@ -13,6 +13,9 @@ class KategoriUmum extends Model
     protected $table = 'kategori_umum';
     protected $fillable = [
         'kategori',
+        'jenis_urusan',
+        'id_smart',
+        'id_opd',
         'create_by',
         'update_by',
     ];

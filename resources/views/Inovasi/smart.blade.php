@@ -51,6 +51,7 @@
 $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
 ?>
 <br /><br />
+
 <!-- <button type="button" class="btn btn-dark">Semua</button> -->
 <div class="overflow-auto">
     <?php for ($i = 0; $i < count($smart); $i++) { ?>
@@ -60,15 +61,6 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
     <?php } ?>
 </div>
 </a>
-<?php for ($i = 0; $i < count($urusan); $i++) {
-?>
-    <!-- <a href="{{url('/inov/'.$urusan[$i]['id'])}}">
-        <button type="button" class="btn btn-dark"><?= $urusan[$i]['kategori'] ?></button>
-    </a> -->
-<?php
-}
-$h = "\n\n";
-?>
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
     @foreach ($smart as $j)
     <!-- <li class="nav-item" role="presentation">
@@ -89,41 +81,22 @@ $h = "\n\n";
         <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
     </li> -->
 </ul>
-<div class="tab-content" id="pills-tabContent">
-    <!-- <div class="tab-pane fade show active" id="1" role="tabpanel" aria-labelledby="1">ha</div> -->
-    @foreach($joinUrusan as $j)
-    <?php $idtab2 = trim($j->id_smart);
-    ?>
-    <div class="tab-pane fade" id="<?= "A" . $idtab2 ?>" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <button><?= $j->kategori  ?></button>
-    </div>
-    @endforeach
-
-    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">B</div>
-
-</div>
 <br>
 <br>
 <br>
 <div class="row row-cols-1 row-cols-md-4 g-4">
     <?php for ($d = 0; $d < count($inovasi); $d++) {
-
-        // echo ((substr($inovasi[$d]->tgl_launching, 0, 4)));
-        // echo "<br>" . (($tahunpilih));
-        // if (substr($inovasi[$d]->tgl_launching, 0, 4) == $tahunnow) {
-        // echo "yes";
-
     ?>
         <div class="col">
             <div class="card h-70">
                 <div class="bg-image hover-zoom">
-                    <img src="{{Storage::url($inovasi[$d]->poster_path)}}" class="card-img-top" alt="<?= $inovasi[$d]->poster_path ?>">
+                    <img src="{{Storage::url($inovasi[$d]->poster_path)}}" alt="<?= $inovasi[$d]->poster_path ?>" width="10">
                 </div>
                 <div class="card-body">
-                    <?php for ($e = 0; $e < count($inoSmart); $e++) {
-                        if ($inoSmart[$e]->id_ino == $inovasi[$d]->id) {
-                    ?>
-                            <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$e]->element ?></span>
+                    <?php for ($e = 0; $e < count($inoSmart); $e++) { ?>
+                        <?php if ($inoSmart[$e]->id_ino == $inovasi[$d]->id) {
+                        ?>
+                            <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$e]->element ?></span><br />
                             <span class="badge rounded-pill bg-info text-dark"><?= $inoSmart[$e]->kategori ?></span>
                     <?php }
                     } ?>
@@ -137,7 +110,6 @@ $h = "\n\n";
         </div>
     <?php
     }
-    // }
     ?>
 </div><br>
 {{$inovasi->links()}}

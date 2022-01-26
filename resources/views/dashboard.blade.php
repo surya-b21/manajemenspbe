@@ -11,8 +11,9 @@
             <form class="container-fluid justify-content-start">
                 <div class="button">
                     <ul class="right">
-                        <a href="http://127.0.0.1:8000/home">Home</a>
-                        <a href="http://127.0.0.1:8000/ino">Inovasi</a>
+                        <a href="http://127.0.0.1:8000">Home</a>
+                        <a href="http://127.0.0.1:8000/administrator">Kelola</a>
+                        <a href="http://127.0.0.1:8000/inov">Inovasi</a>
                         <a href="http://127.0.0.1:8000/forum">Forum</a>
                         <style media="screen">
                             .right {
@@ -22,7 +23,7 @@
 
                             .button ul a {
                                 padding: 5px;
-                                background: rgb(120, 150, 12);
+                                background: #0d6efd;
                                 color: white;
                             }
                         </style>
@@ -119,18 +120,41 @@
                         </div>
                     </div>
                 </div>
-                <ul class="right mr-3">
+                <!-- <div class="mb-3">
+                    <form name="foto" method="post" action="{{url('profil/update/'.$h['id'])}}">
+                        @csrf
+                        <label for="formFile" class="form-label">Masukkan Foto Profil</label>
+                        <input class="form-control" type="file" id="foto"><br />
+                        <button type="submit" value="Submit" class="btn btn-primary btn-sm">Kirim</button>
+
+                    </form>
+                </div> -->
+
+                <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+                <script>
+                    $(document).ready(function() {
+                        // Select2 Multiple
+                        $('#coba').select2({
+                            placeholder: 'Cari...',
+                            allowClear: false
+                        });
+
+                    });
+                </script>
+                <!-- <ul class="right mr-3">
                     <a href="{{url('/profil/halamanupdate/'.$h['id'])}}">Edit Profil</a>
 
-                </ul>
+                </ul> -->
+
             </div>
         </div>
     </div>
     <div class="container ml-15">
-        <form>
+        <!-- <form>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label for="exampleInputEmail1" class="form-label">Nama</label>
+                <input type="email" class="form-control" id="nama" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -138,7 +162,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </form> -->
     </div>
     <br />
     <br />

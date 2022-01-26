@@ -100,10 +100,10 @@
         <div class="col-4 p-9">
             <div class="card shadow p-3">
                 <div class="card-body">
-                    <form class="d-flex">
+                    <!-- <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    </form> -->
                     <!-- <h5 class="card-title">Search</h5> -->
                     <br />
                     <h6 class="card-subtitle mb-2 text-muted">Smart City</h6>

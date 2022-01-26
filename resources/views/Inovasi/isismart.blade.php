@@ -91,11 +91,10 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]; ?>
                                             // echo  $urusan[$d]->kategori . " : " . $inovasi[$e]->id . " : " . $inovasi[$e]->nama . "<br>";
                     ?>
                                             <?php $tahunsesuai = substr($inovasi[$e]->created_at, 0, 4);
-                                            if (substr($inovasi[$e]->tgl_launching, 0, 4) == $tahunpilih) {
                                             ?>
-                                                <div class="col">
+                                            <div class="list-group">
+                                                <?php if (substr($inovasi[$e]->tgl_launching, 0, 4) == $tahunpilih) { ?>
                                                     <div class="card">
-                                                        <img src="{{Storage::url($inovasi[$e]->poster_path)}}" class="card-img-top" alt="...">
                                                         <div class="card-body">
                                                             <h5 class="card-title"><?= $inovasi[$e]->nama ?></h5>
                                                             <span class="badge rounded-pill bg-info text-dark"><?= $smart[$c]->element ?></span>
@@ -106,9 +105,10 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]; ?>
                                                             <a href="{{url('/inov/konten/'.$inovasi[$e]->id)}}"><small class="text-muted">Selengkapnya</small></a>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                <?php } ?>
+                                            </div>
 
-                    <?php }
+                    <?php
                                         }
                                     }
                                 }
@@ -121,7 +121,6 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]; ?>
         </div>
     </div>
     <br>
-    {{$inovasi->links()}}
     <br />
     {{-- @else
     <p class="text-center fs-4">No post found.</p>
