@@ -35,9 +35,7 @@ use App\Models\Forum\Kategori;
 |
 // */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/profil', [ProfilController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Ladmin::route(function () {
     Route::prefix('account')->as('account.')->middleware(['verified'])->group(function () {

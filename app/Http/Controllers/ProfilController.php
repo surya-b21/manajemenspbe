@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfilController extends Controller
 {
-
+    public function index()
+    {
+        $user = User::findOrFail(Auth::id());
+        return view("profil.profil", ['user' => $user]);
+    }
 
     public function update(Request $request, $id)
     {

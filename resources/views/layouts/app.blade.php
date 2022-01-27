@@ -1,36 +1,69 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <style>
+        body {
+            font-family: "Open Sans", sans-serif;
+            color: #444444;
+        }
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title>{{ config('app.name') }}</title>
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css" rel="stylesheet" />
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('template2/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ asset('template2/assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('template2/assets/css/templatemo-digimedia-v3.css') }}">
+    <link rel="stylesheet" href="{{ asset('template2/assets/css/animated.css') }}">
+    <link rel=" stylesheet" href="{{ asset('template2/assets/css/owl.css') }}">
+    <!--  TemplateMo 568 DigiMedia https://templatemo.com/tm-568-digimedia -->
+</head>
+
+<body>
+    <x-header/>
+    <div class="container" style="padding-bottom:30px; padding-top:150px;">
+        {{$slot}}
+    </div>
+    {{-- <footer class="bottom" style="position:static; bottom:0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p> DISKOMINFO SP SURAKARTA 2021
+                        <!-- <br>Link: <a href="/home" target="_parent" title="free css templates">Masukkan Link Anda</a> -->
+                    </p>
                 </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            </div>
         </div>
-    </body>
+    </footer> --}}
+</body>
+<!-- Scripts -->
+<script src="{{ asset('template2/vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('template2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('template2/assets/js/owl-carousel.js') }}"></script>
+<script src="{{ asset('template2/assets/js/animation.js') }}"></script>
+<script src="{{ asset('template2/assets/js/imagesloaded.js') }}"></script>
+<script src="{{ asset('template2/assets/js/custom.js') }}"></script>
+
 </html>
