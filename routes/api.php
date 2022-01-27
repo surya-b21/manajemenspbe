@@ -30,10 +30,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', function () {
         return auth()->user();
     });
-});
 
-// Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
-// Route::post('reset-password', [NewPasswordController::class, 'reset']);
+    Route::post('/komentar/add/{id?}', [ApiKomentar::class, 'add']);
+    Route::delete('/komentar/delete/{id?}', [ApiKomentar::class, 'delete']);
+});
 
 Route::post('/token', [AuthController::class, 'requestToken']);
 Route::get('/tokenID/{username?}', [AuthController::class, 'getID']);
@@ -45,8 +45,6 @@ Route::get('/topik/showimage/{id?}', [ApiTopik::class, 'showimage']);
 Route::get('/kategori/showchild', [ApiForum::class, 'showchild']);
 Route::get('/topik', [ApiTopik::class, 'index']);
 Route::get('/komentar', [ApiKomentar::class, 'index']);
-Route::post('/komentar/add/{id?}', [ApiKomentar::class, 'add']);
-Route::delete('/komentar/delete/{id?}', [ApiKomentar::class, 'delete']);
 
 Route::get('/inovasi', [ApiInovasi::class, 'index']);
 Route::get('/inovasi/dokumenIno/', [ApiInovasi::class, 'dokumenIno']);
@@ -61,3 +59,5 @@ Route::get('/user/showimage/{id?}', [ApiUser::class, 'showimage']);
 
 // Route::get('/kategoriinovasi', [ApiKategoriUmum::class, 'index']);
 Route::get('/varianInovasi', [ApiInovasi::class, 'varian']);
+// Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
+// Route::post('reset-password', [NewPasswordController::class, 'reset']);
