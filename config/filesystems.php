@@ -73,7 +73,8 @@ return [
         public_path('dokumen') => storage_path('app/public/dokumen'),
         // public_path('topik') => storage_path('app/public/forum'),
         public_path('topik') => storage_path('app/public/topik'),
-        public_path('logo') => storage_path('app/public/logo')
+        public_path('logo') => storage_path('app/public/logo'),
+        public_path('user') => storage_path('app/public/user'),
     ],
 
 ];

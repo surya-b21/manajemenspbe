@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="{{Storage::url($h->foto_path)}}" alt="<?= $h['foto_path'] ?>" class="img-thumbnail">
+                    <img src="{{Storage::url('user/'.$h->foto_path)}}" alt="<?= $h['foto_path'] ?>" class="img-thumbnail">
                 </div>
             </div>
             <div class="col-md-6">

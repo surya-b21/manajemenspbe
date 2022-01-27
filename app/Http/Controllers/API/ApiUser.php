@@ -26,7 +26,7 @@ class ApiUser extends Controller
         for ($i = 0; $i < $row; $i++) {
             if ($User[0][$i]['id'] == $id) {
                 return response()->file(public_path(
-                    'storage/' . $User[0][$i]['foto_path']
+                    'user/' . $User[0][$i]['foto_path']
                 ));
             }
         }
