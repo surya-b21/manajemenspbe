@@ -35,8 +35,6 @@ use App\Models\Forum\Kategori;
 |
 // */
 
-Route::get('/profil', [ProfilController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
 Ladmin::route(function () {
     Route::prefix('account')->as('account.')->middleware(['verified'])->group(function () {
         Route::resource('/opd', OpdController::class);
@@ -81,6 +79,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/komentar/delete/{idkomen}', [KomentarController::class, 'delete']);
     Route::get('/komentar/update/{idkomen}', [KomentarController::class, 'update']);
     Route::post('/komentar/update/{idkomen}', [KomentarController::class, 'processUpdate']);
+    Route::prefix('profil')->as('profil.')->group(function() {
+        Route::get('/', [ProfilController::class, 'index'])->name('index');
+        Route::post('/store/{username}', [ProfilController::class, 'store'])->name('store');
+        Route::post('/getuser', [ProfilController::class, 'getUser'])->name('get');
+    });
 });
 
 Route::middleware('guest')->group(function () {

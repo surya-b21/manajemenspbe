@@ -38,6 +38,8 @@
     <link rel="stylesheet" href="{{ asset('template2/assets/css/templatemo-digimedia-v3.css') }}">
     <link rel="stylesheet" href="{{ asset('template2/assets/css/animated.css') }}">
     <link rel=" stylesheet" href="{{ asset('template2/assets/css/owl.css') }}">
+
+    {!! $head ?? null !!}
     <!--  TemplateMo 568 DigiMedia https://templatemo.com/tm-568-digimedia -->
 </head>
 
@@ -46,7 +48,7 @@
     <div class="container" style="padding-bottom:30px; padding-top:150px;">
         {{$slot}}
     </div>
-    {{-- <footer class="bottom" style="position:static; bottom:0px;">
+    <footer class="bottom" style="position:static; bottom:0px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -56,7 +58,7 @@
                 </div>
             </div>
         </div>
-    </footer> --}}
+    </footer>
 </body>
 <!-- Scripts -->
 <script src="{{ asset('template2/vendor/jquery/jquery.min.js') }}"></script>
@@ -65,5 +67,8 @@
 <script src="{{ asset('template2/assets/js/animation.js') }}"></script>
 <script src="{{ asset('template2/assets/js/imagesloaded.js') }}"></script>
 <script src="{{ asset('template2/assets/js/custom.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{!! $scripts ?? null !!}
 
 </html>
