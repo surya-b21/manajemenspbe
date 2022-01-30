@@ -136,7 +136,7 @@ class InovasiController extends Controller
         $inovasi = Inovasi::findOrFail($id);
         $opd = Opd::all();
 
-        return view('vendor.ladmin.inovasi.edit', compact(['kategori_umum', 'opd', 'arrEM', 'inovasi']));
+        return view('vendor.ladmin.inovasi.edit', compact(['kategori_umum', 'opd',  'inovasi']));
     }
 
     /**

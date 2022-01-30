@@ -97,7 +97,7 @@
                             <div class="card-body">
                                 <div class="d-flex flex-start">
                                     <figure class="figure">
-                                        <img class="rounded-circle shadow-1-strong me-1" src="{{Storage::url($k->foto_path)}}" alt="avatar" width="40" height="40" />
+                                        <img class="rounded-circle shadow-1-strong me-1" src="{{Storage::url('user/'.$k->foto_path)}}" alt="avatar" width="40" height="40" />
                                     </figure>
                                     <div class="w-100">
                                         <div class="d-flex justify-content-between align-items-center mb-1">

@@ -15,7 +15,7 @@
                     </tr> --}}
                     <tr>
                         <td><strong>Isi</strong></td>
-                        <td>{!! $topik->isi !!}</td>                        
+                        <td>{!! $topik->isi !!}</td>
                     </tr>
                     <tr>
                         <td><strong>Tanggal Pembuatan</strong></td>
@@ -29,8 +29,8 @@
                         <td><strong>Kategori Forum</strong></td>
                         <td>
                             @php
-                                $kategori_forum = DB::table('kategori_forum')->select('kategori')->where('id',$topik->id_kf)->first();
-                                echo $kategori_forum->kategori;
+                            $kategori_forum = DB::table('kategori_forum')->select('kategori')->where('id',$topik->id_kf)->first();
+                            echo $kategori_forum->kategori;
                             @endphp
                         </td>
                     </tr>
@@ -39,7 +39,7 @@
                         <td>
                             <img src="{{Storage::url($topik->foto_path)}}" alt="foto {{$topik->judul}}" width="50%" height="50%">
                         </td>
-                    </tr> 
+                    </tr>
                 </tbody>
             </table>
         </div>
