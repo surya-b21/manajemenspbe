@@ -18,6 +18,7 @@ class TopikController extends Controller
 
     public function index($id)
     {
+        $id = decrypt($id);
         $data = Topik::where('id_kf', $id)->paginate(4);
         $topikpost = Topik::all();
         $data2 = Kategori::all();

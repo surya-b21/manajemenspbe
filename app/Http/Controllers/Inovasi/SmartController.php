@@ -71,6 +71,7 @@ class SmartController extends Controller
     }
     public function selectsmart($id) //select inovasii berdasarkan smart
     {
+        $id = decrypt($id);
         $smart = kategori_smart::all();
         $idku = kategori_umum::all()->where('id_smart', $id);
         $idurusanSesuai = DB::table('kategori_umum')->select('id')->where('id_smart', $id)->get()->toArray();
@@ -90,6 +91,8 @@ class SmartController extends Controller
     }
     public function select($id, $tahun) //select inovasii berdasarkan smart
     {
+        $id = decrypt($id);
+        $tahun = decrypt($tahun);
         $smart = kategori_smart::all();
         $idku = kategori_umum::all()->where('id_smart', $id);
         $idurusanSesuai = DB::table('kategori_umum')->select('id')->where('id_smart', $id)->get()->toArray();
@@ -111,6 +114,7 @@ class SmartController extends Controller
     }
     public function tahun($idtahun)
     {
+        $idtahun = decrypt($idtahun);
         $inovasi = inovasi::paginate(4);
         $tgl = inovasi::all('tgl_launching');
         $inoSmart =  $this->inovasi->inovasiKomplit();
@@ -125,6 +129,7 @@ class SmartController extends Controller
     }
     public function urusan($id_urusan)
     {
+        $id_urusan = decrypt($id_urusan);
         $inovasi =  Inovasi::orderBy('tgl_launching', 'desc')->paginate(3);
         $inoSmart =  $this->inovasi->inovasiKomplit();
         $urusan =  kategori_umum::all();

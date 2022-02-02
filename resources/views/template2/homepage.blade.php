@@ -147,7 +147,7 @@
                                                 <p class="card-text"><?= substr($inovasi[$i]->deskripsi, 0, 50) . "..." ?></p>
                                             </div>
                                             <div class="card-footer">
-                                                <a href="{{url('/inov/konten/'.$inovasi[$i]->id)}}"><small class="text-muted">Selengkapnya</small></a>
+                                                <a href="{{url('/inov/konten/'.encrypt($inovasi[$i]->id))}}"><small class="text-muted">Selengkapnya</small></a>
                                             </div>
                                         </div>
                                         <div>

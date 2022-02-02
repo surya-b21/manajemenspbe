@@ -57,7 +57,7 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]; ?>
                             <div class="card">
                                 <div class="card-header">
                                     <i class="fa fa-book" style="font-size:25px;color:rgba(56, 154, 255, 1);"></i>
-                                    <a href="{{url('/inov/isismart/'.$smart[$c]->id.'/'.$tahun[$d])}}"><b> <?= $tahun[$d] ?></b></a>
+                                    <a href="{{url('/inov/isismart/'.encrypt($smart[$c]->id).'/'.encrypt($tahun[$d]))}}"><b> <?= $tahun[$d] ?></b></a>
                                 </div>
 
                             </div>
@@ -102,7 +102,7 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]; ?>
                                                             <p class="card-text"><?= substr($inovasi[$e]->deskripsi, 0, 50) . "..." ?></p>
                                                         </div>
                                                         <div class="card-footer">
-                                                            <a href="{{url('/inov/konten/'.$inovasi[$e]->id)}}"><small class="text-muted">Selengkapnya</small></a>
+                                                            <a href="{{url('/inov/konten/'.encrypt($inovasi[$e]->id))}}"><small class="text-muted">Selengkapnya</small></a>
                                                         </div>
                                                     </div>
                                                 <?php } ?>

@@ -55,7 +55,7 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
 <!-- <button type="button" class="btn btn-dark">Semua</button> -->
 <div class="overflow-auto">
     <?php for ($i = 0; $i < count($smart); $i++) { ?>
-        <a href="{{url('/inov/isismart/'.$smart[$i]['id'])}}">
+        <a href="{{url('/inov/isismart/'.encrypt($smart[$i]['id']))}}">
             <button type="button" class="btn btn-dark"><?= $smart[$i]['element'] ?></button>
         </a>
     <?php } ?>
@@ -104,7 +104,7 @@ $tahun = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
                     <p class="card-text"><?= substr($inovasi[$d]->deskripsi, 0, 50) . "..." ?></p>
                 </div>
                 <div class="card-footer">
-                    <a href="{{url('/inov/konten/'.$inovasi[$d]->id)}}"><small class="text-muted">Selengkapnya</small></a>
+                    <a href="{{url('/inov/konten/'.encrypt($inovasi[$d]->id))}}"><small class="text-muted">Selengkapnya</small></a>
                 </div>
             </div>
         </div>

@@ -50,7 +50,7 @@
                 <div class="card-body">
                     <i class="fa fa-send" style="font-size:14px;color:rgba(56, 154, 255, 1);"></i>
                     <span class="card-title">
-                        <a href="{{url('/forum/'.$kategori[$i]['children'][$j]['id'])}}">
+                        <a href="{{url('/forum/'.encrypt($kategori[$i]['children'][$j]['id']))}}">
                             <b> <?= $kategori[$i]['children'][$j]['kategori'];
                                 ?></b>
                         </a>

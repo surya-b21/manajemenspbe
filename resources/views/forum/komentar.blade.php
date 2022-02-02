@@ -115,31 +115,12 @@
 
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="d-flex flex-row">
-                                                            <a><i class="fas fa-trash primary" style="color:#007bff;" data-toggle="modal" data-target="#exampleModalCenter"></i></a>
-                                                            <a href="<?= url('/komentar/update/' . $k->id) ?>"><i class="fas fa-pen"></i></a>
+                                                            <a href="<?= url('/komentar/delete/' . encrypt($k->id)) ?>"><i class="fas fa-trash primary" style="color:#007bff;" onclick="return confirm('Apakah anda yakin ingin hapus ?')"></i></a>
+                                                            <!-- <input type="hidden" value="{{$k->id}}" name="idkomen"> -->
+                                                            <a href="<?= url('/komentar/update/' . encrypt($k->id)) ?>"><i class="fas fa-pen"></i></a>
                                                         </div>
                                                     </div>
 
-
-                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLongTitle">Anda Yakin Hapus Komentar?</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <!-- <div class="modal-body">
-                    nnn
-                </div> -->
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                                                                    <a href="<?= url('/komentar/delete/' . $k->id) ?>" class=" reply"> <button type="button" class="btn btn-primary">Ya</button></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 <?php } ?>
                                             <?php } ?>
                                         </div>
@@ -148,6 +129,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?php $k->id = 0 ?>
                         @endforeach
 
                         <?php

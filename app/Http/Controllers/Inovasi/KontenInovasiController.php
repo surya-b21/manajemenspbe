@@ -23,6 +23,7 @@ class KontenInovasiController extends Controller
 
     public function show($id)
     {
+        $id = decrypt($id);
         $data = Inovasi::all()->where('id', $id);
         $data3 = User::all();
         $smart = kategori_smart::all();

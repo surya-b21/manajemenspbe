@@ -49,7 +49,7 @@
                             <i class="fa fa-send" style="font-size:14px;color:rgba(56, 154, 255, 1);"></i>
                             <span class="card-text">
                                 <small>
-                                    <a href="{{url('/forum/'.$kategori[$i]['children'][$j]['id'])}}">
+                                    <a href="{{url('/forum/'.encrypt($kategori[$i]['children'][$j]['id']))}}">
                                         <?= $kategori[$i]['children'][$j]['kategori']; ?>
                                     </a>
                                     <?php
@@ -100,7 +100,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <p class="card-text">
-                                        <a href="{{url('/topik/'.$tampil['t']->id)}}">
+                                        <a href="{{url('/topik/'.encrypt($tampil['t']->id))}}">
                                             <h5 class="card-title">
                                                 <i class="fa fa-send" style="font-size:14px; color:blue"></i>
                                                 {{$tampil['t']->judul}}
@@ -109,7 +109,7 @@
                                         </a>
 
                                         <small>{!! Str::limit($tampil['t']->isi, 100, '...') !!}
-                                            <a href="{{url('/topik/'.$tampil['t']->id)}}">Selengkapnya</a>
+                                            <a href="{{url('/topik/'.encrypt($tampil['t']->id))}}">Selengkapnya</a>
                                         </small>
                                         <br>
                                         <span class="badge rounded-pill bg-light" style="font-size:11px;color:grey">

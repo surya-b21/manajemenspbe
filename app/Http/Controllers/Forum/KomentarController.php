@@ -18,6 +18,7 @@ class KomentarController extends Controller
 
     public function show($id)
     {
+        $id = decrypt($id);
         $data = Topik::all()->where('id', $id);
         $data2 = $this->Komentar->joinUser()->where('id_topik', $id);
         $data3 = User::all();
@@ -46,6 +47,7 @@ class KomentarController extends Controller
 
     function delete($idkomen)
     {
+        $idkomen = decrypt($idkomen);
         try {
             $process = Komentar::findOrFail($idkomen)->delete();
             if ($process) {
@@ -59,6 +61,7 @@ class KomentarController extends Controller
 
     public function update($idkomen)
     {
+        $idkomen = decrypt($idkomen);
         $data = Komentar::findOrFail($idkomen);
         return view("forum.update_komentar", [
             'active' => 'forum',
